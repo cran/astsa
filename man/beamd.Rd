@@ -1,0 +1,33 @@
+\name{beamd}
+\alias{beamd}
+\docType{data}
+\title{Infrasonic Signals from a Nuclear Explosion 
+%%   ~~ data name/kind ... ~~
+}
+\description{Infrasonic signals from a nuclear explosion.  See Example 7.2 on page 421.
+%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+}
+\usage{data(beamd)}
+\format{
+ A data frame with 2048 observations on the following 3 variables.
+ \describe{
+   \item{\code{sensor1} }{a numeric vector}
+   \item{\code{sensor2} }{a numeric vector}
+   \item{\code{sensor3} }{a numeric vector}
+ }
+}
+\details{This is a data frame consisting of three columns (that are not time series objects). The data are an infrasonic signal from a nuclear explosion observed at sensors on a triangular array.
+%%  ~~ If necessary, more details than the __description__ above ~~
+}
+%\source{
+%%  ~~ reference to a publication or URL from which the data were obtained ~~
+%}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+%%  ~~ possibly secondary sources and usages ~~
+}
+%%\examples{
+%%plot.ts(beamd)
+%%## maybe str(beamd) ; plot(beamd) ...
+%%}
+\keyword{datasets}
+%%

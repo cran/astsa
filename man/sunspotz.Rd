@@ -1,0 +1,28 @@
+\name{sunspotz}
+\alias{sunspotz}
+\docType{data}
+\title{Biannual Sunspot Numbers
+%%   ~~ data name/kind ... ~~
+}
+\description{Biannual smoothed (12-month moving average) number of sunspots from June 1749 to December 1978; n = 459. The "z" on the end is to distinguish this series from the one included with R (called \code{sunspots}).
+%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+}
+\usage{data(sunspotz)}
+\format{
+  The format is:
+ Time-Series [1:459] from 1749 to 1978: 89 84 70 49 47 48 41 32 17 12 ...
+}
+%%\details{
+%%%%  ~~ If necessary, more details than the __description__ above ~~
+%%}
+%%\source{
+%%%%  ~~ reference to a publication or URL from which the data were obtained ~~
+%%}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+%%%%  ~~ possibly secondary sources and usages ~~
+}
+%%\examples{
+%%data(sunspotz)
+%%## maybe str(sunspotz) ; plot(sunspotz) ...
+%%}
+\keyword{datasets}
