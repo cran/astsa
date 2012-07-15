@@ -16,10 +16,10 @@ EM1(num, y, A, mu0, Sigma0, Phi, Ups, Gam, cQ, cR, input,
   \item{num}{number of observations
 %%     ~~Describe \code{num} here~~
 }
-  \item{y}{data matrix, vector or time series; use 0 for missing values
+  \item{y}{observation vector or time series; use 0 for missing values
 %%     ~~Describe \code{y} here~~
 }
-  \item{A}{time-varying observation matrix, an array with \code{dim=c(q,p,n)}; use 0 for missing values
+  \item{A}{observation matrices, an array with \code{dim=c(q,p,n)}; use 0 for missing values
 %%     ~~Describe \code{A} here~~
 }
   \item{mu0}{initial state mean
@@ -37,7 +37,7 @@ EM1(num, y, A, mu0, Sigma0, Phi, Ups, Gam, cQ, cR, input,
   \item{Gam}{observation input matrix; set to 0 if not used
 %%     ~~Describe \code{Gam} here~~
 }
-  \item{cQ}{Cholesky decomposition of state error covariance matrix Q -- see details below
+  \item{cQ}{Cholesky-like decomposition of state error covariance matrix Q -- see details below
 %%     ~~Describe \code{cQ} here~~
 }
   \item{cR}{R is diagonal here, so \code{cR = sqrt(R)} -- also, see details below
@@ -53,7 +53,7 @@ EM1(num, y, A, mu0, Sigma0, Phi, Ups, Gam, cQ, cR, input,
 %%     ~~Describe \code{tol} here~~
 }
 }
-\details{Practically, the script only requires that Q or R may be reconstructed as  \code{t(cQ)\%*\%(cQ)} or \code{t(cR)\%*\%(cR)}, respectively, which allows more flexibility.
+\details{Practically, the script only requires that Q or R may be reconstructed as  \code{t(cQ)\%*\%(cQ)} or \code{t(cR)\%*\%(cR)}, respectively.
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{

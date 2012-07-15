@@ -1,7 +1,7 @@
 \name{cmort}
 \alias{cmort}
 \docType{data}
-\title{Cardiovascular Mortality from the LA pollution study
+\title{Cardiovascular Mortality from the LA Pollution study
 %%   ~~ data name/kind ... ~~
 }
 \description{Average weekly cardiovascular mortality in Los Angeles County; 508 six-day smoothed averages obtained by filtering daily values over the 10 year period 1970-1979.
@@ -25,5 +25,6 @@
 %%ts.plot(cbind(cmort,tempr,part,so2), col=1:4)
 %%## maybe str(cmort) ; plot(cmort) ...
 %%}
+\seealso{\code{\link{lap}}}
 \keyword{datasets}
 %%

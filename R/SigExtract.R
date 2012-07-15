@@ -23,7 +23,7 @@ M = 2*floor(M/2)           # make sure M  is even
 
 # Compute the spectrum
 series = ts(series, frequency = 1)  # This script assumes frequency = 1 (so 0 < nu < .5)
-spectra = spec.pgram(series, spans=L, plot = FALSE)
+spectra = stats::spec.pgram(series, spans=L, plot = FALSE)
 
 
 A <- function(nu) {
@@ -84,7 +84,7 @@ A.attained[k] = A.M(fr.N[k]) # The attained freq. resp.
 A.theoretical[k] = A(fr.N[k])
 }
 
-series.filt = filter(series, a, sides = 2) # The filtered series
+series.filt = stats::filter(series, a, sides = 2) # The filtered series
 old.par <- par(no.readonly = TRUE)
 par(mfrow=c(2,1))
 plot.ts(series, main = "Original series")
@@ -92,8 +92,8 @@ plot.ts(series.filt, main = "Filtered series")
 
 dev.new()
 par(mfrow=c(2,1))
-spectrum(series, spans=L, log="no", main = "Spectrum of original series")
-spectrum(na.omit(series.filt), spans=L, log="no", main = "Spectrum of filtered series")
+stats::spectrum(series, spans=L, log="no", main = "Spectrum of original series")
+stats::spectrum(na.omit(series.filt), spans=L, log="no", main = "Spectrum of filtered series")
 
 
 dev.new()

@@ -28,7 +28,7 @@ cat("INPUT:",name.in,"OUTPUT:",name.out, "  L =",L, "   M =",M, "\n\n")
 
 # Compute the spectra
 # Note the order: cbind(output, input) - this is necessary in order that the phase have the right sign.
-spectra = spectrum(ts(cbind(output, input)), spans=L , plot = FALSE)
+spectra = stats::spectrum(ts(cbind(output, input)), spans=L , plot = FALSE)
 
 
 N = 2*length(spectra$freq)  # This will be T'.

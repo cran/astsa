@@ -27,4 +27,5 @@
 %data(tempr)
 %## maybe str(tempr) ; plot(tempr) ...
 %}
+\seealso{\code{\link{lap}}}
 \keyword{datasets}

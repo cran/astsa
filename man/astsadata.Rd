@@ -1,34 +1,29 @@
-\name{acf2}
-\alias{acf2}
+\name{astsadata}
+\alias{astsadata}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Plot and print ACF and PACF of a time series
+\title{All the Data in One Swell Foop
 }
 \description{
-Produces a simultaneous plot (and a printout) of the sample ACF and PACF on the same scale. The zero lag value of the ACF is removed.
+Conveniently loads all the astsa data files.
 }
 \usage{
-acf2(series, max.lag = NULL)
+astsadata()
 }
 %- maybe also 'usage' for other objects documented here.
-\arguments{
-  \item{series}{The data.  Does not have to be a time series object.
-}
-  \item{max.lag}{
-Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 50}.
-}
+\arguments{\item{}{There are none.}
 }
 %\details{
 %%  ~~ If necessary, more details than the description above ~~
 %}
-\value{\item{ACF}{The sample ACF}
-\item{PACF}{The sample PACF}
+%%\value{\item{ACF}{The sample ACF}
+%%\item{PACF}{The sample PACF}
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
-}
-\details{This is bacisally a front end for \code{acf()} provided in \code{tseries}.  The error bounds are approximate white noise bounds, \eqn{0 \pm 2/\sqrt{n}}; no other option is given.    
+%}
+\details{Loads all the astsa data files to save you time (and consequently money).  If you save the workspace, the data files will be there the next time you start R.  Note that the size of the all the data files combined is fairly small, less than 1/2 MB compressed.  This is available in versions 1.1 and higher.
 }
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
 %% ~put references to the literature/web site here ~
@@ -43,10 +38,10 @@ D.S. Stoffer
 %\seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
-\examples{
-acf2(rnorm(100))
-acf2(rnorm(100), 25)
-}
+%\examples{
+%acf2(rnorm(100))
+%acf2(rnorm(100), 25)
+%}
 %% ##--	or do  help(data=index)  for the standard data sets.
 %% 
 %% ## The function is currently defined as
@@ -78,4 +73,4 @@ acf2(rnorm(100), 25)
 %}
 %% % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ts}
+\keyword{datasets}

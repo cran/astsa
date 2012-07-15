@@ -25,5 +25,6 @@
 %%%plot(EQ5)
 %%%## maybe str(EQ5) ; plot(EQ5) ...
 %%%}
+\seealso{\code{\link{eqexp}}}
 \keyword{datasets}
 %%%

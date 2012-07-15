@@ -43,11 +43,11 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1, details = TRUE,
   \item{tol}{controls the relative tolerance (reltol) used to assess convergence. The default is \code{sqrt(.Machine$double.eps)}, the R default. 
 %%     ~~Describe \code{tol} here~~
 }
-  \item{no.constant}{controls whether or not sarima includes a constant in the model. In particular, with sarima, if there is no differencing (d = 0 and D = 0) you get the mean estimate. If there is differencing of order one (either d = 1 or D = 1, but not both), a constant term is included in the model; this may be overridden by setting this to TRUE. In any other situation, no constant or mean term is included in the model. The idea is that if you difference more than once (d+D > 1), any drift is likely to be removed.
+  \item{no.constant}{controls whether or not sarima includes a constant in the model. In particular, if there is no differencing (d = 0 and D = 0) you get the mean estimate. If there is differencing of order one (either d = 1 or D = 1, but not both), a constant term is included in the model. These two conditions may be overridden (i.e., no constant will be included in the model) by setting this to TRUE; e.g., \code{sarima(x,1,1,0,no.constant=TRUE)}. Otherwise, no constant or mean term is included in the model. The idea is that if you difference more than once (d+D > 1), any drift is likely to be removed.  A possible work around if you think there is still drift when d+D > 1, say d=1 and D=1, then work with the differenced data, e.g., \code{sarima(diff(x),0,0,1,0,1,1,12)}.
 %%     ~~Describe \code{no.constant} here~~
 }
 }
-\details{If your time series is in x and you want to fit an ARIMA(p,d,q) model to the data, the basic call is \code{sarima(x,p,d,q)}. The results are the parameter estimates, standard errors, AIC, AICc, BIC (as defined in Chapter 2) and diagnostics. To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, sarima(x,2,1,0) will fit an ARIMA(2,1,0) model to the series in x, and sarima(x,2,1,0,0,1,1,12) will fit a seasonal ARIMA\eqn{(2,1,0)\times(0,1,1)_{12}} model to the series in x.  
+\details{If your time series is in x and you want to fit an ARIMA(p,d,q) model to the data, the basic call is \code{sarima(x,p,d,q)}. The results are the parameter estimates, standard errors, AIC, AICc, BIC (as defined in Chapter 2) and diagnostics. To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, \code{sarima(x,2,1,0)} will fit an ARIMA(2,1,0) model to the series in x, and \code{sarima(x,2,1,0,0,1,1,12)} will fit a seasonal ARIMA\eqn{(2,1,0)*(0,1,1)_{12}} model to the series in x.  
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{\item{fit }{estimation results}
@@ -74,7 +74,7 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1, details = TRUE,
 sarima(log(AirPassengers),0,1,1,0,1,1,12)
 (dog <- sarima(log(AirPassengers),0,1,1,0,1,1,12))
 summary(dog$fit)  # fit has all the returned arima() values
-plot(resid(dog$fit))
+plot(resid(dog$fit))  # plot the innovations (residuals) 
 }
 %% ##---- Should be DIRECTLY executable !! ----
 %% ##-- ==>  Define data, use random,
@@ -131,5 +131,6 @@ plot(resid(dog$fit))
 %%}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
+\seealso{\code{\link{sarima.for}}}
 \keyword{ ts }
 %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

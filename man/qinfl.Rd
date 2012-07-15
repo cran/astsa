@@ -15,7 +15,7 @@
 \details{pairs with qintr (interest rate)
 %%  ~~ If necessary, more details than the __description__ above ~~
 }
-\source{Newbold, P. and T. Bos (1985). Stochastic Parameter Regression Models. Beverly Hills: Sage.
+\source{Newbold, P. and T. Bos (1985). \emph{Stochastic Parameter Regression Models}. Beverly Hills: Sage.
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 }
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
@@ -25,5 +25,7 @@
 %%data(qinfl)
 %%## maybe str(qinfl) ; plot(qinfl) ...
 %%}
+\seealso{\code{\link{qintr}}}
+%%\examples{
 \keyword{datasets}
 %%

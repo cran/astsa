@@ -13,7 +13,7 @@ function(num,y,A,mu0,Sigma0,Phi,cQ,cR,max.iter=50,tol=.01){
    cat("iteration","   -loglikelihood", "\n")
 #----------------- start EM -------------------------
 for(iter in 1:max.iter){ 
-  ks=Ksmooth0(num,y,A,mu0,Sigma0,Phi,cQ,cR)
+  ks=astsa::Ksmooth0(num,y,A,mu0,Sigma0,Phi,cQ,cR)
   like[iter]=ks$like
   cat("   ",iter, "        ", ks$like, "\n")
   if(iter>1) cvg=(like[iter-1]-like[iter])/abs(like[iter-1])

@@ -12,24 +12,24 @@ FDR(pvals, qlevel = 0.05)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{pvals }{a vector of pvals on which to conduct the multiple testing
+  \item{pvals }{ a vector of pvals on which to conduct the multiple testing
 %%     ~~Describe \code{pvals} here~~
 }
-  \item{qlevel }{the proportion of false positives desired
+  \item{qlevel }{ the proportion of false positives desired
 %%     ~~Describe \code{qlevel} here~~
 }
 }
 %%\details{
 %%  ~~ If necessary, more details than the description above ~~
 %%}
-\value{\item{fdr.id }{NULL if no significant tests, or a vector of the indices of the significant tests}
+\value{\item{fdr.id }{ NULL if no significant tests, or a vector of the indices of the significant tests}
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{fdr.id }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{\url{http://biosun1.harvard.edu/~paciorek/code/fdr/fdr.R} 
+\references{\url{http://www.stat.berkeley.edu/~paciorek/code/fdr/fdr.R} 
 %% ~put references to the literature/web site here ~
 }
 %\author{

@@ -21,4 +21,5 @@
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
 %%  ~~ possibly secondary sources and usages ~~
 }
+\seealso{\code{\link{gtemp}}}
 \keyword{datasets}

@@ -25,4 +25,5 @@
 %data(lead)
 %## maybe str(lead) ; plot(lead) ...
 %}
+\seealso{\code{\link{sales}}}
 \keyword{datasets}

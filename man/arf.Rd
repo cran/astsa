@@ -4,8 +4,7 @@
 \title{Simulated ARFIMA
 %%   ~~ data name/kind ... ~~
 }
-\description{1000 simulated observations from an ARFIMA(1, 1, 0) model with
- \eqn{\phi = .75} and \eqn{d = .4}.
+\description{1000 simulated observations from an ARFIMA(1, 1, 0) model with \eqn{\phi = .75} and \eqn{d = .4}.
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 \usage{data(arf)}

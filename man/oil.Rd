@@ -25,4 +25,5 @@
 %%data(oil)
 %%## maybe str(oil) ; plot(oil) ...
 %%}
+\seealso{\code{\link{gas}}}
 \keyword{datasets}

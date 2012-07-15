@@ -1,7 +1,7 @@
 \name{bnrf1ebv}
 \alias{bnrf1ebv}
 \docType{data}
-\title{Nucleotide sequence of the BNRF1 gene of the Epstein-Barr virus
+\title{Nucleotide sequence - BNRF1 Epstein-Barr 
 %%   ~~ data name/kind ... ~~
 }
 \description{Nucleotide sequence of the BNRF1 gene of the Epstein-Barr virus

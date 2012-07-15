@@ -4,8 +4,8 @@ function(series,max.lag=NULL){
   if (num > 49 & is.null(max.lag)) max.lag=ceiling(10+sqrt(num))
   if (num < 50 & is.null(max.lag))  max.lag=floor(5*log10(num))
   if (max.lag > (num-1)) stop("Number of lags exceeds number of observations")
-  ACF=acf(series, max.lag, plot=FALSE)$acf[-1]
-  PACF=pacf(series, max.lag, plot=FALSE)$acf
+  ACF=stats::acf(series, max.lag, plot=FALSE)$acf[-1]
+  PACF=stats::pacf(series, max.lag, plot=FALSE)$acf
   LAG=1:max.lag/frequency(series)
   minA=min(ACF)
   minP=min(PACF)

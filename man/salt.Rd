@@ -25,4 +25,5 @@
 %%data(salt)
 %%## maybe str(salt) ; plot(salt) ...
 %%}
+\seealso{\code{\link{saltemp}}}
 \keyword{datasets}

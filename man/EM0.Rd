@@ -15,7 +15,7 @@ EM0(num, y, A, mu0, Sigma0, Phi, cQ, cR, max.iter = 50, tol = 0.01)
   \item{num}{number of observations
 %%     ~~Describe \code{num} here~~
 }
-  \item{y}{data matrix, vector or time series
+  \item{y}{observation vector or time series
 %%     ~~Describe \code{y} here~~
 }
   \item{A}{time-invariant observation matrix
@@ -30,10 +30,10 @@ EM0(num, y, A, mu0, Sigma0, Phi, cQ, cR, max.iter = 50, tol = 0.01)
   \item{Phi}{state transition matrix
 %%     ~~Describe \code{Phi} here~~
 }
-  \item{cQ}{Cholesky decomposition of state error covariance matrix Q -- see details below
+  \item{cQ}{Cholesky-like decomposition of state error covariance matrix Q -- see details below
 %%     ~~Describe \code{cQ} here~~
 }
-  \item{cR}{Cholesky decomposition of state error covariance matrix R -- see details below
+  \item{cR}{Cholesky-like decomposition of state error covariance matrix R -- see details below
 %%     ~~Describe \code{cR} here~~
 }
   \item{max.iter}{maximum number of iterations
@@ -44,7 +44,7 @@ EM0(num, y, A, mu0, Sigma0, Phi, cQ, cR, max.iter = 50, tol = 0.01)
 }
 }
 \details{Practically, the script only requires that Q or R may be reconstructed as 
- \code{t(cQ)\%*\%(cQ)} or \code{t(cR)\%*\%(cR)}, respectively, which allows more flexibility.
+ \code{t(cQ)\%*\%(cQ)} or \code{t(cR)\%*\%(cR)}, respectively.
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{

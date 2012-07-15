@@ -4,8 +4,7 @@
 \title{Monthly pneumonia and influenza deaths in the U.S., 1968 to 1978.
 %%   ~~ data name/kind ... ~~
 }
-\description{Monthly pneumonia and influenza deaths per 10,000 people in the
-United States for 11 years, 1968 to 1978.
+\description{Monthly pneumonia and influenza deaths per 10,000 people in the United States for 11 years, 1968 to 1978.
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 \usage{data(flu)}

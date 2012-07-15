@@ -1,0 +1,11 @@
+Version 1.1
+
+1. In R scripts, added 'stats' package name to most calls for example  acf(...)  became  stats::acf(...)   ... but I didn't do it for functions in 'base'
+ 
+2. Added data set 'blood' (based on code in Example 6.1) as an mts object of the Jones data set with NA as missing data code. Example 6.9 still uses 0 for missing data.
+
+3. Added links to related data sets in some man files (e.g., oil <-> gas ...)
+
+4. Added 'astsadata.R' to load all the data sets at once.
+
+5. Changed 'mvspec' so it could be used in place of spec.pgram and spectrum.  The defaults are similar now to spec.prgram, but the default is not to taper, forcing the user to think about it more.  It also returns the book's more useful definition of bandwidth.

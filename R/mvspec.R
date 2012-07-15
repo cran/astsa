@@ -1,6 +1,5 @@
-mvspec <-
-function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
-    fast = TRUE, demean = TRUE, detrend = FALSE, plot = FALSE, 
+mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
+    fast = TRUE, demean = FALSE, detrend = TRUE, plot = TRUE, 
     na.action = na.fail,...) 
 {
     series <- deparse(substitute(x))
@@ -14,7 +13,7 @@ function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
             if (is.tskernel(spans)) 
                 spans
             else kernel("modified.daniell", spans%/%2)
-        }
+        }	
     if (!is.null(kernel) && !is.tskernel(kernel)) 
         stop("must specify 'spans' or a valid kernel")
     if (detrend) {
@@ -54,15 +53,17 @@ function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
         for (i in 1:ncol(x)) for (j in 1:ncol(x)) pgram[, i, 
             j] <- kernapply(pgram[, i, j], kernel, circular = TRUE)
         df <- df.kernel(kernel)
-        bandwidth <- bandwidth.kernel(kernel)
+        ######### bandwidth <- bandwidth.kernel(kernel)
+		Lh = 1/sum(kernel[-kernel$m:kernel$m]^2)    # this is Lh  - it gets divided by N below
     }
     else {
         df <- 2
-        bandwidth <- sqrt(1/12)
+        #########   bandwidth <- sqrt(1/12)    ############ fix this
+		Lh <- 1
     }
     df <- df/(u4/u2^2)
     df <- df * (N0/N)
-    bandwidth <- bandwidth * xfreq/N
+    bandwidth <- Lh*xfreq/N
     pgram <- pgram[2:(Nspec + 1), , , drop = FALSE]
     spec <- matrix(NA, nrow = Nspec, ncol = nser)
     for (i in 1:nser) spec[, i] <- Re(pgram[1:Nspec, i, i])
@@ -90,8 +91,8 @@ function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
 	    }
 #========================    
     spg.out <- list(freq = freq, spec = spec, coh = coh, phase = phase, 
-        kernel = kernel, df = df, bandwidth = bandwidth, n.used = N, 
-        fxx=fxx,
+        kernel = kernel, df = df, bandwidth = bandwidth,  
+        fxx=fxx, Lh=Lh, n.used = N,
         orig.n = N0, series = series, snames = colnames(x), method = ifelse(!is.null(kernel), 
             "Smoothed Periodogram", "Raw Periodogram"), taper = taper, 
         pad = pad, detrend = detrend, demean = demean)

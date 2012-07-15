@@ -30,10 +30,10 @@ Ksmooth0(num, y, A, mu0, Sigma0, Phi, cQ, cR)
   \item{Phi}{state transition matrix
 %%     ~~Describe \code{Phi} here~~
 }
-  \item{cQ}{Cholesky decomposition of state error covariance matrix Q -- see details below
+  \item{cQ}{Cholesky-type decomposition of state error covariance matrix Q -- see details below
 %%     ~~Describe \code{cQ} here~~
 }
-  \item{cR}{Cholesky decomposition of state error covariance matrix R -- see details below
+  \item{cR}{Cholesky-type decomposition of state error covariance matrix R -- see details below
 %%     ~~Describe \code{cR} here~~
 }
 }
@@ -59,8 +59,10 @@ Ksmooth0(num, y, A, mu0, Sigma0, Phi, cQ, cR)
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
-%%% ~put references to the literature/web site here ~
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}\cr
+
+See also \url{http://www.stat.pitt.edu/stoffer/tsa3/chap6.htm} for an explanation of the difference between levels 0, 1, and 2.
+%% ~put references to the literature/web site here ~
 }
 \author{D.S. Stoffer
 %%  ~~who you are~~

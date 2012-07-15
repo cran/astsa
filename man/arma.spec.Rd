@@ -5,8 +5,7 @@
 %%  ~~function to do ... ~~
 }
 \description{Gives the ARMA spectrum (on a log scale), tests for causality, invertibility, and
-common zeros. See Example 4.6 on page 184.  NOTE THE NAME CHANGE: In \code{tsa3}, this is called
-\code{spec.arma}.
+common zeros. See Example 4.6 on page 184.  
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -52,7 +51,7 @@ spectrum of white noise. See Example 4.6 on page 184.
 \author{D.S. Stoffer
 %%  ~~who you are~~
 }
-\note{NOTE THE NAME CHANGE: In \code{tsa3}, this is called \code{spec.arma}.
+\note{In \code{tsa3}, this is called \code{spec.arma}.
 %%  ~~further notes~~
 }
 
@@ -62,7 +61,7 @@ spectrum of white noise. See Example 4.6 on page 184.
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
-arma.spec(ar = c(1, -.9), log="no")
+arma.spec(ar = c(1, -.9), ma = .8, log="no")
 }
 %% ##---- Should be DIRECTLY executable !! ----
 %% ##-- ==>  Define data, use random,

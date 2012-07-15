@@ -4,7 +4,7 @@
 \title{Data for Problem 6.14 on page 403.
 %%   ~~ data name/kind ... ~~
 }
-\description{Data for Problem 6.14 on page 403.
+\description{Data for Problem 6.14 on page 403. 
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 \usage{data(ar1miss)}

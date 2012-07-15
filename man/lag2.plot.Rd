@@ -4,7 +4,7 @@
 \title{Lag Plot - two time series
 %%  ~~function to do ... ~~
 }
-\description{Produces a grid of scatterplots of one series versus another. The first named series is the one that gets lagged. NOTE THE NAME CHANGE: In \code{tsa3} this is called \code{lag.plot2}.
+\description{Produces a grid of scatterplots of one series versus another. The first named series is the one that gets lagged. 
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -44,7 +44,7 @@ lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE)
 \author{D.S. Stoffer
 %%  ~~who you are~~
 }
-\note{NOTE THE NAME CHANGE: In \code{tsa3} this is called \code{lag.plot2}.
+\note{In \code{tsa3} this is called \code{lag.plot2}.
 %%%  ~~further notes~~
 }
 

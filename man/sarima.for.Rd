@@ -43,7 +43,8 @@ sarima.for(xdata, n.ahead, p, d, q, P = 0, D = 0, Q = 0, S = -1,
   \item{tol}{controls the relative tolerance (reltol) used to assess convergence. The default is \code{sqrt(.Machine$double.eps)}, the R default.
 %%     ~~Describe \code{tol} here~~
 }
-  \item{no.constant}{Controls whether or not a constant is included in the model. In particular, if there is no differencing (d = 0 and D = 0) the mean estimate is returned. If there is differencing of order one (either d = 1 or D = 1, but not both), a constant term is included in the model; this may be overridden by setting this to TRUE. In any other situation, no constant or mean term is included in the model; the idea is that if you difference more than once (d+D > 1), any drift is likely to be removed.
+  \item{no.constant}{controls whether or not a constant is included in the model. If \code{no.constant=TRUE}, no constant is included in the model.
+   See  \code{\link{sarima}} for more details.
 %%     ~~Describe \code{no.constant} here~~
 }
 }
@@ -68,7 +69,7 @@ sarima.for(xdata, n.ahead, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 %}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
-
+\seealso{\code{\link{sarima}}}
 %\seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %}

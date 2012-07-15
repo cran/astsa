@@ -4,8 +4,7 @@
 \title{Global mean land-ocean temperature deviations
 %%   ~~ data name/kind ... ~~
 }
-\description{Global mean land-ocean temperature deviations (from 1951-1980
-average), measured in degrees centigrade, for the years 1880-2009.
+\description{Global mean land-ocean temperature deviations (from 1951-1980 average), measured in degrees centigrade, for the years 1880-2009.
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 \usage{data(gtemp)}
@@ -22,4 +21,5 @@ average), measured in degrees centigrade, for the years 1880-2009.
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
 %%  ~~ possibly secondary sources and usages ~~
 }
+\seealso{\code{\link{gtemp2}}}
 \keyword{datasets}

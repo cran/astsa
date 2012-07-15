@@ -4,7 +4,7 @@ function(data, cols.full, cols.red, alpha, L, M, plot.which)  {
 SPEC = array(dim = c(ncol(data),ncol(data),nextn(nrow(data))/2)) 
 for(i in 1:ncol(data)) { 
 for (j in i:ncol(data)) {
-	power = spec.pgram(data[,c(i,j)], kernel("daniell",(L-1)/2), plot = FALSE)
+	power = stats::spec.pgram(data[,c(i,j)], kernel("daniell",(L-1)/2), plot = FALSE)
 	SPEC[i,i, ] = power$spec[,1]
 	SPEC[j,j, ] = power$spec[,2]
 	coh.ij = power$coh 

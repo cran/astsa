@@ -6,19 +6,19 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),no.c
   constant=1:n
   xmean = rep(1,n);  if(no.constant==TRUE) xmean=NULL
   if (d==0 & D==0) {
-    fitit=arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
+    fitit=stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
             xreg=xmean,include.mean=FALSE, optim.control=list(reltol=tol));
     nureg=matrix(1,n.ahead,1)        
 } else if (xor(d==1, D==1) & no.constant==FALSE) {
-    fitit=arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
+    fitit=stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
             xreg=constant,optim.control=list(reltol=tol));
     nureg=(n+1):(n+n.ahead)       
-} else { fitit=arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
+} else { fitit=stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
             optim.control=list(reltol=tol));
           nureg=NULL   
 }     
 #--
- fore=predict(fitit, n.ahead, newxreg=nureg)  
+ fore=stats::predict(fitit, n.ahead, newxreg=nureg)  
 #-- graph:
   U = fore$pred + 2*fore$se
   L = fore$pred - 2*fore$se

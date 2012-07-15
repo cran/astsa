@@ -25,4 +25,5 @@
 %%data(so2)
 %%## maybe str(so2) ; plot(so2) ...
 %%}
+\seealso{\code{\link{lap}}}
 \keyword{datasets}

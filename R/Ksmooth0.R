@@ -4,7 +4,7 @@ function(num,y,A,mu0,Sigma0,Phi,cQ,cR){
 # Note: Q and R are given as Cholesky decomps
 #       cQ=chol(Q), cR=chol(R)
 #
- kf=Kfilter0(num,y,A,mu0,Sigma0,Phi,cQ,cR)
+ kf=astsa::Kfilter0(num,y,A,mu0,Sigma0,Phi,cQ,cR)
  pdim=nrow(as.matrix(Phi))  
  xs=array(NA, dim=c(pdim,1,num))      # xs=x_t^n
  Ps=array(NA, dim=c(pdim,pdim,num))   # Ps=P_t^n

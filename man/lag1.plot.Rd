@@ -5,7 +5,6 @@
 %%  ~~function to do ... ~~
 }
 \description{Produces a grid of scatterplots of a series versus lagged values of the series.
-NOTE THE NAME CHANGE: In \code{tsa3} this is called \code{lag.plot1}.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -42,7 +41,7 @@ lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE)
 \author{D.S. Stoffer
 %%  ~~who you are~~
 }
-\note{NOTE THE NAME CHANGE: In \code{tsa3} this is called \code{lag.plot1}.
+\note{In \code{tsa3} this is called \code{lag.plot1}.
 %%%  ~~further notes~~
 }
 

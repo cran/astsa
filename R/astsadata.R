@@ -1,0 +1,1 @@
+astsadata = function(){data(ar1boot,ar1miss,arf,beamd,birth,blood,bnrf1ebv,bnrf1hvs,climhyd,cmort,econ5,EQ5,eqexp,EXP6,flu,fmri,fmri1,gas,gnp,gtemp,gtemp2,HCT,jj,lap,lead,nyse,oil,part,PLT,prodn,qinfl,qintr,rec,sales,salt,saltemp,so2,soi,soiltemp,speech,sunspotz,tempr,unemp,varve,WBC); cat("all astsa data loaded", "\n")}
