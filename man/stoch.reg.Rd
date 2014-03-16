@@ -4,7 +4,7 @@
 \title{Frequency Domain Stochastic Regression
 %%  ~~function to do ... ~~
 }
-\description{Performs frequency domain stochastic regression discussed in Chapter 7, Section 7.3.  See Example 7.1 on page 417 for a demonstration.
+\description{Performs frequency domain stochastic regression discussed in Chapter 7, Section 7.3.  
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -18,7 +18,7 @@ stoch.reg(data, cols.full, cols.red, alpha, L, M, plot.which)
   \item{cols.full}{specify columns of data matrix that are in the full model
 %%     ~~Describe \code{cols.full} here~~
 }
-  \item{cols.red}{specify columns of data matrix that are in the reduced model (use NULL if there are no inputs under the reduced model
+  \item{cols.red}{specify columns of data matrix that are in the reduced model (use NULL if there are no inputs in the reduced model) 
 %%     ~~Describe \code{cols.red} here~~
 }
   \item{alpha}{test size
@@ -37,7 +37,7 @@ stoch.reg(data, cols.full, cols.red, alpha, L, M, plot.which)
 %\details{
 %%  ~~ If necessary, more details than the description above ~~
 %}
-\value{\item{power.full }{spetrum under the full model}
+\value{\item{power.full }{spectrum under the full model}
 \item{power.red }{spectrum under the reduced model}
 \item{Betahat }{regression parameter estimates}
 \item{eF }{pointwise (by frequency) F-tests}

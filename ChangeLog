@@ -1,0 +1,44 @@
+-------------------------
+Version 1.0  - June 2012
+-------------------------
+
++ astsa built from tsa3.rda with the following changes:
+
+       in astsa   is   in tsa3   
+      =========================
+      arma.spec()    spec.arma() 
+      lag1.plot()    lag.plot1() 
+      lag2.plot()    lag.plot2() 
+
+  but arma.spec, lag1.plot, and lag2.plot are now included in tsa3.rda (which won't be updated again).      
+
+-------------------------
+Version 1.1  - July 2012
+-------------------------
+
++ In R scripts, added 'stats' package name to most calls, e.g., acf(...)  became  stats::acf(...)   ... but  didn't do it for functions in 'base'
+ 
++ Added data set 'blood' (based on code in Example 6.1) as an mts object of the Jones data set with NA as missing data code. Example 6.9 still uses 0 for missing data.  
+
++ Added links to related data sets in some man pages (e.g., oil <-> gas ...)
+
++ Added 'astsadata.R' to load all the data sets at once.
+
++ Changed 'mvspec.R' so it could be used in place of 'spec.pgram' and 'spectrum'.  The defaults are similar now to spec.prgram, but the default is not to taper, forcing the user to think about it.  It also returns the book's more useful definition of bandwidth.  
+
+---------------------------
+Version 1.2  - in progress
+---------------------------
++ Fixed man page for the scripts 'stoch.reg' and for the 'Kfilter's and 'Ksmooth's
+
++ acf2 can take additional 'acf' arguments like na.action=na.omit ...
+
++ acf2 max vertical axis was always 1; now it depends on data
+
++ acf2 now has grid lines
+
++ FDR man entry corrected
+
++ Kfilter1; changed Ups and Gam == 0 case to match Kfilter2's appropriate method
+
++ astsadata() is gone, 'LazyData: true' instead

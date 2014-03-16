@@ -51,7 +51,8 @@ lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE)
 %%% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
-lag1.plot(rnorm(100), 6)
+data(soi)
+lag1.plot(soi, 9)
 }
 %% ##---- Should be DIRECTLY executable !! ----
 %% ##-- ==>  Define data, use random,

@@ -39,7 +39,7 @@ Kfilter1(num, y, A, mu0, Sigma0, Phi, Ups, Gam, cQ, cR, input)
   \item{cQ}{Cholesky-type decomposition of state error covariance matrix Q -- see details below
 %%     ~~Describe \code{cQ} here~~
 }
-  \item{cR}{Cholesky-type decomposition of state error covariance matrix R -- see details below
+  \item{cR}{Cholesky-type decomposition of observation error covariance matrix R -- see details below
 %%     ~~Describe \code{cR} here~~
 }
   \item{input}{matrix or vector of inputs having the same row dimension as y; use \code{input = 0} if not needed

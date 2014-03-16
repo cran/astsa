@@ -22,7 +22,7 @@ FDR(pvals, qlevel = 0.05)
 %%\details{
 %%  ~~ If necessary, more details than the description above ~~
 %%}
-\value{\item{fdr.id }{ NULL if no significant tests, or a vector of the indices of the significant tests}
+\value{\item{fdr.id }{ NULL if no significant tests, or the index of the maximal p-value satisfying the FDR condition. }
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{fdr.id }{Description of 'comp1'}

@@ -43,7 +43,7 @@ Ksmooth2(num, y, A, mu0, Sigma0, Phi, Ups, Gam, Theta, cQ, cR,
   \item{cQ}{Cholesky-type decomposition of state error covariance matrix Q -- see details below
 %%     ~~Describe \code{cQ} here~~
 }
-  \item{cR}{Cholesky-type decomposition of state error covariance matrix R -- see details below
+  \item{cR}{Cholesky-type decomposition of observation error covariance matrix R -- see details below
 %%     ~~Describe \code{cR} here~~
 }
   \item{S}{covariance matrix of state and observation errors

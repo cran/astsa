@@ -40,7 +40,7 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1, details = TRUE,
   \item{details}{turns on or off the output from the nonlinear optimization routine, which is \code{optim}. The default is TRUE, use \code{details=FALSE} to turn off the output.
 %%     ~~Describe \code{details} here~~
 }
-  \item{tol}{controls the relative tolerance (reltol) used to assess convergence. The default is \code{sqrt(.Machine$double.eps)}, the R default. 
+  \item{tol}{controls the relative tolerance (reltol in \code{optim}) used to assess convergence. The default is \code{sqrt(.Machine$double.eps)}, the R default. 
 %%     ~~Describe \code{tol} here~~
 }
   \item{no.constant}{controls whether or not sarima includes a constant in the model. In particular, if there is no differencing (d = 0 and D = 0) you get the mean estimate. If there is differencing of order one (either d = 1 or D = 1, but not both), a constant term is included in the model. These two conditions may be overridden (i.e., no constant will be included in the model) by setting this to TRUE; e.g., \code{sarima(x,1,1,0,no.constant=TRUE)}. Otherwise, no constant or mean term is included in the model. The idea is that if you difference more than once (d+D > 1), any drift is likely to be removed.  A possible work around if you think there is still drift when d+D > 1, say d=1 and D=1, then work with the differenced data, e.g., \code{sarima(diff(x),0,0,1,0,1,1,12)}.
