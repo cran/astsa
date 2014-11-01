@@ -32,7 +32,8 @@ for(iter in 1:max.iter){
     S11 = ks$xs[,,1]%*%t(ks$xs[,,1]) + ks$Ps[,,1]
     S10 = ks$xs[,,1]%*%t(ks$x0n) + Pcs[,,1]
     S00 = ks$x0n%*%t(ks$x0n) + ks$P0n
-    R=matrix(0,qdim,qdim)
+      u = y[1,]-A%*%ks$xs[,,1]
+	R = u%*%t(u) + A%*%ks$Ps[,,1]%*%t(A)
   for(i in 2:num){
     S11 = S11 + ks$xs[,,i]%*%t(ks$xs[,,i]) + ks$Ps[,,i]
     S10 = S10 + ks$xs[,,i]%*%t(ks$xs[,,i-1]) + Pcs[,,i]

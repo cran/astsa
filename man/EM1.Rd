@@ -4,12 +4,11 @@
 \title{EM Algorithm for General State Space Models
 %%  ~~function to do ... ~~
 }
-\description{Estimation of the parameters in the model (6.3) -- (6.4) via the EM algorithm. For a demonstration, see Example 6.12 on page 357.
+\description{Estimation of the parameters in the model (6.1) -- (6.2) via the EM algorithm. For a demonstration, see Example 6.12 on page 357.  Inputs are not allowed; see the note.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-EM1(num, y, A, mu0, Sigma0, Phi, Ups, Gam, cQ, cR, input, 
-     max.iter = 50, tol = 0.01)
+EM1(num, y, A, mu0, Sigma0, Phi, cQ, cR, max.iter = 100, tol = 0.001)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -31,20 +30,11 @@ EM1(num, y, A, mu0, Sigma0, Phi, Ups, Gam, cQ, cR, input,
   \item{Phi}{state transition matrix
 %%     ~~Describe \code{Phi} here~~
 }
-  \item{Ups}{state input matrix; set to 0 if not used
-%%     ~~Describe \code{Ups} here~~
-}
-  \item{Gam}{observation input matrix; set to 0 if not used
-%%     ~~Describe \code{Gam} here~~
-}
   \item{cQ}{Cholesky-like decomposition of state error covariance matrix Q -- see details below
 %%     ~~Describe \code{cQ} here~~
 }
   \item{cR}{R is diagonal here, so \code{cR = sqrt(R)} -- also, see details below
 %%     ~~Describe \code{cR} here~~
-}
-  \item{input}{matrix or vector of inputs having the same row dimension as y; set to 0 if not used 
-%%     ~~Describe \code{input} here~~
 }
   \item{max.iter}{maximum number of iterations
 %%     ~~Describe \code{max.iter} here~~
@@ -77,9 +67,11 @@ EM1(num, y, A, mu0, Sigma0, Phi, Ups, Gam, cQ, cR, input,
 \author{D.S. Stoffer
 %%  ~~who you are~~
 }
-%\note{
-%%  ~~further notes~~
-%}
+\note{
+  Inputs are not allowed (and hence not estimated). The script uses Ksmooth1 and everything related to inputs are set equal to zero when it is called.  This is a change from the previous version.
+  
+  It would be relatively easy to include estimates of 'Ups' and 'Gam' because conditional on the states, these are just regression coefficients.  If you decide to alter EM1 to include estimates of the 'Ups' or 'Gam', feel free to notify me with a workable example and I'll include it in the next update.
+}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 

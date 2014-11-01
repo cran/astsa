@@ -1,10 +1,11 @@
 sarima <-
-function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,tol=sqrt(.Machine$double.eps),no.constant=FALSE)
+function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,tol=sqrt(.Machine$double.eps),no.constant=FALSE)
 { 
-  n = length(xdata)
+ trc = ifelse(details==TRUE, 1, 0)
+ n = length(xdata)
+  if (is.null(xreg)) {
   constant = 1:n 
   xmean = rep(1,n);  if(no.constant==TRUE) xmean=NULL 
-  trc = ifelse(details==TRUE, 1, 0)
   if (d==0 & D==0) {	  
     fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
               xreg=xmean,include.mean=FALSE, optim.control=list(trace=trc,REPORT=1,reltol=tol))
@@ -12,16 +13,20 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,tol=sqrt(.Machine$double.eps)
     fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
               xreg=constant,optim.control=list(trace=trc,REPORT=1,reltol=tol))
 } else fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
-                      optim.control=list(trace=trc,REPORT=1,reltol=tol))
+                     include.mean=!no.constant, optim.control=list(trace=trc,REPORT=1,reltol=tol))
+}
+#
+  if (!is.null(xreg)) {fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), xreg=xreg, optim.control=list(trace=trc,REPORT=1,reltol=tol))
+}
+
+
 #
 #  replace tsdiag with a better version
     old.par <- par(no.readonly = TRUE)
     layout(matrix(c(1,2,4, 1,3,4), ncol=2))
     rs <- fitit$residuals
-	num <- sum(!is.na(rs))
-	u <- c(0, stats::pacf(rs, lag.max=num, plot=FALSE, na.action=na.pass)$acf)
-	u <- sqrt(fitit$sigma2*base::cumprod(1-u^2))
-    stdres <- rs/u    #  see (3.71) page 112
+    stdres <- rs/sqrt(fitit$sigma2)
+    num <- sum(!is.na(rs))
      plot.ts(stdres,  main = "Standardized Residuals", ylab = "")
     alag <- 10+sqrt(num)
     ACF = stats::acf(rs, alag, plot=FALSE, na.action = na.pass)$acf[-1] 

@@ -1,12 +1,12 @@
 EM1 <-
-function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,input,max.iter=50,tol=.01){
+function(num,y,A,mu0,Sigma0,Phi,cQ,cR,max.iter=100, tol=0.001){
 ###########################################################
 #---> missing y and A use 0s (zeros) as in text           #
 #---------------------------------------------------------#
 #     Q and R are given as Cholesky decomps               #
 #     cQ=chol(Q)                                          #
 #     R is diagonal, so cR=chol(R)=sqrt(R)                #
-#     if Ups, Gam or input not used, set to 0 (zero)      #
+#     inputs not allowed and set = 0 (zero)  below        #
 ###########################################################
    Phi=as.matrix(Phi)
    pdim=nrow(Phi)
@@ -14,11 +14,11 @@ function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,input,max.iter=50,tol=.01){
    qdim=ncol(y)
    cvg=1+tol
    like=matrix(0,max.iter,1)
-   miss=ifelse(abs(y)>0,0,y+1)     # 0=observed, 1=missing
+   miss=ifelse(abs(y)>0,0,1)     # 0=observed, 1=missing
    cat("iteration","   -loglikelihood", "\n")
 #----------------- start EM -------------------------
 for(iter in 1:max.iter){ 
-  ks=astsa::Ksmooth1(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,input)
+  ks=astsa::Ksmooth1(num,y,A,mu0,Sigma0,Phi,Ups=0,Gam=0,cQ,cR,input=0)
   like[iter]=ks$like
    cat("   ",iter, "        ", ks$like, "\n")     
   if(iter>1) cvg=(like[iter-1]-like[iter])/abs(like[iter-1])
@@ -39,7 +39,11 @@ for(iter in 1:max.iter){
   S11 = ks$xs[,,1]%*%t(ks$xs[,,1]) + ks$Ps[,,1]
   S10 = ks$xs[,,1]%*%t(ks$x0n) + Pcs[,,1]
   S00 = ks$x0n%*%t(ks$x0n) + ks$P0n
-  R = matrix(0,qdim,qdim)
+  # R = matrix(0,qdim,qdim)
+      B = matrix(A[,,1], nrow=qdim, ncol=pdim)
+      u = y[1,]-B%*%ks$xs[,,1]
+      oldR = diag(miss[1,],qdim)%*%(t(cR)%*%cR)
+    R = u%*%t(u) + B%*%ks$Ps[,,1]%*%t(B)  + oldR
   for(i in 2:num){
     S11 = S11 + ks$xs[,,i]%*%t(ks$xs[,,i]) + ks$Ps[,,i]
     S10 = S10 + ks$xs[,,i]%*%t(ks$xs[,,i-1]) + Pcs[,,i]
@@ -47,7 +51,7 @@ for(iter in 1:max.iter){
       B = matrix(A[,,i], nrow=qdim, ncol=pdim)
       u = y[i,]-B%*%ks$xs[,,i]
       oldR = diag(miss[i,],qdim)%*%(t(cR)%*%cR)
-      R = R + u%*%t(u) + B%*%ks$Ps[,,i]%*%t(B)  + oldR
+    R = R + u%*%t(u) + B%*%ks$Ps[,,i]%*%t(B)  + oldR
   }
   Phi=S10%*%solve(S00)
   Q=(S11-Phi%*%t(S10))/num

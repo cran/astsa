@@ -4,12 +4,13 @@
 \title{Fit ARIMA Models
 %%  ~~function to do ... ~~
 }
-\description{Fits ARIMA models including diagnostics in a short command. This is a front end to R's \code{arima()}.
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+\description{Fits ARIMA models (including improved diagnostics) in a short command.  It can also be used to perform regression with autocorrelated errors. This is a front end to R's \code{arima()} with a different back door.
 }
 \usage{
-sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1, details = TRUE, 
-        tol = sqrt(.Machine$double.eps), no.constant = FALSE)
+sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1, 
+       details = TRUE, xreg=NULL,
+       tol = sqrt(.Machine$double.eps), 
+       no.constant = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -37,20 +38,22 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1, details = TRUE,
   \item{S}{seasonal period; use only for seasonal models 
 %%     ~~Describe \code{S} here~~
 }
+  \item{xreg}{Optionally, a vector or matrix of external regressors, which must have the same number of rows as xdata.
+}
   \item{details}{turns on or off the output from the nonlinear optimization routine, which is \code{optim}. The default is TRUE, use \code{details=FALSE} to turn off the output.
 %%     ~~Describe \code{details} here~~
 }
   \item{tol}{controls the relative tolerance (reltol in \code{optim}) used to assess convergence. The default is \code{sqrt(.Machine$double.eps)}, the R default. 
 %%     ~~Describe \code{tol} here~~
 }
-  \item{no.constant}{controls whether or not sarima includes a constant in the model. In particular, if there is no differencing (d = 0 and D = 0) you get the mean estimate. If there is differencing of order one (either d = 1 or D = 1, but not both), a constant term is included in the model. These two conditions may be overridden (i.e., no constant will be included in the model) by setting this to TRUE; e.g., \code{sarima(x,1,1,0,no.constant=TRUE)}. Otherwise, no constant or mean term is included in the model. The idea is that if you difference more than once (d+D > 1), any drift is likely to be removed.  A possible work around if you think there is still drift when d+D > 1, say d=1 and D=1, then work with the differenced data, e.g., \code{sarima(diff(x),0,0,1,0,1,1,12)}.
+  \item{no.constant}{controls whether or not sarima includes a constant in the model. In particular, if there is no differencing (d = 0 and D = 0) you get the mean estimate. If there is differencing of order one (either d = 1 or D = 1, but not both), a constant term is included in the model. These two conditions may be overridden (i.e., no constant will be included in the model) by setting this to TRUE; e.g., \code{sarima(x,1,1,0,no.constant=TRUE)}. Otherwise, no constant or mean term is included in the model.  If regressors are included (via \code{xreg}), this is ignored.
 %%     ~~Describe \code{no.constant} here~~
 }
 }
 \details{If your time series is in x and you want to fit an ARIMA(p,d,q) model to the data, the basic call is \code{sarima(x,p,d,q)}. The results are the parameter estimates, standard errors, AIC, AICc, BIC (as defined in Chapter 2) and diagnostics. To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, \code{sarima(x,2,1,0)} will fit an ARIMA(2,1,0) model to the series in x, and \code{sarima(x,2,1,0,0,1,1,12)} will fit a seasonal ARIMA\eqn{(2,1,0)*(0,1,1)_{12}} model to the series in x.  
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{\item{fit }{estimation results}
+\value{\item{fit }{the \code{arima} object}
 \item{AIC }{value of the AIC}
 \item{AICc }{value of the AICc}
 \item{BIC }{value of the BIC}

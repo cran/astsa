@@ -9,8 +9,11 @@
 }
 \usage{data(sunspotz)}
 \format{
-  The format is:
- Time-Series [1:459] from 1749 to 1978: 89 84 70 49 47 48 41 32 17 12 ...
+The format is: 
+Time Series:
+Start = c(1749, 1) 
+End = c(1978, 1) 
+Frequency = 2 
 }
 %%\details{
 %%%%  ~~ If necessary, more details than the __description__ above ~~
