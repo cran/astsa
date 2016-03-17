@@ -14,7 +14,12 @@ function(series, max.lag=NULL, ...){
   U=2/sqrt(num)
   L=-U
   minu=min(minA,minP,L)-.01
-  maxu=min(maxA+.2, maxP+.2, 1)
+  # Note min operator here. If AR(1) with ar=-.9, ACF ylim cuts off bars
+  # maxu=min(maxA+.2, maxP+.2, 1) 
+  
+  # updated version
+  maxu=min(max(maxA+.02, maxP+.02), 1)
+  
   old.par <- par(no.readonly = TRUE)
   par(mfrow=c(2,1), mar = c(3,3,2,0.8),
     oma = c(1,1.2,1,1), mgp = c(1.5,0.6,0))
