@@ -4,7 +4,7 @@
 \title{Kalman Filter and Smoother - General model, may have correlated errors
 %%  ~~function to do ... ~~
 }
-\description{Returns the filtered and smoothed values in Property 6.5 on page 354 for the state-space model, (6.97) -- (6.99). This is the smoother companion to Kfilter2.
+\description{Returns the filtered and smoothed values  for the state-space model. This is the smoother companion to Kfilter2.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -73,9 +73,9 @@ Ksmooth2(num, y, A, mu0, Sigma0, Phi, Ups, Gam, Theta, cQ, cR,
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}\cr
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}\cr
 
-See also \url{http://www.stat.pitt.edu/stoffer/tsa3/chap6.htm} for an explanation of the difference between levels 0, 1, and 2.
+See also \url{http://www.stat.pitt.edu/stoffer/tsa4/chap6.htm} for an explanation of the difference between levels 0, 1, and 2.
 %% ~put references to the literature/web site here ~
 }
 \author{D.S. Stoffer

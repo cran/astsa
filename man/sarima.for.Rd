@@ -4,7 +4,7 @@
 \title{ARIMA Forecasting
 %%  ~~function to do ... ~~
 }
-\description{ARIMA forecasting - this is a front end to R's \code{predict.Arima}.
+\description{ARIMA forecasting - this is a wrapper for R's \code{predict.Arima}.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -58,7 +58,7 @@ sarima.for(xdata, n.ahead, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %% ~put references to the literature/web site here ~
 }
 %\author{

@@ -4,7 +4,7 @@
 \title{Signal Extraction And Optimal Filtering
 %%  ~~function to do ... ~~
 }
-\description{Performs signal extraction and optimal filtering as discussed in Chapter 4, Section 4.11.  See  Example 4.25 on page 249 for a demonstration.  
+\description{Performs signal extraction and optimal filtering as discussed in Chapter 4.
 
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
@@ -37,7 +37,7 @@ SigExtract(series, L = c(3, 3), M = 50, max.freq = 0.05)
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %% ~put references to the literature/web site here ~
 }
 \author{D.S. Stoffer

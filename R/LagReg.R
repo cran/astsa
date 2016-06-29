@@ -14,6 +14,8 @@ M = 2*floor(M/2)           # make sure M is even
 name.in = deparse(substitute(input))
 name.out= deparse(substitute(output))
 
+ts = stats::ts
+
 ######################################
 ## Remove the means; they get added back in later
 mean.in = mean(input)
@@ -83,12 +85,12 @@ cat("The coefficients beta(0), beta(-1), beta(-2) ... beta(-M/2+1) are", fill=TR
 cat(b.neg, fill=TRUE,"\n\n")
 
 
-old.par <- par(no.readonly = TRUE)
+old.par <- graphics::par(no.readonly = TRUE)
 
-par(mfrow=c(3,1))
-plot(S, b, type = "h", xlab = "s", ylab = "beta(s)", main = "coefficients beta(s)")
-abline(h=0)
-ccf(output, input, lag.max = M/2-1, main = "cross-correlations", ylab = "CCF")
+graphics::par(mfrow=c(3,1))
+graphics::plot(S, b, type = "h", xlab = "s", ylab = "beta(s)", main = "coefficients beta(s)")
+graphics::abline(h=0)
+stats::ccf(output, input, lag.max = M/2-1, main = "cross-correlations", ylab = "CCF")
 
 ######################################################
 ##                  start cases                     ##
@@ -117,8 +119,8 @@ in absolute value, and the coefficients themselves, are:", "\n")
 print(mat)
 
 ## Form a matrix consisting of all series to be used in the lagged regression
-datax = ts.intersect(output, lag(input, -sig.s[1]))
-if(length(sig.s)>1) {for(i in 2:length(sig.s)) datax = ts.intersect(datax, lag(input, -sig.s[i]))}
+datax = stats::ts.intersect(output, stats::lag(input, -sig.s[1]))
+if(length(sig.s)>1) {for(i in 2:length(sig.s)) datax = stats::ts.intersect(datax, stats::lag(input, -sig.s[i]))}
 
 ## put means back
 yhat =  mean.out + datax%*%c(0, b.pos.sig) # These are the predicted (by the input) values of the output
@@ -126,7 +128,7 @@ y = datax[,1]  + mean.out  # This is the original output series, for comparison
 alpha = mean.out - mean.in*sum(b.pos.sig)  # the constant (just for the output)
 
 MSE = sum((y-yhat)^2)/length(y)
-ts.plot(y, yhat, lty=2:1, col=c(1,4), main = "Output (dotted line) and predicted (by the input) values \n based on the impulse-response analysis")
+stats::ts.plot(y, yhat, lty=2:1, col=c(1,4), main = "Output (dotted line) and predicted (by the input) values \n based on the impulse-response analysis")
 
 cat("\n", "The prediction equation is", "\n",
 name.out,"(t) = alpha + sum_s[ beta(s)*",name.in,"(t-s) ], where alpha = ", alpha, "\n",
@@ -154,8 +156,8 @@ in absolute value, and the coefficients themselves, are:", "\n")
 print(mat)
 
 ## Form a matrix consisting of all series to be used in the lagged regression
-datax = ts.intersect(output, lag(input, sig.s[1]))
-if(length(sig.s)>1) {for(i in 2:length(sig.s)) datax = ts.intersect(datax, lag(input, sig.s[i]))}
+datax = stats::ts.intersect(output, stats::lag(input, sig.s[1]))
+if(length(sig.s)>1) {for(i in 2:length(sig.s)) datax = stats::ts.intersect(datax, stats::lag(input, sig.s[i]))}
 
 ## put means back
 yhat = mean.out + datax%*%c(0, b.neg.sig)  # These are the predicted (by the input) values of the output
@@ -163,13 +165,15 @@ y = datax[,1] + mean.out  # This is the original output series, for comparison
 alpha = mean.out - mean.in*sum(b.neg.sig)  # the constant (just for the output)
 
 MSE = sum((y-yhat)^2)/length(y)
-ts.plot(y, yhat, lty=2:1, col=c(1,4), main = "Output (dotted line) and predicted (by the input) values \n based on the impulse-response analysis")
+stats::ts.plot(y, yhat, lty=2:1, col=c(1,4), main = "Output (dotted line) and predicted (by the input) values \n based on the impulse-response analysis")
 
 
 cat("\n", "The prediction equation is", "\n",
 name.out,"(t) = alpha + sum_s[ beta(s)*",name.in,"(t+s) ], where alpha = ",alpha, "\n",
 "MSE = ",MSE, "\n", sep="") 
                }
-on.exit(par(old.par))             
+on.exit(graphics::par(old.par)) 
+
+list(betas = cbind(S,b), fit=cbind(output=y, fit=yhat, resids=y-yhat) )            
 }
 

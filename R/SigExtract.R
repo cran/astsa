@@ -8,6 +8,16 @@ function(series, L=c(3,3), M=50, max.freq=.05){
 ##   http://www.stat.ualberta.ca/%7Ewiens/wiens.html     
 ##                               
 ######################################
+ts     = stats::ts
+par    = graphics::par
+plot   = graphics::plot
+dev.new = grDevices::dev.new
+abline = graphics::abline
+ccf    = stats::ccf
+ts.intersect = stats::ts.intersect 
+ts.plot = stats::ts.plot
+na.omit = stats::na.omit
+lines = graphics::lines
 
 ######## Smoothing parameter (L) is odd
 ######## Number of estimates (M) is even

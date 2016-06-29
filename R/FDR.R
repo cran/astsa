@@ -11,10 +11,6 @@ function(pvals,qlevel=0.05){
 #
 #   qlevel: the proportion of false positives desired
 #
-# Value:
-#
-#   NULL if no significant tests, or a vector of the indices of the significant tests
-#
   n <- length(pvals)
   sorted.pvals <- sort(pvals)
   sort.index <- order(pvals)

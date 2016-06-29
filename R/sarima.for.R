@@ -1,5 +1,18 @@
 sarima.for <-
 function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),no.constant=FALSE){ 
+   #
+   layout = graphics::layout
+   par = graphics::par
+   plot = graphics::plot
+   grid = graphics::grid
+   abline = graphics::abline
+   lines = graphics::lines
+   frequency = stats::frequency
+   na.pass = stats::na.pass
+   as.ts = stats::as.ts
+   ts.plot = stats::ts.plot
+   xy.coords = grDevices::xy.coords
+   #
   xname=deparse(substitute(xdata))
   xdata=as.ts(xdata) 
   n=length(xdata)

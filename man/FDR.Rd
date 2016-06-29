@@ -4,7 +4,7 @@
 \title{Basic False Discovery Rate
 %%  ~~function to do ... ~~
 }
-\description{Computes the basic false discovery rate given a vector of p-values; see Example 7.4 on page 427 for a demonstration.
+\description{Computes the basic false discovery rate given a vector of p-values.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{

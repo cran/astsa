@@ -35,15 +35,13 @@ lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE)
 %%%  \item{comp2 }{Description of 'comp2'}
 %%% ...
 %}
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %% ~put references to the literature/web site here ~
 }
 \author{D.S. Stoffer
 %%  ~~who you are~~
 }
-\note{In \code{tsa3} this is called \code{lag.plot1}.
-%%%  ~~further notes~~
-}
+
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
@@ -51,7 +49,6 @@ lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE)
 %%% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
-data(soi)
 lag1.plot(soi, 9)
 }
 %% ##---- Should be DIRECTLY executable !! ----

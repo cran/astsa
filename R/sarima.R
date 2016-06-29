@@ -1,6 +1,16 @@
 sarima <-
 function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,tol=sqrt(.Machine$double.eps),no.constant=FALSE)
 { 
+  #
+   layout = graphics::layout
+   par = graphics::par
+   plot = graphics::plot
+   grid = graphics::grid
+   abline = graphics::abline
+   lines = graphics::lines
+   frequency = stats::frequency
+   na.pass = stats::na.pass
+   #
  trc = ifelse(details==TRUE, 1, 0)
  n = length(xdata)
   if (is.null(xreg)) {
@@ -45,11 +55,17 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,tol=sqrt(.Machine$d
      abline(h = 0.05, lty = 2, col = "blue")  
     on.exit(par(old.par))    
 #  end new tsdiag
-#
+
+  df=n-length(fitit$coef)
+  t.value=fitit$coef/sqrt(diag(fitit$var.coef)) 
+# p.two=2*pt(-abs(t.value),df=n-length(fitit$coef))   # not sure if want to include this in the table
+  ttable = cbind(Estimate=fitit$coef, SE=sqrt(diag(fitit$var.coef)), t.value)
+  ttable= round(ttable,4)
   k = length(fitit$coef)
   BIC = log(fitit$sigma2)+(k*log(n)/n)
   AICc = log(fitit$sigma2)+((n+k)/(n-k-2))
   AIC = log(fitit$sigma2)+((n+2*k)/n)
-  list(fit=fitit, AIC=AIC, AICc=AICc, BIC=BIC)
+  list(fit=fitit, degrees_of_freedom=df, ttable=ttable, AIC=AIC, AICc=AICc, BIC=BIC)
 }
+
 

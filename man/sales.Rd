@@ -7,7 +7,6 @@
 \description{Sales, 150 months; taken from Box and Jenkins (1970).
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
-\usage{data(sales)}
 \format{
   The format is:
  Time-Series [1:150] from 1 to 150: 200 200 199 199 199 ...

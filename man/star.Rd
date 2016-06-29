@@ -10,7 +10,6 @@ The Calculus of Observations, a Treatise on Numerical Mathematics, by E.T. Whitt
 (1923, Blackie and Son, Ltd.). 
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
-\usage{data(star)}
 \format{
   The format is:
  Time-Series [1:600] from 1 to 600: 25 28 31 32 33 33 32 ...
@@ -21,7 +20,7 @@ The Calculus of Observations, a Treatise on Numerical Mathematics, by E.T. Whitt
 %%\source{
 %%%%  ~~ reference to a publication or URL from which the data were obtained ~~
 %%}
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %%  ~~ possibly secondary sources and usages ~~
 }
 %%\examples{

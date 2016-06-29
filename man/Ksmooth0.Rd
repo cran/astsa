@@ -4,7 +4,7 @@
 \title{Kalman Filter and Smoother - Time invariant model without inputs
 %%  ~~function to do ... ~~
 }
-\description{Returns both the filtered values in Property 6.1 on page 326 and the smoothed values in Property 6.2 on page 330 for the state-space model, (6.1) -- (6.2).  For demonstrations, see Example 6.5 on page 331,  and Example 6.10 on page 350.
+\description{Returns both the filtered values  and  smoothed values   for the state-space model.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -59,9 +59,9 @@ Ksmooth0(num, y, A, mu0, Sigma0, Phi, cQ, cR)
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}\cr
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}\cr
 
-See also \url{http://www.stat.pitt.edu/stoffer/tsa3/chap6.htm} for an explanation of the difference between levels 0, 1, and 2.
+See also \url{http://www.stat.pitt.edu/stoffer/tsa4/chap6.htm} for an explanation of the difference between levels 0, 1, and 2.
 %% ~put references to the literature/web site here ~
 }
 \author{D.S. Stoffer

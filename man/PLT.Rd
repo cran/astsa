@@ -18,7 +18,7 @@
 \source{Jones, R.H. (1984). Fitting multivariate models to unequally spaced data. In \emph{Time Series Analysis of Irregularly Observed Data}, pp. 158-188. E. Parzen, ed. Lecture Notes in Statistics, 25, New York: Springer-Verlag.
 %%%%  ~~ reference to a publication or URL from which the data were obtained ~~
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %%  ~~ possibly secondary sources and usages ~~
 }
 \seealso{\code{\link{blood}}, \code{\link{HCT}}, \code{\link{WBC}}}

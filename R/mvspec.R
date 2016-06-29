@@ -2,6 +2,17 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
     fast = TRUE, demean = FALSE, detrend = TRUE, plot = TRUE, 
     na.action = na.fail,...) 
 {
+     #
+	 na.fail = stats::na.fail
+     as.ts = stats::as.ts
+     frequency = stats::frequency
+     is.tskernel = stats::is.tskernel
+     spec.taper  = stats::spec.taper
+     nextn   = stats::nextn
+     mvfft  = stats::mvfft
+     kernapply  = stats::kernapply
+     df.kernel  = stats:: df.kernel
+	 #
     series <- deparse(substitute(x))
     x <- na.action(as.ts(x))
     xfreq <- frequency(x)

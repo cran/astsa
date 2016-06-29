@@ -7,7 +7,6 @@
 \description{This is a data frame of the earthquake and explosion seismic series used throughout the text. 
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
-\usage{data(eqexp)}
 \format{
   A data frame with 2048 observations (rows) on  17 variables (columns).  Each column is a numeric vector.
 }
@@ -19,7 +18,7 @@ The column names are: \code{EQ1, EQ2,...,EQ8; EX1, EX2,...,EX8; NZ}.  The first 
 %%\source{http://www.gwu.edu/~nsarchiv/NSAEBB/NSAEBB200/index.htm
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 %%}
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %%  ~~ possibly secondary sources and usages ~~
 }
 \keyword{datasets}

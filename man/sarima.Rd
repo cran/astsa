@@ -54,11 +54,13 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{\item{fit }{the \code{arima} object}
+\item{degrees_of_freedom}{Error degrees of freedom}
+\item{t.table }{a little t-table}
 \item{AIC }{value of the AIC}
 \item{AICc }{value of the AICc}
 \item{BIC }{value of the BIC}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %% ~put references to the literature/web site here ~
 }
 %\author{

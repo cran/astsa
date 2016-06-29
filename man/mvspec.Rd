@@ -48,7 +48,7 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
 %%     ~~Describe \code{\dots} here~~
 }
 }
-\details{This is \code{spec.pgram} with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}.  The bandwidth calculation has been changed to the more practical definition given in the text, \eqn{(L_h/n.used)*frequency(x)}. Although meant to be used to easily obtain multivariate spectral estimates, this script can be used in Chapter 4 for the spectral analysis  of a univariate time series.  Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering". See Example 7.12 on page 461 for a demonstration.
+\details{This is \code{spec.pgram} with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}.  The bandwidth calculation has been changed to the more practical definition given in the text, \eqn{(L_h/n.used)*frequency(x)}. Although meant to be used to easily obtain multivariate spectral estimates, this script can be used for univariate time series.  Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{An object of class "spec", which is a list containing at least the following components:
@@ -71,7 +71,7 @@ The results are returned invisibly if plot is true.
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %% ~put references to the literature/web site here ~
 }
 %\author{

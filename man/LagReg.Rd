@@ -4,7 +4,7 @@
 \title{Lagged Regression
 %%  ~~function to do ... ~~
 }
-\description{Performs lagged regression as discussed in Chapter 4, Section 4.10. See Example 4.24 on page 244 for a demonstration.
+\description{Performs lagged regression as discussed in Chapter 4.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -35,14 +35,14 @@ LagReg(input, output, L = c(3, 3), M = 40, threshold = 0,
 \details{For a bivariate series, \code{input} is the input series and \code{output} is the output series. The degree of smoothing for the spectral estimate is given by L; see \code{spans} in the help file for \code{spec.pgram}. The number of terms used in the lagged regression approximation is given by M, which must be even. The threshold value is the cut-off used to set small (in absolute value) regression coeffcients equal to zero (it is easiest to run LagReg twice, once with the default threshold of zero, and then again after inspecting the resulting coeffcients and the corresponding values of the CCF). Setting inverse=TRUE will fit a forward-lagged regression; the default is to run a backward-lagged regression. The script is based on code that was contributed by Professor Doug Wiens, Department of Mathematical and Statistical Sciences, University of Alberta. 
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{The estimated impulse response function; see Example 4.24.
+\value{Graphs of the estimated impulse response function, the CCF, and the output with the predicted values superimposed.
 %%  ~Describe the value returned
 %%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
+  \item{beta}{Estimated coefficients}
+  \item{fit}{The output series, the fitted values, and the residuals}
 %% ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %% ~put references to the literature/web site here ~
 }
 \author{D.S. Stoffer

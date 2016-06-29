@@ -4,7 +4,7 @@
 \title{EM Algorithm for General State Space Models
 %%  ~~function to do ... ~~
 }
-\description{Estimation of the parameters in the model (6.1) -- (6.2) via the EM algorithm. For a demonstration, see Example 6.12 on page 357.  Inputs are not allowed; see the note.
+\description{Estimation of the parameters in the general state space  model via the EM algorithm.   Inputs are not allowed; see the note.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -61,14 +61,14 @@ EM1(num, y, A, mu0, Sigma0, Phi, cQ, cR, max.iter = 100, tol = 0.001)
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %% ~put references to the literature/web site here ~
 }
 \author{D.S. Stoffer
 %%  ~~who you are~~
 }
 \note{
-  Inputs are not allowed (and hence not estimated). The script uses Ksmooth1 and everything related to inputs are set equal to zero when it is called.  This is a change from the previous version.
+  Inputs are not allowed (and hence not estimated). The script uses Ksmooth1 and everything related to inputs are set equal to zero when it is called.  
   
   It would be relatively easy to include estimates of 'Ups' and 'Gam' because conditional on the states, these are just regression coefficients.  If you decide to alter EM1 to include estimates of the 'Ups' or 'Gam', feel free to notify me with a workable example and I'll include it in the next update.
 }

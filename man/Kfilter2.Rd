@@ -4,7 +4,7 @@
 \title{Kalman Filter - Model may be time varying or have inputs or correlated errors
 %%  ~~function to do ... ~~
 }
-\description{Returns the filtered values in Property 6.5 on page 354 for the state-space model, (6.97) -- (6.99). In addition, the script returns the evaluation of the likelihood at the given parameter values and the innovation sequence.  For demonstrations, see Example 6.11 on page 356 and Example 6.13 on page 361.
+\description{Returns the filtered values  for the state space model.  In addition, the script returns the evaluation of the likelihood at the given parameter values and the innovation sequence.  
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -71,9 +71,9 @@ Kfilter2(num, y, A, mu0, Sigma0, Phi, Ups, Gam, Theta, cQ, cR,
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}\cr
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}\cr
 
-See also \url{http://www.stat.pitt.edu/stoffer/tsa3/chap6.htm} for an explanation of the difference between levels 0, 1, and 2.
+See also \url{http://www.stat.pitt.edu/stoffer/tsa4/chap6.htm} for an explanation of the difference between levels 0, 1, and 2.
 %% ~put references to the literature/web site here ~
 }
 \author{D.S. Stoffer

@@ -5,14 +5,14 @@
 \title{Applied Statistical Time Series Analysis
 }
 \description{
-Includes data and scripts to accompany \emph{Time Series Analysis and Its Applications: With R Examples} (3rd ed) by R.H. Shumway and D.S. Stoffer. Springer Texts in Statistics, 2011.
+Includes data and scripts to accompany \emph{Time Series Analysis and Its Applications: With R Examples} (4th ed) by R.H. Shumway and D.S. Stoffer. Springer Texts in Statistics, 2016.
 }
 \details{
 \tabular{ll}{
 Package: \tab astsa\cr
 Type: \tab Package\cr
-Version: \tab 1.3\cr
-Date: \tab 2014-11-01\cr
+Version: \tab 1.4\cr
+Date: \tab 2016-07-01\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr
@@ -21,7 +21,7 @@ LazyData: \tab yes\cr
 \author{
 David Stoffer <stoffer@pitt.edu>
 }
-\references{See the webpage for the text: \url{http://www.stat.pitt.edu/stoffer/tsa3/} or its mirror \url{http://lib.stat.cmu.edu/general/stoffer/tsa3/}
+\references{See the webpage for the text: \url{http://www.stat.pitt.edu/stoffer/tsa4/} 
 }
 \keyword{ package }
 \keyword{ ts }

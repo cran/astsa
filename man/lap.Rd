@@ -7,7 +7,6 @@
 \description{LA Pollution-Mortality Study (1970-1979, weekly data). 
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
-\usage{data(lap)}
 \format{
   The format is:
   mts [1:508, 1:11] }
@@ -37,7 +36,7 @@ columns are time series       \tab   with names \cr
 %%\source{
 %%%%  ~~ reference to a publication or URL from which the data were obtained ~~
 %%}
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %%  ~~ possibly secondary sources and usages ~~
 }
 \keyword{datasets}

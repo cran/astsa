@@ -7,7 +7,6 @@
 \description{Crude oil, WTI spot price FOB (in dollars per barrel), weekly data from 2000 to mid-2010.
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
-\usage{data(oil)}
 \format{
   The format is:
  Time-Series [1:545] from 2000 to 2010: 26.2 26.1 26.3 24.9 26.3 ...

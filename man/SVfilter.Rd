@@ -4,7 +4,7 @@
 \title{Switching Filter (for Stochastic Volatility Models)
 %%  ~~function to do ... ~~
 }
-\description{Performs a special case switching filter when the observational noise is a certain mixture of normals. Used to fit a stochastic volatility model. See Example 6.18 page 380 and Example 6.19 page 383.
+\description{Performs a special case switching filter when the observational noise is a certain mixture of normals. Used to fit a stochastic volatility model. 
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -48,7 +48,7 @@ SVfilter(num, y, phi0, phi1, sQ, alpha, sR0, mu1, sR1)
 \item{Pp }{mean square prediction error of the volatility}
 \item{like }{the negative of the log likelihood at the given parameter values}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %% ~put references to the literature/web site here ~
 }
 \author{D.S. Stoffer

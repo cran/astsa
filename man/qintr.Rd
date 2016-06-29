@@ -7,7 +7,6 @@
 \description{Quarterly interest rate recorded for Treasury bills from 1953-Ito 1980-II, n = 110 observations. 
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
-\usage{data(qintr)}
 \format{
   The format is:
  Time-Series [1:110] from 1953 to 1980: 1.98 2.15 1.96 1.47 1.06 ...
@@ -18,7 +17,7 @@
 \source{Newbold, P. and T. Bos (1985). \emph{Stochastic Parameter Regression Models}. Beverly Hills: Sage.
 %%%%  ~~ reference to a publication or URL from which the data were obtained ~~
 }
-\references{See \url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{See \url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %%%%  ~~ possibly secondary sources and usages ~~
 }
 %%\examples{

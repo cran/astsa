@@ -18,7 +18,7 @@
 \source{Data furnished by Dr. Roy Mendelssohn of the Pacific Fisheries Environmental Laboratory, NOAA (personal communication).
 %%%%  ~~ reference to a publication or URL from which the data were obtained ~~
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %%  ~~ possibly secondary sources and usages ~~
 }
 \seealso{\code{\link{soi}}}

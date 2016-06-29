@@ -4,7 +4,7 @@
 \title{Frequency Domain Stochastic Regression
 %%  ~~function to do ... ~~
 }
-\description{Performs frequency domain stochastic regression discussed in Chapter 7, Section 7.3.  
+\description{Performs frequency domain stochastic regression discussed in Chapter 7.  
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -43,7 +43,7 @@ stoch.reg(data, cols.full, cols.red, alpha, L, M, plot.which)
 \item{eF }{pointwise (by frequency) F-tests}
 \item{coh }{coherency}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %% ~put references to the literature/web site here ~
 }
 \author{D.S. Stoffer

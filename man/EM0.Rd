@@ -4,7 +4,7 @@
 \title{EM Algorithm for Time Invariant State Space Models 
 %%  ~~function to do ... ~~
 }
-\description{Estimation of the parameters in the model (6.1)--(6.2) via the EM algorithm.  See Example 6.8 on page 342
+\description{Estimation of the parameters in the model (6.1)--(6.2) via the EM algorithm.  
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -62,7 +62,7 @@ EM0(num, y, A, mu0, Sigma0, Phi, cQ, cR, max.iter = 50, tol = 0.01)
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %% ~put references to the literature/web site here ~
 }
 \author{D.S. Stoffer

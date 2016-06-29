@@ -7,7 +7,6 @@
 \description{Quarterly U.S. GNP from 1947(1) to 2002(3).
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
-\usage{data(gnp)}
 \format{
   The format is:
  Time-Series [1:223] from 1947 to 2002: 1489 1497 1500 1524 1547 ...
@@ -18,7 +17,7 @@
 %%\source{
 %%%%  ~~ reference to a publication or URL from which the data were obtained ~~
 %%}
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %%  ~~ possibly secondary sources and usages ~~
 }
 %%\examples{

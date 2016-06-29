@@ -5,7 +5,7 @@
 %%  ~~function to do ... ~~
 }
 \description{Gives the ARMA spectrum (on a log scale), tests for causality, invertibility, and
-common zeros. See Example 4.6 on page 184.  
+common zeros.  
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -34,7 +34,7 @@ containing the model parameters. Use \code{log="no"} if you do not want the plot
 a log scale. If the model is not causal or invertible an error message is given. If
 there are common zeros, a spectrum will be displayed and a warning will be given;
 e.g., \code{arma.spec(ar= .9, ma= -.9)} will yield a warning and the plot will be the
-spectrum of white noise. See Example 4.6 on page 184.
+spectrum of white noise. 
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{ \item{freq }{frequencies - returned invisibly}
@@ -45,15 +45,15 @@ spectrum of white noise. See Example 4.6 on page 184.
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %% ~put references to the literature/web site here ~
 }
 \author{D.S. Stoffer
 %%  ~~who you are~~
 }
-\note{In \code{tsa3}, this is called \code{spec.arma}.
+%\note{In \code{tsa3}, this is called \code{spec.arma}.
 %%  ~~further notes~~
-}
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 

@@ -7,7 +7,6 @@
 \description{Temperature series corresponding to \code{cmort} from the LA pollution study.
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
-\usage{data(tempr)}
 \format{
   The format is:
  Time-Series [1:508] from 1970 to 1980: 72.4 67.2 62.9 72.5 74.2 ...

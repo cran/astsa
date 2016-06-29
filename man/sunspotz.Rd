@@ -7,7 +7,6 @@
 \description{Biannual smoothed (12-month moving average) number of sunspots from June 1749 to December 1978; n = 459. The "z" on the end is to distinguish this series from the one included with R (called \code{sunspots}).
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
-\usage{data(sunspotz)}
 \format{
 The format is: 
 Time Series:
@@ -21,7 +20,7 @@ Frequency = 2
 %%\source{
 %%%%  ~~ reference to a publication or URL from which the data were obtained ~~
 %%}
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %%%%  ~~ possibly secondary sources and usages ~~
 }
 %%\examples{

@@ -7,7 +7,6 @@
 \description{1000 simulated observations from an ARFIMA(1, 1, 0) model with \eqn{\phi = .75} and \eqn{d = .4}.
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
-\usage{data(arf)}
 \format{
   The format is:
  Time-Series [1:1000] from 1 to 1000: -0.0294 0.7487 -0.3386 -1.0332 -0.2627 ...
@@ -18,7 +17,7 @@
 %%\source{
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 %%}
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %%  ~~ possibly secondary sources and usages ~~
 }
 %%\examples{

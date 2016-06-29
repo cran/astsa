@@ -1,5 +1,12 @@
 stoch.reg <-
 function(data, cols.full, cols.red, alpha, L, M, plot.which)  {
+  #
+  nextn   = stats::nextn
+  kernel  = stats::kernel
+  qf = stats::qf
+  plot = graphics::plot
+  abline = graphics::abline
+  #
 # SPEC[i,j,k] is the spectrum between the i-th and j-th series at frequency k/n':
 SPEC = array(dim = c(ncol(data),ncol(data),nextn(nrow(data))/2)) 
 for(i in 1:ncol(data)) { 

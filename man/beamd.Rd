@@ -4,7 +4,7 @@
 \title{Infrasonic Signal from a Nuclear Explosion 
 %%   ~~ data name/kind ... ~~
 }
-\description{Infrasonic signal from a nuclear explosion.  See Example 7.2 on page 421.
+\description{Infrasonic signal from a nuclear explosion.   
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 \usage{data(beamd)}
@@ -17,7 +17,7 @@
 %\source{
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 %}
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %%  ~~ possibly secondary sources and usages ~~
 }
 %%\examples{
