@@ -1,6 +1,6 @@
-5c917dfe7217dee369543fa3cb72d83e *ChangeLog
-6fa4ecb10294ec9200ea44e3bb2ef6de *DESCRIPTION
-a9aae1be1be41ee861c1dffc9ada88c2 *NAMESPACE
+9ca9762b492f6955bbf3e0843db39875 *ChangeLog
+f6848106b6037c99a4ac07557bdaa85e *DESCRIPTION
+64a91e5f4f10ca28478802331e218d0a *NAMESPACE
 4ddc47a6b0b2d5e095ae5963f47a5358 *R/EM0.R
 3d2246d6464fea05abe4578f0798dff7 *R/EM1.R
 ca1eb1b256502a6ed96a7391e7046689 *R/FDR.R
@@ -13,13 +13,13 @@ ac17f059d2c3cf5d0aa46de034198372 *R/Ksmooth1.R
 5ad691eef4af379576f7eab3e8e773da *R/LagReg.R
 6eb0aca3893aeb6e2f9dc21223b4e290 *R/SVfilter.R
 5730af68fd02c31385fd58f9f367e47b *R/SigExtract.R
-231e6abbeb6ca64fafdbbea4a92dc62b *R/acf2.R
+f3518630b8d5544f4a8e5dbd2221f69c *R/acf2.R
 56f5875c4981a240c25bf467bc04dbdc *R/arma.spec.R
 a5e754691f1c1706c28489e4d2e1bc12 *R/lag1.plot.R
 e4874c9011e6342cd24c9e0f94e72204 *R/lag2.plot.R
 aba24fe88da9ce89d40125ed76e71c5d *R/mvspec.R
-2d97a26ed49b56d719ea71143d5fce4c *R/sarima.R
-f9ce3487b115654f3e0b2a021895d784 *R/sarima.for.R
+4ad79bc469c35015e9052b5b976ccdb7 *R/sarima.R
+659beec8b6e869722ffe538720e34790 *R/sarima.for.R
 b790508a08fdbe08a7df1738d87d5122 *R/stoch.reg.R
 7ab4d24a9630f252c07273ba995f9feb *data/EQ5.rda
 07ef729cf914f7656f7f733261ab96c1 *data/EQcount.rda
@@ -36,6 +36,7 @@ eb3b56b9253e0fe73aa58144c0a49ab7 *data/bnrf1ebv.rda
 cbedbc7d28dabc346dc31a61b871c50d *data/bnrf1hvs.rda
 542557ef69b91cf2c8801c582c02349c *data/climhyd.rda
 3dd1009db31a1297baf968041464c9ff *data/cmort.rda
+f7a4dd7fa1973a17d611f8162e5d0f2d *data/djia.rda
 b871dca8859b5a4d4149c0a4a2b779cb *data/econ5.rda
 c4326aaca4fcb7cf339613708125c060 *data/eqexp.rda
 6d5efbf741755b9790fbca1ee083aed6 *data/flu.rda
@@ -75,8 +76,8 @@ d6f05d394c406d9ae0029c55a4a6d02a *man/EM0.Rd
 2cc6947548dbc09e176c1530c5d8674f *man/EXP6.Rd
 21f94a60e36f19182243a4130ceda21c *man/FDR.Rd
 e33032a51ae93b5678b706c7fcdf611c *man/HCT.Rd
-38a5fc5155bcb3713c439ca15b1c5b6a *man/Kfilter0.Rd
-1886fdffadf6634433beeb8b0d298867 *man/Kfilter1.Rd
+5041235f6dcc5ea9c256960b67737ffd *man/Kfilter0.Rd
+74a5b23acc7cd3fa71e3d9457bd5d6c7 *man/Kfilter1.Rd
 f6804ebd4bc6629b08ef8cb903564315 *man/Kfilter2.Rd
 7adb635cebf6328ff57ef66f8aec062c *man/Ksmooth0.Rd
 42748e4dfc14815518e4522d39b6baa8 *man/Ksmooth1.Rd
@@ -90,7 +91,7 @@ e1a0299dae229e5f9e2b7386df9cf22c *man/WBC.Rd
 13c9808f1761351d82647dcf7ef3b663 *man/ar1miss.Rd
 1f9d15a76bfac53c814b9c8ba4a72c27 *man/arf.Rd
 5f740a9afd402530a3c62c90b22f028e *man/arma.spec.Rd
-d23b7d0f449a11829a60d188ca0f3e02 *man/astsa-package.Rd
+fb373f633b62e18b8655b4c533a91789 *man/astsa-package.Rd
 de5f23f97923dd57c7bf561830746387 *man/beamd.Rd
 21136135a2dff337bfb0277fa8cd7b51 *man/birth.Rd
 689ff122578f1545be760706d7352d1a *man/blood.Rd
@@ -98,6 +99,7 @@ c8f21c119c8fecdb9216681031cde28a *man/bnrf1ebv.Rd
 67937cad12aed6c74d987ba2f9e0bde2 *man/bnrf1hvs.Rd
 8a9cc48cab0f25a2fd6108db54c51a42 *man/climhyd.Rd
 553c811736c68f28c1dd815dddfbd52d *man/cmort.Rd
+8c5d1b963406a807b2922f4d1544428a *man/djia.Rd
 d2f9908ba9cd759304b7f50d0f9842da *man/econ5.Rd
 9aa195ed08b1724dc7f37b005065357a *man/eqexp.Rd
 4f30d7e6be1c2d63ce12bf10af0ab53a *man/flu.Rd
@@ -123,7 +125,7 @@ f8af6e7d36ae13855b7266b92e866248 *man/qintr.Rd
 0b6fea980902eb1b6e14ecbbf40530dd *man/sales.Rd
 7256ffdbc628a9f1130e4f88bea5077a *man/salt.Rd
 bccb548a3a501389b7cfd459d7833c57 *man/saltemp.Rd
-047a1086bdd3b625b2b6d5716903cd87 *man/sarima.Rd
+fda7ab4e432ca2a3d6db45eaeefae903 *man/sarima.Rd
 f5ef50c62b49569baa3a29dd75643c4e *man/sarima.for.Rd
 74d42cdb13b092781989a6e90a82094c *man/so2.Rd
 7369e516fc67c1f91bfd89d8b2194581 *man/soi.Rd

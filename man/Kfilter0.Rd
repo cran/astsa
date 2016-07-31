@@ -4,7 +4,7 @@
 \title{Kalman Filter - Time Invariant Model 
 %%  ~~function to do ... ~~
 }
-\description{Returns the filtered values in Property 6.1 on page 326 for the state-space model, (6.1) -- (6.2). In addition, returns the evaluation of the likelihood at the given parameter values and the innovation sequence.   For demonstrations, see Example 6.5 on page 331,and Example 6.10 on page 350.
+\description{Returns the filtered values for the basic time invariant state-space model; inputs are not allowed.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{

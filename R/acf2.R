@@ -20,17 +20,17 @@ function(series, max.lag=NULL, ...){
   U=2/sqrt(num)
   L=-U
   minu=min(minA,minP,L)-.01
-  maxu=min(maxA+.2, maxP+.2, 1)
+  maxu=min(max(maxA+.1, maxP+.1), 1)
   old.par <- par(no.readonly = TRUE)
   par(mfrow=c(2,1), mar = c(3,3,2,0.8),
     oma = c(1,1.2,1,1), mgp = c(1.5,0.6,0))
   plot(LAG, ACF, type="n", ylim=c(minu,maxu), 
     main=paste("Series: ",deparse(substitute(series))))
-    grid()
+    grid(lty=1, col=gray(.9))
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
     lines(LAG, ACF, type='h')
   plot(LAG, PACF, type="n", ylim=c(minu,maxu))
-    grid()
+    grid(lty=1, col=gray(.9))
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
     lines(LAG, PACF, type='h')
   on.exit(par(old.par))  

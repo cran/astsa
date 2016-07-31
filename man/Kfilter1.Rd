@@ -4,7 +4,8 @@
 \title{Kalman Filter -  Model may be time varying or have inputs
 %%  ~~function to do ... ~~
 }
-\description{Returns both the predicted and filtered values for a linear  state space model.
+\description{Returns both the predicted and filtered values for a linear  state space model. Also evaluates
+the likelihood at the given parameter values.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{

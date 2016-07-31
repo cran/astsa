@@ -43,8 +43,10 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),no.c
    t2=xy.coords(fore$pred, y = NULL)$x 
    endd=t2[length(t2)]
    xllim=c(strt,endd)
-  ts.plot(xdata,fore$pred,col=1:2, type="o", xlim=xllim, ylim=c(minx,maxx), ylab=xname) 
-  lines(fore$pred, col="red", type="p")
+  ts.plot(xdata,fore$pred, type="n", xlim=xllim, ylim=c(minx,maxx), ylab=xname) 
+  grid(lty=1, col=gray(.9))
+  lines(xdata, type='o')
+  lines(fore$pred, col="red", type="o")
   lines(U, col="blue", lty="dashed")
   lines(L, col="blue", lty="dashed") 
 #

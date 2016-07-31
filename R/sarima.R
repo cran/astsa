@@ -56,16 +56,16 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,tol=sqrt(.Machine$d
     on.exit(par(old.par))    
 #  end new tsdiag
 
-  df=n-length(fitit$coef)
+  dfree = n-length(fitit$coef)
   t.value=fitit$coef/sqrt(diag(fitit$var.coef)) 
-# p.two=2*pt(-abs(t.value),df=n-length(fitit$coef))   # not sure if want to include this in the table
-  ttable = cbind(Estimate=fitit$coef, SE=sqrt(diag(fitit$var.coef)), t.value)
+  p.two = stats::pf(t.value^2, df1=1, df2=dfree, lower.tail = FALSE)   
+  ttable = cbind(Estimate=fitit$coef, SE=sqrt(diag(fitit$var.coef)), t.value, p.value=p.two)
   ttable= round(ttable,4)
   k = length(fitit$coef)
   BIC = log(fitit$sigma2)+(k*log(n)/n)
   AICc = log(fitit$sigma2)+((n+k)/(n-k-2))
   AIC = log(fitit$sigma2)+((n+2*k)/n)
-  list(fit=fitit, degrees_of_freedom=df, ttable=ttable, AIC=AIC, AICc=AICc, BIC=BIC)
+  list(fit=fitit, degrees_of_freedom=dfree, ttable=ttable, AIC=AIC, AICc=AICc, BIC=BIC)
 }
 
 
