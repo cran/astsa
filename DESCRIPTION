@@ -1,8 +1,8 @@
 Package: astsa
 Type: Package
 Title: Applied Statistical Time Series Analysis
-Version: 1.5
-Date: 2016-08-01
+Version: 1.6
+Date: 2016-10-01
 Author: David Stoffer
 Maintainer: David Stoffer <stoffer@pitt.edu>
 Description: Contains data sets and scripts to accompany Time Series Analysis and Its Applications: With R Examples by Shumway and Stoffer, fourth edition. 
@@ -11,6 +11,6 @@ License: GPL-2
 LazyLoad: yes
 LazyData: yes
 NeedsCompilation: no
-Packaged: 2016-07-25 02:23:52 UTC; dude
+Packaged: 2016-09-18 19:40:08 UTC; dude
 Repository: CRAN
-Date/Publication: 2016-07-31 08:53:57
+Date/Publication: 2016-09-28 22:37:35

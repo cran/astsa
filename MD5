@@ -1,5 +1,5 @@
-9ca9762b492f6955bbf3e0843db39875 *ChangeLog
-f6848106b6037c99a4ac07557bdaa85e *DESCRIPTION
+60060e22aea82d3bc15f5db416fe89a8 *ChangeLog
+4878fe158ff60781b80251094fbddf8f *DESCRIPTION
 64a91e5f4f10ca28478802331e218d0a *NAMESPACE
 4ddc47a6b0b2d5e095ae5963f47a5358 *R/EM0.R
 3d2246d6464fea05abe4578f0798dff7 *R/EM1.R
@@ -34,6 +34,7 @@ e124fcb78617c2f8cfaefd56df5bb880 *data/arf.rda
 833700f7d0464f1f1c6d928e35dc3228 *data/blood.rda
 eb3b56b9253e0fe73aa58144c0a49ab7 *data/bnrf1ebv.rda
 cbedbc7d28dabc346dc31a61b871c50d *data/bnrf1hvs.rda
+ffd2b3185c68a3b1602f1385a891d82e *data/chicken.rda
 542557ef69b91cf2c8801c582c02349c *data/climhyd.rda
 3dd1009db31a1297baf968041464c9ff *data/cmort.rda
 f7a4dd7fa1973a17d611f8162e5d0f2d *data/djia.rda
@@ -43,6 +44,8 @@ c4326aaca4fcb7cf339613708125c060 *data/eqexp.rda
 a485096cc99ce241e42999b0809e2517 *data/fmri.rda
 cfee0ce81a7338312511a48a7ead7cf8 *data/fmri1.rda
 ca81cc4318dae195b0c2769a4acfac91 *data/gas.rda
+ced7dd84912bdbc01a9d5559e8f9b4e9 *data/globtemp.rda
+d583ca93befe96164134457eddc4344f *data/globtempl.rda
 078d85be2730f6b66d606763040c8c0a *data/gnp.rda
 8b8491d52411a40ea0c103484290ca02 *data/gtemp.rda
 3dc0f4e47375f8b6cd99ba4025350900 *data/gtemp2.rda
@@ -91,12 +94,13 @@ e1a0299dae229e5f9e2b7386df9cf22c *man/WBC.Rd
 13c9808f1761351d82647dcf7ef3b663 *man/ar1miss.Rd
 1f9d15a76bfac53c814b9c8ba4a72c27 *man/arf.Rd
 5f740a9afd402530a3c62c90b22f028e *man/arma.spec.Rd
-fb373f633b62e18b8655b4c533a91789 *man/astsa-package.Rd
+7a7f62bee523dbf75f897be020e1ef1e *man/astsa-package.Rd
 de5f23f97923dd57c7bf561830746387 *man/beamd.Rd
 21136135a2dff337bfb0277fa8cd7b51 *man/birth.Rd
 689ff122578f1545be760706d7352d1a *man/blood.Rd
 c8f21c119c8fecdb9216681031cde28a *man/bnrf1ebv.Rd
 67937cad12aed6c74d987ba2f9e0bde2 *man/bnrf1hvs.Rd
+6a8c304b25b4b09b6942d0fb00511757 *man/chicken.Rd
 8a9cc48cab0f25a2fd6108db54c51a42 *man/climhyd.Rd
 553c811736c68f28c1dd815dddfbd52d *man/cmort.Rd
 8c5d1b963406a807b2922f4d1544428a *man/djia.Rd
@@ -106,9 +110,11 @@ d2f9908ba9cd759304b7f50d0f9842da *man/econ5.Rd
 b195678d71dae6f6bb977562fd2579af *man/fmri.Rd
 4010c3b52bac8964a164db0ee4b1fdef *man/fmri1.Rd
 7600c2a4f7fc6f9410cc36d77cdbc6b0 *man/gas.Rd
+badf56ed681abeb1359617a816cea50a *man/globtemp.Rd
+a22e686867e2c1b2ce531dc2a7cffdc9 *man/globtempl.Rd
 4eeae45ba3d2817bfae3f9a43ee2b33c *man/gnp.Rd
-0ad1ead2420c882e821d647a6e018238 *man/gtemp.Rd
-7fff628c8834400a64c827cde3d450cf *man/gtemp2.Rd
+455875bd203e49ef4d2fa7f563f93487 *man/gtemp.Rd
+1a61e9483caad407e7bf2a6d8811d09d *man/gtemp2.Rd
 ed318f825c6b85587798058563e7bf0a *man/jj.Rd
 afad927079bb7d17b9ce44ae8bd343ac *man/lag1.plot.Rd
 b6e9995e4efb30045264bfefe2c37a27 *man/lag2.plot.Rd
