@@ -1,14 +1,21 @@
 sarima <-
-function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,tol=sqrt(.Machine$double.eps),no.constant=FALSE)
+function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt(.Machine$double.eps),no.constant=FALSE)
 { 
   #
    layout = graphics::layout
    par = graphics::par
    plot = graphics::plot
    grid = graphics::grid
+   title = graphics::title
+   polygon = graphics::polygon
    abline = graphics::abline
    lines = graphics::lines
    frequency = stats::frequency
+   coef = stats::coef
+   dnorm = stats::dnorm
+   ppoints = stats::ppoints
+   qnorm = stats::qnorm
+   time = stats::time
    na.pass = stats::na.pass
    #
  trc = ifelse(details==TRUE, 1, 0)
@@ -28,8 +35,6 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,tol=sqrt(.Machine$d
 #
   if (!is.null(xreg)) {fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), xreg=xreg, optim.control=list(trace=trc,REPORT=1,reltol=tol))
 }
-
-
 #
 #  replace tsdiag with a better version
     old.par <- par(no.readonly = TRUE)
@@ -38,15 +43,40 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,tol=sqrt(.Machine$d
     stdres <- rs/sqrt(fitit$sigma2)
     num <- sum(!is.na(rs))
      plot.ts(stdres,  main = "Standardized Residuals", ylab = "")
-    alag <- 10+sqrt(num)
+	 if(Model){
+	 if (S<0) {title(paste( "Model: (", p, "," ,d, "," ,q, ")", sep=""), adj=0) }
+	 else {title(paste( "Model: (", p, "," ,d, "," ,q, ") ", "(", P, "," ,D, "," ,Q, ") [", S,"]",  sep=""), adj=0) }
+	           }
+    alag <- max(10+sqrt(num), 3*S)    
     ACF = stats::acf(rs, alag, plot=FALSE, na.action = na.pass)$acf[-1] 
     LAG = 1:alag/frequency(xdata)
     L=2/sqrt(num)
      plot(LAG, ACF, type="h", ylim=c(min(ACF)-.1,min(1,max(ACF+.4))), main = "ACF of Residuals")
      abline(h=c(0,-L,L), lty=c(1,2,2), col=c(1,4,4))  
-    stats::qqnorm(stdres, main="Normal Q-Q Plot of Std Residuals"); stats::qqline(stdres, col=4) 
-    nlag <- ifelse(S<4, 20, 3*S)
+    stats::qqnorm(stdres, main="Normal Q-Q Plot of Std Residuals")  #stats::qqline(stdres, col=4) 
+        ################qq error bnds - based on CAR 'robust' option ###########
+        sR <- !is.na(stdres)
+        ord <- order(stdres[sR])
+        ord.stdres <- stdres[sR][ord]
+        PP <- ppoints(num)
+        z  <- qnorm(PP)
+        coe <- coef(MASS::rlm(ord.stdres~z))
+        a <- coe[1]
+        b <- coe[2]
+        abline(a,b,col=4)
+        SE <- (b/dnorm(z))*sqrt(PP*(1-PP)/num)     
+        qqfit <- a + b*z
+        U <- qqfit+3.9*SE   # puts .0005 in tails
+        L <- qqfit-3.9*SE
+          z[1]=z[1]-.1      # extend plot -- misses the end otherwise
+          z[length(z)]= z[length(z)]+.1
+          xx <- c(z, rev(z))
+          yy <- c(L, rev(U))
+        polygon(xx, yy, border=NA, col=gray(.6, alpha=.2) )   
+        ############ end qq error bnds ##########################
+    nlag <- ifelse(S<6, 20, 3*S)
     ppq <- p+q+P+Q
+	if (nlag <= ppq + 8) {nlag = ppq + 8}
     pval <- numeric(nlag)
     for (i in (ppq+1):nlag) {u <- stats::Box.test(rs, i, type = "Ljung-Box")$statistic
                              pval[i] <- stats::pchisq(u, i-ppq, lower.tail=FALSE)}            

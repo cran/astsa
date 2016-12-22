@@ -3,6 +3,7 @@ function(series, max.lag=NULL, ...){
   par = graphics::par
   plot = graphics::plot
   grid = graphics::grid
+  box = graphics::box
   abline = graphics::abline
   lines = graphics::lines
   frequency = stats::frequency
@@ -26,11 +27,11 @@ function(series, max.lag=NULL, ...){
     oma = c(1,1.2,1,1), mgp = c(1.5,0.6,0))
   plot(LAG, ACF, type="n", ylim=c(minu,maxu), 
     main=paste("Series: ",deparse(substitute(series))))
-    grid(lty=1, col=gray(.9))
+    grid(lty=1, col=gray(.9)); box()
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
     lines(LAG, ACF, type='h')
   plot(LAG, PACF, type="n", ylim=c(minu,maxu))
-    grid(lty=1, col=gray(.9))
+    grid(lty=1, col=gray(.9)); box()
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
     lines(LAG, PACF, type='h')
   on.exit(par(old.par))  

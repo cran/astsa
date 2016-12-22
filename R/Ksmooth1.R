@@ -22,7 +22,7 @@ function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,input){
     P00=Sigma0
    J0=as.matrix((P00%*%t(Phi))%*%solve(kf$Pp[,,1]), nrow=pdim, ncol=pdim)
    x0n=as.matrix(x00+J0%*%(xs[,,1]-kf$xp[,,1]), nrow=pdim, ncol=1)
-   P0n= P00 + J0%*%(Ps[,,k]-kf$Pp[,,k])%*%t(J0)
+   P0n= P00 + J0%*%(Ps[,,1]-kf$Pp[,,1])%*%t(J0)
 list(xs=xs,Ps=Ps,x0n=x0n,P0n=P0n,J0=J0,J=J,xp=kf$xp,Pp=kf$Pp,xf=kf$xf,Pf=kf$Pf,like=kf$like,Kn=kf$K)
 }
 

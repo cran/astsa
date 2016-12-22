@@ -41,9 +41,8 @@ D.S. Stoffer
 %This is bacisally a front end for \code{acf()} and \code{pacf()} provided in \code{tseries}.
 %}
 %% ~Make other sections like Warning with \section{Warning }{....} ~
-%\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-%}
+%%\seealso{\code{\link{acf1}}
+%% ~~objects to See Also as \code{\link{help}}, ~~~}
 \examples{
 acf2(rnorm(100))
 acf2(rnorm(100), 25)

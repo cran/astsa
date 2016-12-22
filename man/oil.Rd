@@ -17,7 +17,7 @@
 \source{\url{http://tonto.eia.doe.gov/dnav/pet/pet_pri_spt_s1_w.htm}
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa3/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %%  ~~ possibly secondary sources and usages ~~
 }
 %%\examples{
