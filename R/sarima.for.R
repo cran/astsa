@@ -1,5 +1,6 @@
 sarima.for <-
-function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),no.constant=FALSE){ 
+function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),no.constant=FALSE, plot.all=FALSE,
+         xreg = NULL, newxreg = NULL){ 
    #
    layout = graphics::layout
    par = graphics::par
@@ -17,39 +18,48 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),no.c
   xname=deparse(substitute(xdata))
   xdata=as.ts(xdata) 
   n=length(xdata)
+if (is.null(xreg)) {  
   constant=1:n
   xmean = rep(1,n);  if(no.constant==TRUE) xmean=NULL
   if (d==0 & D==0) {
     fitit=stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
             xreg=xmean,include.mean=FALSE, optim.control=list(reltol=tol));
-    nureg=matrix(1,n.ahead,1)        
-} else if (xor(d==1, D==1) & no.constant==FALSE) {
+    nureg=matrix(1,n.ahead,1);  if(no.constant==TRUE) nureg=NULL          
+  } else if (xor(d==1, D==1) & no.constant==FALSE) {
     fitit=stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
             xreg=constant,optim.control=list(reltol=tol));
     nureg=(n+1):(n+n.ahead)       
-} else { fitit=stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
+  } else { fitit=stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
             optim.control=list(reltol=tol));
           nureg=NULL   
-}     
+  }
+}   
+ if (!is.null(xreg)) {
+        fitit = stats::arima(xdata, order = c(p, d, q), seasonal = list(order = c(P, 
+            D, Q), period = S), xreg = xreg)
+	nureg = newxreg		
+}
+  
 #--
- fore=stats::predict(fitit, n.ahead, newxreg=nureg)  
+ fore <- stats::predict(fitit, n.ahead, newxreg=nureg)  
 #-- graph:
   U  = fore$pred + 2*fore$se
   L  = fore$pred - 2*fore$se
   U1 = fore$pred + fore$se
   L1 = fore$pred - fore$se
-   a=max(1,n-100)
+   if(plot.all)  {a=1} else  {a=max(1,n-100)}
   minx=min(xdata[a:n],L)
   maxx=max(xdata[a:n],U)
    t1=xy.coords(xdata, y = NULL)$x 
    if(length(t1)<101) strt=t1[1] else strt=t1[length(t1)-100]
    t2=xy.coords(fore$pred, y = NULL)$x 
    endd=t2[length(t2)]
+   if(plot.all)  {strt=time(xdata)[1]} 
    xllim=c(strt,endd)
   par(mar=c(2.5, 2.5, 1, 1), mgp=c(1.6,.6,0))
   ts.plot(xdata,fore$pred, type="n", xlim=xllim, ylim=c(minx,maxx), ylab=xname) 
   grid(lty=1, col=gray(.9)); box()
-  lines(xdata, type='o')
+  if(plot.all) {lines(xdata)} else {lines(xdata, type='o')}   
 #  
    xx = c(time(U), rev(time(U)))
    yy = c(L, rev(U))

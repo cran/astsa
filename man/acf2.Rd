@@ -4,19 +4,29 @@
 \title{Plot and print ACF and PACF of a time series
 }
 \description{
-Produces a simultaneous plot (and a printout) of the sample ACF and PACF on the same scale. The zero lag value of the ACF is removed.
+Produces a simultaneous plot (and a printout) of the sample ACF and PACF on the same scale. 
+The zero lag value of the ACF is removed.
 }
 \usage{
-acf2(series, max.lag = NULL, ...)
+acf2(series, max.lag=NULL, plot=TRUE, 
+      main=paste("Series: ", deparse(substitute(series))), 
+      na.action = na.pass, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{series}{The data.  Does not have to be a time series object.
 }
   \item{max.lag}{
-Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 50}.
+Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60}. 
+If the series is seasonal, this will be at least 4 seasons by default.  
 }
-  \item{...}{ Addtional arguements passed to \code{acf} }
+  \item{plot}{If FALSE, no graph is produced but the values are still printed.
+}
+  \item{main}{Title of graphic; defaults to name of series.
+}
+ \item{na.action}{How to handle missing data; default is \code{na.pass}
+}
+  \item{...}{ Additional arguments passed to \code{acf} }
 }
 %\details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -29,7 +39,7 @@ Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 50
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\details{This is bacisally a wrapper for \code{acf()} provided in \code{tseries}.  The error bounds are approximate white noise bounds, \eqn{0 \pm 2/\sqrt{n}}; no other option is given.    
+\details{This is basically a wrapper for \code{acf()} provided in \code{tseries}.  The error bounds are approximate white noise bounds, \eqn{0 \pm 2/\sqrt{n}}; no other option is given.    
 }
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %% ~put references to the literature/web site here ~
@@ -45,7 +55,8 @@ D.S. Stoffer
 %% ~~objects to See Also as \code{\link{help}}, ~~~}
 \examples{
 acf2(rnorm(100))
-acf2(rnorm(100), 25)
+acf2(rnorm(100), 25, main='')  # no title
+acf2(rnorm(100), plot=FALSE)[,'ACF']  # print only ACF
 }
 %% ##--	or do  help(data=index)  for the standard data sets.
 %% 
