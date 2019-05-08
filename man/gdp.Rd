@@ -1,20 +1,23 @@
-\name{UnempRate}
-\alias{UnempRate}
+\name{gdp}
+\alias{gdp}
 \docType{data}
-\title{U.S. Unemployment Rate
+\title{Quarterly U.S. GDP
 %%   ~~ data name/kind ... ~~
 }
-\description{Monthly U.S. unemployment rate in percent unemployed (Jan, 1948 - Nov, 2016, n = 827)
+\description{Seasonally adjusted quarterly U.S. GDP from 1947(1) to 2018(3).
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 \format{
   The format is:
- Time-Series [1:827] from 1948 to 2017: 4 4.7 4.5 4 3.4 3.9 3.9 3.6 3.4 2.9 ...
+ Time-Series [1:287] from 1947 to 2018: 2033 2028 2023 2055 2086 ...
 }
-\source{\url{https://data.bls.gov/timeseries/LNU04000000/}
+\source{\url{https://tradingeconomics.com/united-states/gdp}
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 }
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 %%  ~~ possibly secondary sources and usages ~~
 }
 \keyword{datasets}
+
+
+

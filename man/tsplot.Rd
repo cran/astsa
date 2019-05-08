@@ -6,7 +6,8 @@
 Produces a nice plot of a univariate time series in one easy line.
 }
 \usage{
-tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type='l', margins=.25, ... )
+tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type='l', margins=.25,
+       minor=TRUE, nxm=2, nym=2, ... )
 }
 \arguments{
   \item{x, y}{
@@ -27,11 +28,14 @@ type of plot - the default is line.
   \item{margins}{
 inches to add (or subtract) to the margins. 
 }
+  \item{minor, nxm, nym}{
+if minor=TRUE, the number of minor tick marks on x-axis, y-axis.  minor=FALSE removes both or set either to 0 or 1 to remove.
+}
   \item{\dots}{
 other graphical parameteres; see \link[graphics]{par}.
 }
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \author{
 D.S. Stoffer

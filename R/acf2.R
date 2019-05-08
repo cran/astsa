@@ -1,12 +1,10 @@
 acf2 <-
-function(series, max.lag=NULL, plot=TRUE, 
-         main=paste("Series: ",deparse(substitute(series))), 
-         na.action = na.pass, ...){
+function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action = na.pass, ...){
   num=length(series)
-  if (num > 59 & is.null(max.lag)) { 
-      max.lag = max(ceiling(10+sqrt(num)), 4*frequency(series)) } 
-  if (num < 60 & is.null(max.lag)) { max.lag = floor(5*log10(num+5)) }
+  if (num > 59 & is.null(max.lag))  max.lag = max(ceiling(10+sqrt(num)), 4*frequency(series)) 
+  if (num < 60 & is.null(max.lag))  max.lag = floor(5*log10(num+5))
   if (max.lag > (num-1)) stop("Number of lags exceeds number of observations")
+  if (is.null(main)) {main = paste("Series: ",deparse(substitute(series)))}
   ACF=stats::acf(series, max.lag, plot=FALSE, na.action = na.action,...)$acf[-1]
   PACF=stats::pacf(series, max.lag, plot=FALSE, na.action = na.action, ...)$acf
   LAG=1:max.lag/stats::frequency(series)
@@ -18,23 +16,26 @@ function(series, max.lag=NULL, plot=TRUE,
    abline = graphics::abline
    lines = graphics::lines
    frequency = stats::frequency
-  minA=min(ACF)  
-  maxA=max(ACF)
-  minP=min(PACF)
-  maxP=max(PACF)
-  U=2/sqrt(num)
-  L=-U
-  minu=min(minA,minP,L)-.01
-  maxu=min(max(maxA+.1, maxP+.1), 1)
+   	U=2/sqrt(num)
+	L=-U
   old.par <- par(no.readonly = TRUE)
+  if (is.null(ylim)) { 
+	minA=min(ACF)  
+    maxA=max(ACF)
+	minP=min(PACF)
+	maxP=max(PACF)
+	minu=min(minA,minP,L)-.01
+	maxu=min(max(maxA+.1, maxP+.1), 1)
+	ylim = c(minu,maxu)
+  }
   par(mfrow=c(2,1), mar = c(2.5,2.5,1.5,0.8), mgp = c(1.5,0.6,0), cex.main=1)
-  plot(LAG, ACF, type="n", ylim=c(minu,maxu), main=main)
+  plot(LAG, ACF, type="n", ylim=ylim, main=main)
     ###
-    grid(lty=1, col=gray(.9)); box()
+    Grid(); box()
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
     lines(LAG, ACF, type='h')
-  plot(LAG, PACF, type="n", ylim=c(minu,maxu))
-    grid(lty=1, col=gray(.9)); box()
+  plot(LAG, PACF, type="n", ylim=ylim)
+    Grid(); box()
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
     lines(LAG, PACF, type='h')
   on.exit(par(old.par))  

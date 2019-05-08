@@ -8,7 +8,7 @@
 \usage{
 sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1, 
        details = TRUE, xreg=NULL, Model=TRUE,
-       tol = sqrt(.Machine$double.eps), 
+       fixed=NULL, tol = sqrt(.Machine$double.eps), 
        no.constant = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -41,6 +41,8 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 }
   \item{Model}{if TRUE (default), the model orders are printed on the diagnostic plot.
 }
+  \item{fixed}{optional numeric vector of the same length as the total number of parameters. If supplied, only parameters corresponding to NA entries will be estimated. 
+}  
   \item{details}{if FALSE, turns off the diagnostic plot and the output from the nonlinear optimization routine, which is \code{optim}. The default is TRUE. 
 %%     ~~Describe \code{details} here~~
 }
@@ -51,16 +53,16 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 }
 }
 \details{If your time series is in x and you want to fit an ARIMA(p,d,q) model to the data, the basic call is \code{sarima(x,p,d,q)}. The values p,d,q, must be specified as there is no default. The results are the parameter estimates, standard errors, AIC, AICc, BIC (as defined in Chapter 2) and diagnostics. To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, \code{sarima(x,2,1,0)} will fit an ARIMA(2,1,0) model to the series in x, and \code{sarima(x,2,1,0,0,1,1,12)} will fit a seasonal ARIMA\eqn{(2,1,0)*(0,1,1)_{12}} model to the series in x. 
-         The difference between the information criteria given by \code{sarima()} and  \code{arima()} is that they essentially differ by a factor of the sample size. Precise details are explained in Chapter 2, footnote 2. 
+         The difference between the information criteria given by \code{sarima()} and  \code{arima()} is that they  differ by a scaling factor of the effective sample size.  
 }
 \value{\item{fit }{the \code{arima} object}
 \item{degrees_of_freedom}{Error degrees of freedom}
 \item{ttable }{a little t-table with two-sided p-values}
-\item{AIC }{value of the AIC}
+\item{AIC }{value of the AIC - all ICs are the values reported in \code{fit} divided by the essential number of observations (after differencing)}
 \item{AICc }{value of the AICc}
 \item{BIC }{value of the BIC}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \examples{
 sarima(log(AirPassengers),0,1,1,0,1,1,12)
@@ -68,6 +70,9 @@ sarima(log(AirPassengers),0,1,1,0,1,1,12)
 summary(dog$fit)  # fit has all the returned arima() values
 plot(resid(dog$fit))  # plot the innovations (residuals) 
 sarima(log(AirPassengers),0,1,1,0,1,1,12,details=FALSE)$BIC  # print model BIC only
+# fixed paramters
+x = arima.sim(list(order=c(2,0,0), ar=c(0,-.9)), n=200) + 50 
+sarima(x, 2,0,0, fixed=c(0,NA,NA))
 }
 \seealso{\code{\link{sarima.for}}}
 \keyword{ ts }

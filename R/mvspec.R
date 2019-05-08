@@ -1,5 +1,5 @@
 mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
-    fast = TRUE, demean = FALSE, detrend = TRUE, plot = TRUE, 
+    fast = TRUE, demean = FALSE, detrend = TRUE, plot = TRUE, log='n',
     na.action = na.fail,...) 
 {
      #
@@ -100,16 +100,18 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
     for (k in 1:Nspec){
 		fxx[,,k]=pgram[k,,]
 	    }
-#========================    
+#========================  
+    details <- round( cbind(frequency=freq, period=1/freq, spectrum=spec), 4)
+#=========================  
     spg.out <- list(freq = freq, spec = spec, coh = coh, phase = phase, 
         kernel = kernel, df = df, bandwidth = bandwidth,  
-        fxx=fxx, Lh=Lh, n.used = N,
+        fxx=fxx, Lh=Lh, n.used = N, details=details,
         orig.n = N0, series = series, snames = colnames(x), method = ifelse(!is.null(kernel), 
             "Smoothed Periodogram", "Raw Periodogram"), taper = taper, 
         pad = pad, detrend = detrend, demean = demean)
     class(spg.out) <- "spec"
     if (plot) {
-        plot(spg.out, ...)
+        plot(spg.out, panel.first=Grid(), log = log, ...)
         return(invisible(spg.out))
     }
     else return(spg.out)
