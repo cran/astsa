@@ -8,7 +8,7 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(.1))
+lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(.1), ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -28,7 +28,8 @@ lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(
 %%     ~~Describe \code{smooth} here~~
 }
   \item{col}{color of points; default is \code{gray(.1)}
-} 
+}
+  \item{...}{additional graphical arguments}   
 }
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 %% ~put references to the literature/web site here ~
@@ -37,7 +38,9 @@ lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(
 %%  ~~who you are~~
 }
 \examples{
-lag2.plot(soi, rec, 8)
+lag2.plot(soi, rec, 3)
+lag2.plot(soi, rec, max.lag=8, pch=20, cex=1.5, col=rgb(0,.5,1,.5))
 }
+\seealso{\code{\link{lag1.plot}}}
 \keyword{ ts }
 %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
