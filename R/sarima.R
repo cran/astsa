@@ -55,7 +55,7 @@ if(details){
     LAG = 1:alag/frequency(xdata)
     L=2/sqrt(num)
      plot(LAG, ACF, type="h", ylim=c(min(ACF)-.1,min(1,max(ACF+.4))), main = "ACF of Residuals")
-     abline(h=c(0,-L,L), lty=c(1,2,2), col=c(1,4,4))  
+     abline(h=c(0,-L,L), lty=c(1,2,2), col=c('black','dodgerblue3','dodgerblue3'))  
     stats::qqnorm(stdres, main="Normal Q-Q Plot of Std Residuals")  
         #stats::qqline(stdres, col=4) 
         ################ qq error bnds ###########
@@ -68,7 +68,7 @@ if(details){
          x <- stats::qnorm(c(.25,.75))
          b <- diff(y)/diff(x)
          a <- y[1L] - b * x[1L]
-        abline(a,b,col=4)  #qqline
+        abline(a,b,col='dodgerblue3')  #qqline
         SE <- (b/dnorm(z))*sqrt(PP*(1-PP)/num)     
         qqfit <- a + b*z
         U <- qqfit+3.9*SE   # puts .00005 in tails
@@ -87,7 +87,7 @@ if(details){
                              pval[i] <- stats::pchisq(u, i-ppq, lower.tail=FALSE)}            
      plot( (ppq+1):nlag, pval[(ppq+1):nlag], xlab = "LAG (H)", ylab = "p value", ylim = c(-.1, 
         1), main = "p values for Ljung-Box statistic")
-     abline(h = 0.05, lty = 2, col = "blue")  
+     abline(h = 0.05, lty = 2, col = "dodgerblue3")  
     on.exit(par(old.par)) 
 }	
 #  end new tsdiag

@@ -5,10 +5,11 @@ importFrom("graphics", "abline", "box", "grid", "layout", "legend", "lines",
              "par", "plot", "title", "polygon", "axTicks", "axis", "mtext", 
              "rect")
 importFrom("stats", "as.ts", "ccf", "df.kernel", "frequency", "acf",  "time",   
-             "is.tskernel", "kernapply", "kernel", "mvfft", "na.fail",
-             "na.omit", "na.pass", "nextn", "plot.ts", "qf", "ppoints",
-             "spec.taper", "ts", "ts.intersect", "ts.plot", "qnorm", "coef",
-             "dnorm", "quantile", "optim")
+             "is.tskernel", "kernapply", "kernel", "mvfft", "na.fail", "lag",
+             "lm", "na.omit", "na.pass", "nextn", "plot.ts", "qf", "ppoints",
+             "resid", "rnorm", "spec.taper", "ts", "ts.intersect", "ts.plot", 
+             "qnorm", "coef", "dnorm", "quantile", "optim", "ar", "spec.ar", 
+             "filter", "diffinv", "tsp", "var")            
 
 # Export all names
 
