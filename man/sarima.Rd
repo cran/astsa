@@ -2,7 +2,7 @@
 \alias{sarima}
 \title{Fit ARIMA Models
 }
-\description{Fits ARIMA models (including improved diagnostics) in a short command.  It can also be used to perform regression with autocorrelated errors. This is a front end to \code{arima()} with a different back door.
+\description{Fits ARIMA models (with diagnostics) in a short command.  It can also be used to perform regression with autocorrelated errors. 
 }
 \usage{
 sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1, 
@@ -50,16 +50,19 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 \item{AICc }{value of the AICc}
 \item{BIC }{value of the BIC}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \examples{
 sarima(log(AirPassengers),0,1,1,0,1,1,12)
+
 (dog <- sarima(log(AirPassengers),0,1,1,0,1,1,12))
 summary(dog$fit)  # fit has all the returned arima() values
+
 plot(resid(dog$fit))  # plot the innovations (residuals) 
 sarima(log(AirPassengers),0,1,1,0,1,1,12,details=FALSE)$BIC  # print model BIC only
+
 # fixed parameters
-x = arima.sim(list(order=c(2,0,0), ar=c(0,-.9)), n=200) + 50 
+x = sarima.sim( ar=c(0,-.9), n=200 ) + 50 
 sarima(x, 2,0,0, fixed=c(0,NA,NA))
 }
 \seealso{\code{\link{sarima.for}}}

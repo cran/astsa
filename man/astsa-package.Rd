@@ -11,8 +11,8 @@ Includes data and scripts to accompany \emph{Time Series Analysis and Its Applic
 \tabular{ll}{
 Package: \tab astsa\cr
 Type: \tab Package\cr
-Version: \tab 1.11\cr
-Date: \tab 2020-12-03\cr
+Version: \tab 1.12\cr
+Date: \tab 2020-12-20\cr
 License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr
@@ -21,7 +21,8 @@ LazyData: \tab yes\cr
 \author{
 David Stoffer <stoffer@pitt.edu>
 }
-\references{See the webpages for the texts: \url{http://www.stat.pitt.edu/stoffer/tsa4/} or \url{http://www.stat.pitt.edu/stoffer/tsda/}
+\references{The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
 }
 \keyword{ package }
 \keyword{ ts }
