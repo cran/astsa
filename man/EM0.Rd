@@ -29,8 +29,6 @@ EM0(num, y, A, mu0, Sigma0, Phi, cQ, cR, max.iter = 50, tol = 0.01)
   \item{tol}{relative tolerance for determining convergence
 }
 }
-\details{Practically, the script only requires that Q or R may be reconstructed as 
-}
 \value{
 \item{Phi }{Estimate of Phi}
 \item{Q }{Estimate of Q}
@@ -41,10 +39,17 @@ EM0(num, y, A, mu0, Sigma0, Phi, cQ, cR, max.iter = 50, tol = 0.01)
 \item{niter }{number of iterations to convergence}
 \item{cvg }{relative tolerance at convergence}
 }
-\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
+\references{You can find demonstrations of  astsa capabilities at  
+\href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
+
+The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
+
+In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
+
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
 }
 \author{D.S. Stoffer
 }
-
-
+\details{\code{cQ} and \code{cR} are the Cholesky-type decompositions of \code{Q} and \code{R}. In particular, \code{Q = t(cQ)\%*\%cQ} and \code{R = t(cR)\%*\%cR} is all that is required (assuming \code{Q} and \code{R} are valid covariance matrices). 
+}
 \keyword{ ts}

@@ -7,7 +7,7 @@
 \usage{
 sarima.for(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
          no.constant=FALSE, plot=TRUE, plot.all=FALSE,
-         xreg = NULL, newxreg = NULL, fixed=NULL)
+         xreg = NULL, newxreg = NULL, fixed=NULL, ...)
 }
 \arguments{
   \item{xdata}{univariate time series
@@ -43,18 +43,31 @@ sarima.for(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
 }
 \item{fixed}{optional numeric vector of the same length as the total number of parameters. If supplied, only parameters corresponding to NA entries will be estimated. 
 }
+  \item{...}{additional graphical arguments
+}
 }
 \details{For example, \code{sarima.for(x,5,1,0,1)} will forecast five time points ahead for an ARMA(1,1) fit to x. The output prints the forecasts and the standard errors of the forecasts, and supplies a graphic of the forecast with +/- 1 and 2 prediction error bounds.
 }
 \value{\item{pred }{the forecasts}
       \item{se }{the prediction (standard) errors}
 }
-\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
+\references{You can find demonstrations of  astsa capabilities at  
+\href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
+
+The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
+
+In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
+
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
 }
 
 \seealso{\code{\link{sarima}}}
 \examples{
 sarima.for(log(AirPassengers),12,0,1,1,0,1,1,12) 
+
+# fun with the graphic 
+sarima.for(log(AirPassengers),12,0,1,1,0,1,1,12, gg=TRUE, col=4, main='arf') 
+
 #  with regressors:
 nummy   = length(soi)
 n.ahead = 24 

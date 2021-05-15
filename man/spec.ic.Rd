@@ -47,14 +47,21 @@ spectral and frequency ordinates are returned silently.
 \item{[[1]] }{Matrix with columns: ORDER, AIC, BIC}
 \item{[[2]] }{Matrix with columns: freq, spec}
 }
-\references{
-\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
+\references{You can find demonstrations of  astsa capabilities at  
+\href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
+
+The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
+
+In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
+
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
 }
 \author{
 D.S. Stoffer 
 }
 \seealso{ \code{\link{ar}}, \code{\link{spec.ar}}}
 \examples{
+\dontrun{
 # AIC
 spec.ic(soi)  
 spec.ic(sunspotz, method='burg', col=4)   
@@ -64,4 +71,5 @@ spec.ic(soi, BIC=TRUE, detrend=TRUE, log='y')
 
 # plot AIC and BIC without spectral estimate
 tsplot(0:30, spec.ic(soi, plot=FALSE)[[1]][,2:3], type='o', xlab='order', nxm=5)  
+}
 }

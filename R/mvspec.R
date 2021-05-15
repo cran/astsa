@@ -1,6 +1,6 @@
 mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
     fast = TRUE, demean = FALSE, detrend = TRUE, plot = TRUE, log='n',
-	type = NULL, na.action = na.fail,...) 
+	type = NULL, na.action = na.fail, nxm=2, nym=1, main=NULL, ...) 
 {
      #
      na.fail = stats::na.fail
@@ -94,14 +94,11 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
     }
     for (i in 1:nser) spec[, i] <- spec[, i]/u2
     spec <- drop(spec)
-#========================
-    fxx=array(NA, dim=c(nser,nser,Nspec))
-    for (k in 1:Nspec){
-		fxx[,,k]=pgram[k,,]
-	    }
-#========================  
+##== rearrange pgram for more useful display
+	fxx = base::aperm(pgram, c(2,3,1))	
+##== show details to help find peaks 
     details <- round( cbind(frequency=freq, period=1/freq, spectrum=spec), 4)
-#======================== 
+##== output
     spg.out <- list(freq = freq, spec = spec, coh = coh, phase = phase, 
         kernel = kernel, df = df, bandwidth = bandwidth,  
         fxx=fxx, Lh=Lh, n.used = N, details=details,
@@ -110,12 +107,15 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
         pad = pad, detrend = detrend, demean = demean)
     class(spg.out) <- "spec"
     if (plot) {
+          if (is.null(main))
+            main <- paste("Series:", series,  " | ", spg.out$method, " | ", 'taper =', taper)
+	    par(mar = c(2.75, 2.75, 2, 0.75), mgp = c(1.6, 0.6, 0), cex.main = 1.1)
         type0 <- 'n' 
         type1 <- ifelse(is.null(type), 'l', type) 
-        plot(spg.out, type = type0, sub=NA, axes=FALSE, ann=FALSE, log = log, ...) 
-        Grid()
+        plot(spg.out, type = type0, sub=NA, axes=FALSE, ann=FALSE, log = log, main='', ...) 
+        Grid(nxm=nxm, nym=nym)
         par(new=TRUE)
-        plot(spg.out, log = log, type = type1, ...) 
+        plot(spg.out, log = log, type = type1, sub=NA, main=main, ...) 
         return(invisible(spg.out))
     }
     else return(spg.out)

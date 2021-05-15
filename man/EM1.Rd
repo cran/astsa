@@ -39,9 +39,18 @@ EM1(num, y, A, mu0, Sigma0, Phi, cQ, cR, max.iter = 100, tol = 0.001)
 \item{niter }{number of iterations to convergence}
 \item{cvg }{relative tolerance at convergence}
 }
-\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
+\references{You can find demonstrations of  astsa capabilities at  
+\href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
+
+The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
+
+In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
+
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
 }
 \author{D.S. Stoffer
+}
+\details{\code{cQ} and \code{cR} are the Cholesky-type decompositions of \code{Q} and \code{R}. In particular, \code{Q = t(cQ)\%*\%cQ} and \code{R = t(cR)\%*\%cR} is all that is required (assuming \code{Q} and \code{R} are valid covariance matrices). 
 }
 \note{
   Inputs are not allowed (and hence not estimated). The script uses Ksmooth1 and everything related to inputs are set equal to zero when it is called.  

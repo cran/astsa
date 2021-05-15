@@ -2,13 +2,13 @@
 \alias{mvspec}
 \title{Univariate and Multivariate Spectral Estimation
 }
-\description{This is \code{spec.pgram} with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}.  The bandwidth calculation has been changed to the more practical definition given in the text. Can be used to replace \code{spec.pgram} for univariate series.
+\description{This is \code{spec.pgram} with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}.  The bandwidth calculation has been changed to the more practical definition given in the text and this can be used to replace \code{spec.pgram}.
 }
 \usage{
 mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
          fast = TRUE, demean = FALSE, detrend = TRUE, 
-         plot = TRUE, log='n', type = NULL, 
-         na.action = na.fail, ...)
+         plot = TRUE, log='n', type = NULL, na.action = na.fail,
+         nxm=2, nym=1, main=NULL, ...)
 }
 \arguments{
   \item{x }{univariate or multivariate time series (i.e., the p columns of x are time series)
@@ -35,10 +35,15 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
 }
   \item{na.action }{same as \code{spec.pgram}
 }
-  \item{\dots }{additional arguments; same as \code{spec.pgram}
+  \item{nxm, nym }{
+the number of minor tick mark divisions on x-axis, y-axis; the default is one minor tick on the x-axis and none on the y-axis
+}
+ \item{main }{title of the graphics; if NULL, a suitable title is generated
+}
+ \item{\dots }{graphical arguments passed to \code{plot.spec}
 }
 }
-\details{This is \code{spec.pgram} with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}. The default for the plot is NOT to plot on a log scale and the graphic will have a grid. The bandwidth calculation has been changed to the more practical definition given in the text, \eqn{(L_h/n.used)*frequency(x)}. Although meant to be used to easily obtain multivariate spectral estimates, this script can be used for univariate time series.  Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
+\details{This is \code{spec.pgram} from the stats package with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}. The default for the plot is NOT to plot on a log scale and the graphic will have a grid. The bandwidth calculation has been changed to the more practical definition given in the text, \eqn{(L_h/n.used)*frequency(x)}.  Also, the bandwidth is no longer displayed in the graphic.  Although meant to be used to easily obtain multivariate spectral estimates, this script can be used for univariate time series.  Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
 }
 \value{An object of class "spec", which is a list containing at least the following components:
 
@@ -48,17 +53,23 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
 \item{details }{matrix with columns: frequency, period, spectral ordinate(s)}
 \item{coh }{NULL for univariate series. For multivariate time series, a matrix containing the squared coherency between different series. Column i + (j - 1) * (j - 2)/2 of coh contains the squared coherency between columns i and j of x, where i < j.}
 \item{phase }{NULL for univariate series. For multivariate time series a matrix containing the cross-spectrum phase between different series. The format is the same as coh.}
-\item{Lh }{Number of frequencies (approximate) used in the band, as defined in Chapter 4.}
+\item{Lh }{Number of frequencies (approximate) used in the band.}
 \item{n.used }{Sample length used for the FFT}
-\item{series }{The name of the time series.}
-\item{snames }{For multivariate input, the names of the component series.}
+\item{df }{Degrees of freedom (may be approximate) associated with the spectral estimate.}
+\item{bandwidth }{Bandwidth (may be approximate) associated with the spectral estimate.}
 \item{method }{The method used to calculate the spectrum.}
 
 The results are returned invisibly if plot is true.
 }
-\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
-}
+\references{You can find demonstrations of  astsa capabilities at  
+\href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
+The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
+
+In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
+
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
+}
 \examples{
 # real raw periodogram
 mvspec(soi)
