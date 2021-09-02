@@ -1,8 +1,7 @@
 arma.spec <-
-function(ar=0, ma=0, var.noise=1, n.freq=500, log='n', main='from specified model', 
+function(ar=0, ma=0, var.noise=1, n.freq=500,  main='from specified model', 
           frequency=1, ...)
-{ 
-     plot = graphics::plot     
+{  
      check <- 0
     # check causality
      ar.poly <- c(1, -ar)
@@ -29,10 +28,9 @@ function(ar=0, ma=0, var.noise=1, n.freq=500, log='n', main='from specified mode
             sn.ma <- outer(freq, 1:ma.order, function(x, y) sin(2 * pi * x * y)) %*% -ma                      
     spec <- var.noise*((1 - cs.ma)^2 + sn.ma^2)/((1 - cs.ar)^2 + sn.ar^2)
     spg.out <- list(freq=freq*frequency, spec=spec)
-    Ylab='spectrum'
-    if (log == 'y' || log == 'yes' || log == 'dB') { spec = log(spec); Ylab='log(spectrum)' }
+    Ylab = 'spectrum'
     Xlab = ifelse(frequency>1, paste('frequency', expression('\u00D7'), frequency), 'frequency')
-   tsplot(freq*frequency, spec, xlab=Xlab, ylab=Ylab, main=main, ...)
+   tsplot(freq*frequency, spec, xlab=Xlab, ylab=Ylab, main=main,  ...)
    return(invisible(spg.out))
 }
 
