@@ -1,14 +1,17 @@
 trend <-
-function(series, order=1, lowess=FALSE, lowspan=2/3, col=c(4,6), ylab=NULL, ...){
+function(series, order=1, lowess=FALSE, lowspan=.75, robust=TRUE, 
+          col=c(4,6), ylab=NULL, ...){
   if (NCOL(series) > 1) stop("univariate time series only")
+  if (length(col) < 2) col = rep(col, 2)  
     name   = deparse(substitute(series))
     if (is.null(ylab)) { ylab = name }
     series = as.ts(series)
     tspar  = tsp(series)
-    x      = time(series) 
     if (lowess) { 
+      fam  = ifelse(robust, 'symmetric', 'gaussian') 
       y    = c(series)
-      lo   = stats::predict(stats::loess(y ~ x), se=TRUE)
+      x    = c(time(series)) 
+      lo   = stats::predict(stats::loess(y ~ x, span=lowspan, family=fam), se=TRUE)
       trnd = ts(lo$fit, start=tspar[1], frequency=tspar[3])
     tsplot(series, col=col[1], ylab=ylab, ...)
     lines(trnd, col=col[2], lwd=2)       
@@ -19,8 +22,8 @@ function(series, order=1, lowess=FALSE, lowspan=2/3, col=c(4,6), ylab=NULL, ...)
       polygon(xx, yy, border=8, col = gray(.6, alpha=.2) ) 
       invisible(cbind(trnd, L, U))  
     } else {
-      y = as.vector(time(series))
-      u = stats::lm(series~ poly(y, order), na.action=NULL)
+      x = as.vector(time(series))
+      u = stats::lm(series~ poly(x, order), na.action=NULL)
       up = stats::predict(u, interval="confidence", level = 0.95)
       upts = ts(up, start=tspar[1], frequency=tspar[3])
       tsplot(series, col=col[1], ylab=ylab, ...)

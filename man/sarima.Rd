@@ -42,8 +42,7 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
   \item{...}{additional graphical arguments
 }
 }
-\details{If your time series is in x and you want to fit an ARIMA(p,d,q) model to the data, the basic call is \code{sarima(x,p,d,q)}. The values p,d,q, must be specified as there is no default. The results are the parameter estimates, standard errors, AIC, AICc, BIC (as defined in Chapter 2) and diagnostics. To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, \code{sarima(x,2,1,0)} will fit an ARIMA(2,1,0) model to the series in x, and \code{sarima(x,2,1,0,0,1,1,12)} will fit a seasonal ARIMA\eqn{(2,1,0)*(0,1,1)_{12}} model to the series in x. 
-         The difference between the information criteria given by \code{sarima()} and  \code{arima()} is that they  differ by a scaling factor of the effective sample size.  
+\details{If your time series is in x and you want to fit an ARIMA(p,d,q) model to the data, the basic call is \code{sarima(x,p,d,q)}. The values p,d,q, must be specified as there is no default. The results are the parameter estimates, standard errors, AIC, AICc, BIC (as defined in Chapter 2) and diagnostics. To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, \code{sarima(x,2,1,0)} will fit an ARIMA(2,1,0) model to the series in x, and \code{sarima(x,2,1,0,0,1,1,12)} will fit a seasonal ARIMA\eqn{(2,1,0)*(0,1,1)_{12}} model to the series in x. The difference between the information criteria given by \code{sarima()} and  \code{arima()} is that they  differ by a scaling factor of the effective sample size.  
 }
 \value{\item{fit }{the \code{arima} object}
 \item{degrees_of_freedom}{Error degrees of freedom}
@@ -62,20 +61,20 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.   
 }
 \examples{
-sarima(log(AirPassengers),0,1,1,0,1,1,12)
+# easy to use 
+sarima(rec,2,0,0)  # data, p, d, and q
+sarima(rec, 2,0,0, details=FALSE)$ttable  # print t-table only
 
-(dog <- sarima(log(AirPassengers),0,1,1,0,1,1,12))
-summary(dog$fit)  # fit has all the returned arima() values
-
-plot(resid(dog$fit))  # plot the innovations (residuals) 
-sarima(log(AirPassengers),0,1,1,0,1,1,12,details=FALSE)$BIC  # print model BIC only
+(dog <- sarima(log(AirPassengers), 0,1,1, 0,1,1,12))
+str(dog$fit)      # fit has all the returned arima values
+tsplot(resid(dog$fit))  # plot the innovations (residuals) 
 
 # fixed parameters
 x = sarima.sim( ar=c(0,-.9), n=200 ) + 50 
-sarima(x, 2,0,0, fixed=c(0,NA,NA))
+sarima(x, 2,0,0, fixed=c(0,NA,NA))  # phi1 fixed, phi2 and mean free
 
 # fun with diagnostics
-sarima(log(AirPassengers),0,1,1,0,1,1,12, gg=TRUE, col=4)
+sarima(log(AirPassengers), 0,1,1, 0,1,1,12, gg=TRUE, col=4)
 }
-\seealso{\code{\link{sarima.for}}}
+\seealso{\code{\link{sarima.for}}, \code{\link{sarima.sim}} }
 \keyword{ ts }
