@@ -1,9 +1,9 @@
 \name{ccf2}
 \alias{ccf2}
 \title{Cross Correlation
-}
+} 
 \description{
-Produces a nice graphic of the sample CCF of two time series.  The actual CCF values are returned invisibly.
+Calculates and plots the sample CCF of two time series.
 }
 \usage{
 ccf2(x, y, max.lag = NULL, main = NULL, ylab = "CCF", plot = TRUE,
@@ -41,7 +41,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \author{D.S. Stoffer
 }

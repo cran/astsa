@@ -3,17 +3,17 @@
 \alias{astsa}
 \docType{package}
 \title{Applied Statistical Time Series Analysis (more than just data)
-}
+} 
 \description{
-Includes data and scripts to accompany \href{https://link.springer.com/book/10.1007/978-3-319-52452-8}{Time Series Analysis and Its Applications: With R Examples (4th ed, 2017)}  and \href{https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096}{Time Series:  A Data Analysis Approach Using R, (1st ed, 2019)}.
+Contains data sets and scripts for analyzing time series in both the frequency and time domains including state space modeling as well as supporting the texts \href{https://link.springer.com/book/10.1007/978-3-319-52452-8}{Time Series Analysis and Its Applications: With R Examples (4th ed, 2017)}  and \href{https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096}{Time Series: A Data Analysis Approach Using R, (1st ed, 2019)}.
 
 }
 \details{
 \tabular{ll}{
 Package: \tab astsa\cr
 Type: \tab Package\cr
-Version: \tab 1.16\cr
-Date: \tab 2022-08-31\cr
+Version: \tab 2.0\cr
+Date: \tab 2023-01-10\cr
 License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr
@@ -29,7 +29,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \keyword{ package }
 \keyword{ ts }

@@ -2,12 +2,12 @@
 \alias{ffbs}
 \title{
 Forward Filtering Backward Sampling
-}
+} 
 \description{
 FFBS algorithm for state space models
 }
 \usage{
-ffbs(y, A, mu0, Sigma0, Phi, Ups, Gam, sQ, sR, input)
+ffbs(y, A, mu0, Sigma0, Phi, sQ, sR, Ups = NULL, Gam = NULL, input = NULL)
 }
 \arguments{
   \item{y }{Data matrix, vector or time series.
@@ -21,15 +21,15 @@ ffbs(y, A, mu0, Sigma0, Phi, Ups, Gam, sQ, sR, input)
 }
   \item{Phi }{State transition matrix.
 }
-  \item{Ups }{State input matrix; use \code{Ups = 0} if not needed.
-}
-  \item{Gam }{Observation input matrix; use \code{Gam = 0} if not needed.
-}
   \item{sQ }{State error covariance matrix is \code{Q = sQ\%*\%t(sQ)} -- see details below. In the univariate case, it is the standard deviation.
 }
   \item{sR }{Observation error covariance matrix is \code{R = sR\%*\%t(sR)} -- see details below. In the univariate case, it is the standard deviation.
 }
-  \item{input }{matrix or vector of inputs having the same row dimension as y; use \code{input = 0} if not needed
+  \item{Ups }{State input matrix.
+}
+  \item{Gam }{Observation input matrix.
+}
+  \item{input }{matrix or vector of inputs having the same row dimension as y.
 }
 }
 \details{Refer to Section 6.12 of edition 4 text. For a linear state space model,
@@ -54,8 +54,8 @@ Note that \eqn{sQ\, w_t}  has to be p-dimensional, but  \eqn{w_t} does not, and
  \eqn{sR\, v_t}  has to be q-dimensional, but  \eqn{v_t} does not.
 }
 \value{
-  \item{xs }{A p-dimensional matrix of sampled states}
-  \item{x0n }{The sampled initial state (because R is 1-based) }
+  \item{Xs }{An array of sampled states}
+  \item{X0n }{The sampled initial state (because R is 1-based) }
 }
 \source{Shumway & Stoffer (2017) Edition 4, Section 6.12. 
 }
@@ -66,20 +66,21 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \author{
 D.S. Stoffer
 }
 \note{
-The script uses \code{\link{Kfilter1}}. To match the input, \code{sQ} and \code{sR} are transposed prior
-to calling  \code{Kfilter1}.  Also, if \eqn{A_t} is constant wrt time, it is not necessary to
-input an array; see the example.
+The script uses \code{\link{Kfilter}}.  If \eqn{A_t} is constant wrt time, it is not necessary to
+input an array; see the example.  The example below is just one pass of the algorithm; see the example
+at \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md#gibbs-sampling-for-linear-state-space-models}{FUN WITH ASTSA} for the real fun.
 }
 \examples{
 \dontrun{
 
-## -- this is just one pass - see FUN WITH ASTSA for the real fun --##
+## -- this is just one pass --##
 # generate some data
  set.seed(1)
  sQ  = 1; sR = 3; n = 100  
@@ -90,9 +91,10 @@ for (t in 2:n){
   x[t] = x[t-1] + sQ*w[t]
   y[t] = x[t] + sR*v[t]   
   }
+
 ## run one pass of FFBS, plot data, states and sampled states  
-run = ffbs(y,A=1,mu0=0,Sigma0=10,Phi=1,Ups=0,Gam=0,sQ=1,sR=3,input=0)
-tsplot(cbind(y,run$xs), spaghetti=TRUE, type='o', col=c(8,4), pch=c(1,NA))
+run = ffbs(y, A=1, mu0=0, Sigma0=10, Phi=1, sQ=1, sR=3)
+tsplot(cbind(y,run$Xs), spaghetti=TRUE, type='o', col=c(8,4), pch=c(1,NA))
 legend('topleft', legend=c("y(t)","xs(t)"), lty=1, col=c(8,4), bty="n", pch=c(1,NA))
 }
 }

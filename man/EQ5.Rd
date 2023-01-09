@@ -2,7 +2,7 @@
 \alias{EQ5}
 \docType{data}
 \title{Seismic Trace of Earthquake number 5 
-}
+} 
 \description{Seismic trace of an earthquake [two phases or arrivals along the surface, the primary wave (\eqn{t = 1,\dots,1024}) and the shear wave (\eqn{t = 1025,\dots,2048})] recorded at a seismic station.
 }
 \format{
@@ -16,7 +16,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \seealso{\code{\link{eqexp}}}
 \keyword{datasets}

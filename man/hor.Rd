@@ -4,7 +4,7 @@
 \title{Hawaiian occupancy rates}
 \description{Quarterly Hawaiian hotel occupancy rate (percent of rooms occupied) from 
 1982-I to 2015-IV
-}
+} 
 \format{
   The format is:
  Time-Series [1:136] from 1982 to 2015: 79  65.9  70.9  66.7  ...
@@ -18,7 +18,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}.   
 }
 \examples{
 tsplot(hor, type='c')                           # plot data and

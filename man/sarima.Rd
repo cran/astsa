@@ -1,7 +1,7 @@
 \name{sarima}
 \alias{sarima}
 \title{Fit ARIMA Models
-}
+} 
 \description{Fits ARIMA models (with diagnostics) in a short command.  It can also be used to perform regression with autocorrelated errors. 
 }
 \usage{
@@ -58,7 +58,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.   
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}.    
 }
 \examples{
 # easy to use 
@@ -66,7 +67,7 @@ sarima(rec,2,0,0)  # data, p, d, and q
 sarima(rec, 2,0,0, details=FALSE)$ttable  # print t-table only
 
 (dog <- sarima(log(AirPassengers), 0,1,1, 0,1,1,12))
-str(dog$fit)      # fit has all the returned arima values
+str(dog$fit, vec.len=1) # fit has all the returned arima values
 tsplot(resid(dog$fit))  # plot the innovations (residuals) 
 
 # fixed parameters

@@ -2,7 +2,7 @@
 \alias{star}
 \docType{data}
 \title{Variable Star 
-}
+} 
 \description{The  magnitude of a star taken at midnight for
 600 consecutive days. The data are taken from the classic text,
 The Calculus of Observations, a Treatise on Numerical Mathematics, by E.T. Whittaker and G. Robinson, 
@@ -19,6 +19,7 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}.  
 }
 \keyword{datasets}

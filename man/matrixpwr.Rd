@@ -8,7 +8,7 @@ Powers of a Square Matrix
 \code{matrixpwr} computes powers of a square matrix including negative powers for nonsingular matrices.
 
 \code{\%^\%} is a more intuitive interface as an operator.
-}
+} 
 \usage{
 matrixpwr(A, power)
 
@@ -42,7 +42,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \author{
 D.S. Stoffer
@@ -53,10 +54,9 @@ D.S. Stoffer
 P \%^\% 50
 
 # surround with parentheses if used in an expression
-c(.5,.5) \%*\% (P\%^\%50)
+c(.2, .8) \%*\% (P \%^\% 50)
 
 # Inverse square root
-Q = var(econ5)
-Q \%^\% -.5
+var(econ5) \%^\% -.5
 }
 \keyword{ math }

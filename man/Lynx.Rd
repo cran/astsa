@@ -4,7 +4,7 @@
 \title{Canadian Lynx
 }
 \description{This is one of the classic studies of predator-prey interactions, the 90-year data set is the number, in thousands, of  lynx  pelts  purchased by the Hudson's Bay Company of Canada. While this is an indirect measure of predation, the assumption is that there is a direct relationship between the number of pelts collected and the number of hare and lynx in the wild.
-}
+} 
 \usage{data("Lynx")}
 \format{
   The format is:
@@ -22,7 +22,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \seealso{\code{\link{Hare}}}
 \keyword{datasets}

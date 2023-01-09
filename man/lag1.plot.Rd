@@ -1,12 +1,12 @@
 \name{lag1.plot}
 \alias{lag1.plot}
 \title{Lag Plot - one time series
-}
+} 
 \description{Produces a grid of scatterplots of a series versus lagged values of the series.
 }
 \usage{
-lag1.plot(series, max.lag=1, corr=TRUE, smooth=TRUE, col=gray(.1),
-          lwl=1, bgl ='white', ltcol=1, box.col=8, ...)
+lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE, col = gray(.1), lwl = 1,
+            lwc = 2, bgl = gray(1,.65), ltcol = 1, box.col = 8, cex = .9, ...)
 }
 \arguments{
   \item{series}{the data
@@ -21,11 +21,15 @@ lag1.plot(series, max.lag=1, corr=TRUE, smooth=TRUE, col=gray(.1),
 }
   \item{lwl}{width of lowess line; default is 1
 }
-  \item{bgl}{background of the ACF legend; default is \code{'white'}
+  \item{lwc}{color of lowess line; default is 2 (red)
+}
+  \item{bgl}{background of the ACF legend; default is semitransparent white
 }
   \item{ltcol}{legend text color; default is black
 }
   \item{box.col}{color of the border of the ACF legend; default is \code{'gray(62)'}
+}
+  \item{cex}{size of points; default is .9
 }
   \item{...}{additional graphical arguments
 }
@@ -37,7 +41,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \author{D.S. Stoffer
 }

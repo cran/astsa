@@ -1,20 +1,22 @@
-\name{EM1}
-\alias{EM1}
-\title{EM Algorithm for General State Space Models
+\name{xEM0}
+\alias{xEM0}
+\title{EM Algorithm for Time Invariant State Space Models - This script has been superseded by \code{\link{EM}}. 
 }
-\description{Estimation of the parameters in the general state space  model via the EM algorithm.   Inputs are not allowed; see the note.
+
+\description{Estimation of the parameters in a simple state space via the EM algorithm.  NOTE: This script has been superseded by \code{\link{EM}}. Note that
+scripts starting with an x are scheduled to be phased out.
 }
 \usage{
-EM1(num, y, A, mu0, Sigma0, Phi, cQ, cR, max.iter = 100, tol = 0.001)
+xEM0(num, y, A, mu0, Sigma0, Phi, cQ, cR, max.iter = 50, tol = 0.01)
 }
 \arguments{
   \item{num}{number of observations
 }
-  \item{y}{observation vector or time series; use 0 for missing values
+  \item{y}{observation vector or time series
 }
-  \item{A}{observation matrices, an array with \code{dim=c(q,p,n)}; use 0 for missing values
+  \item{A}{time-invariant observation matrix
 }
-  \item{mu0}{initial state mean
+  \item{mu0}{initial state mean vector
 }
   \item{Sigma0}{initial state covariance matrix
 }
@@ -22,7 +24,7 @@ EM1(num, y, A, mu0, Sigma0, Phi, cQ, cR, max.iter = 100, tol = 0.001)
 }
   \item{cQ}{Cholesky-like decomposition of state error covariance matrix Q -- see details below
 }
-  \item{cR}{R is diagonal here, so \code{cR = sqrt(R)} -- also, see details below
+  \item{cR}{Cholesky-like decomposition of state error covariance matrix R -- see details below
 }
   \item{max.iter}{maximum number of iterations
 }
@@ -46,16 +48,13 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}.   
 }
 \author{D.S. Stoffer
 }
 \details{\code{cQ} and \code{cR} are the Cholesky-type decompositions of \code{Q} and \code{R}. In particular, \code{Q = t(cQ)\%*\%cQ} and \code{R = t(cR)\%*\%cR} is all that is required (assuming \code{Q} and \code{R} are valid covariance matrices). 
 }
-\note{For examples, see Chapter 6 of the text.
-
-  Inputs are not allowed (and hence not estimated). The script uses Ksmooth1 and everything related to inputs are set equal to zero when it is called.  
-  
-  It would be relatively easy to include estimates of 'Ups' and 'Gam' because conditional on the states, these are just regression coefficients.  If you decide to alter EM1 to include estimates of the 'Ups' or 'Gam', feel free to notify me with a workable example.
+\note{NOTE: This script has been superseded by \code{\link{EM}}
 }
-\keyword{ ts }
+\keyword{ ts}

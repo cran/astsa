@@ -1,11 +1,11 @@
 \name{ssm}
 \alias{ssm}
 \title{State Space Model
-}
+} 
 \description{
-Fits a simple univariate state space model, x[t] = alpha + phi x[t-1] + w[t],
-and y[t] = A x[t] + v[t].  The parameters alpha, phi, sigma[w] and sigma[v]
-are estimated; parameter phi may be fixed.  State predictions and smoothers
+Fits a simple univariate state space model to data. The parameters
+are estimated (the state regression parameter may be fixed).  State 
+predictions, filters, and smoothers
 and corresponding error variances are evaluated at the estimates.  The sample
 size must be at least 20.
 }
@@ -35,10 +35,11 @@ initial value for sigma[v]
 if TRUE, the phi parameter is fixed
 }
 }
-\details{The script works for a specific univariate state space model.
+\details{The script works for a specific univariate state space model,
+\deqn{x_t = \alpha + \phi x_{t-1} + w_t \quad {\rm and} \quad y_t = A x_t + v_t.}
 The initial state conditions use a default calculation and cannot be specified.
 The parameter estimates are printed and the script returns the state predictors and
-smoothers.
+smoothers.  The regression parameter \eqn{\phi} may be fixed.
 }
 \value{At the MLEs, these are returned invisibly:
 \item{Xp }{time series - state prediction, \eqn{x_t^{t-1}}}
@@ -55,7 +56,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \examples{
 \dontrun{

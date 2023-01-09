@@ -6,7 +6,7 @@ Month Labels
 }
 \description{
 Provides labels for the (English) months of the year to be used in plotting monthly time series.
-}
+} 
 \format{
   The format is:
  chr [1:12] "J" "F" "M" "A" "M" "J" "J" "A" "S" "O" "N" "D"
@@ -18,7 +18,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \note{Hi Kids. The months of the year in English are:
 

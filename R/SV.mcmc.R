@@ -4,7 +4,8 @@
 #      Y(t) = beta*exp{X(t)/2}V(t);         V(t) ~ iid N(0,1)   ind of Ws  
 ###############################################################################
 
-SV.mcmc = function(y, nmcmc=1000, burnin=100, init=NULL, hyper=NULL, tuning=NULL, sigma_MH=NULL, npart=NULL, mcmseed=NULL){
+SV.mcmc = function(y, nmcmc=1000, burnin=100, init=NULL, hyper=NULL, tuning=NULL, 
+                    sigma_MH=NULL, npart=NULL, mcmseed=NULL){
   # Input:
   #   y - returns
   #   nmcmc - number of MCMC
@@ -40,7 +41,7 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100, init=NULL, hyper=NULL, tuning=NULL
 
   T = length(y)
   X = matrix(0,numMCMC,T)
-  q = rep(0,numMCMC)             # q = state variance ## W(t) ~ iid N(0,q)
+  q = rep(0,numMCMC)             # q = state variance 
   phi = rep(0,numMCMC)
   beta = rep(0,numMCMC)
 
@@ -74,10 +75,10 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100, init=NULL, hyper=NULL, tuning=NULL
   for(k in 2:numMCMC){
     # Sample the parameters (phi, sigma=sqrt_q) ~ bivariate normal RW Metropolis  
     parms = cbind(phi[k-1], sqrt(q[k-1]))
-    parms_star = parms + .rmvnorm(1, mu_MH, sigma_MH)
+    parms_star = parms + .rmvnorm(mu_MH, sigma_MH)
     
     while(parms_star[2]^2 < 2e-2|parms_star[1]>2){
-      parms_star = parms + .rmvnorm(1, mu_MH, sigma_MH)
+      parms_star = parms + .rmvnorm(mu_MH, sigma_MH)
     }
     
     g_star = .log_g_func(parms_star, mu_phi, sigma_phi, mu_q, sigma_q, rho, X[(k-1),])
@@ -150,7 +151,7 @@ par(mfcol=c(3,3))
 for (i in 1:3){
   tsplot(parms[,i], main=names[i], col=culer[i], ylab='', xlab='Index')
    ess = ESS(parms[,i])
-  legend("topright", legend=paste('ESS = ', round(ess, digits=1)), adj=.1, bg='white')	
+  legend("topright", legend=paste('ESS = ', round(ess, digits=1)), adj=.1, bg=gray(1,.8), box.col=8)
   acf1(parms[,i],   main='', col=culer[i], ylim=c(lwr,1))
   hist(parms[,i],   main='', xlab='', col=astsa.col(culer[i], .4))
   abline(v=c(stats::quantile(parms[,i], probs=c(.025,.5,.975))), col=8)
@@ -230,6 +231,7 @@ par(old.par)
   }#end
   list(x=x, w=w)
 }#end
+
 #-------------------------------------------------------------------
 .resamplew = function(w){
   # multinomial resampling
@@ -257,19 +259,15 @@ par(old.par)
   return(g)
 }
 
-
-.rmvnorm <-
-function(n = 1, mu, Sigma, tol=1e-8){
-## - this is built off of MASS::mvrnorm
-  p  <- length(mu)
-    if(!all(dim(Sigma) == c(p,p))) stop("incompatible arguments")
-  eS  <- eigen(Sigma, symmetric = TRUE)
-  ev  <- eS$values
-  if(!all(ev >= -tol*abs(ev[1L]))) stop("'Sigma' is not positive definite")
-  X  <- matrix(stats::rnorm(p * n), n)
-  X  <- drop(mu) + eS$vectors %*% diag(sqrt(pmax(ev, 0)), p) %*% t(X)
-  nm <- names(mu)
-    if(is.null(nm) && !is.null(dn <- dimnames(Sigma))) nm <- dn[[1L]]
-  dimnames(X) <- list(nm, NULL)
-  if(n == 1) drop(X) else t(X)
-}
+#---------------------------------------------------------
+ .rmvnorm <-
+ function(mu, Sigma, tol=1e-8){
+ ## - this is built off of MASS::mvrnorm
+   p   <- length(mu)
+   eS  <- eigen(Sigma, symmetric = TRUE)
+   ev  <- eS$values
+   if(!all(ev >= -tol*abs(ev[1L]))) stop("'Sigma' is not positive definite")
+   X  <- matrix(stats::rnorm(p), 1)
+   X  <- drop(mu) + eS$vectors %*% diag(sqrt(pmax(ev, 0)), p) %*% t(X)
+   return(drop(X)) 
+ }

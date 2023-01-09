@@ -2,7 +2,7 @@
 \alias{gtemp2}
 \docType{data}
 \title{Global Mean Surface Air Temperature Deviations
-}
+} 
 \description{This data file is old and is here only for compatibility.  See \code{\link{globtemp}} and \code{\link{gtemp_land}}. The original description is:    Similar to \code{gtemp} but the data are based only on surface air temperature data obtained from meteorological stations. The data are temperature deviations (from 1951-1980 average), measured in degrees centigrade, for the years 1880-2009.
 }
 \usage{data(gtemp2)}
@@ -19,7 +19,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \seealso{\code{\link{gtemp_land}}, \code{\link{gtemp_ocean}}, \code{\link{globtemp}}, \code{\link{globtempl}},  \code{\link{gtemp}}}
 \keyword{datasets}

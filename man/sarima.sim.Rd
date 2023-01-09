@@ -1,7 +1,7 @@
 \name{sarima.sim}
 \alias{sarima.sim}
 \title{ARIMA Simulation
-}
+} 
 \description{Simulate data from (seasonal) ARIMA models.
 }
 \usage{
@@ -65,7 +65,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}.   
 }
 \author{D.S. Stoffer
 }
@@ -76,15 +77,17 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 y = sarima.sim(ar=c(1.5,-.75)) + 50
 tsplot(y)
 
-## ARIMA(0,1,1) with drift  
+## ARIMA(0,1,1) with drift ['mean' refers to the innovations] 
 tsplot(sarima.sim(ma=-.8, d=1, mean=.1))
 
 ## SAR(1) example from text
+set.seed(666)   # not that 666
 sAR = sarima.sim(sar=.9, S=12, n=36)
 tsplot(sAR, type='c')
 points(sAR, pch=Months, cex=1.1, font=4, col=1:4)
 
 ## SARIMA(0,1,1)x(0,1,1)_12 - B&J's favorite
+set.seed(101010)
 tsplot(sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120))  
 
 ## infinite variance t-errors 

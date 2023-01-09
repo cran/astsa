@@ -2,7 +2,7 @@
 \alias{globtemp}
 \docType{data}
 \title{Global mean land-ocean temperature deviations to 2015
-}
+} 
 \description{Global mean land-ocean temperature deviations (from 1951-1980 average), measured in degrees centigrade, for the years 1880-2015. This was an update of \code{gtemp}, but \code{gtemp_land} and \code{gtemp_ocean} are the most recent updates.
 }
 \format{
@@ -23,7 +23,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \seealso{\code{\link{gtemp_land}}, \code{\link{gtemp_ocean}}, \code{\link{globtempl}}, \code{\link{gtemp}},  \code{\link{gtemp2}}}
 \keyword{datasets}

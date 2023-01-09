@@ -4,7 +4,7 @@
 \title{Hematocrit Levels
 }
 \description{HCT: Measurements made for 91 days on the three variables, log(white blood count) [WBC], log(platelet) [PLT] and hematocrit [HCT].  Missing data code is 0 (zero).
-}
+} 
 \format{
   The format is:
  Time-Series [1:91] from 1 to 91: 30 30 28.5 34.5 34 32 30.5 31 33 34 ...
@@ -20,7 +20,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}.   
 }
 \seealso{\code{\link{blood}}, \code{\link{PLT}}, \code{\link{WBC}}}
 \keyword{datasets}

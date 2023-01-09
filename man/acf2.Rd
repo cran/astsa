@@ -1,13 +1,13 @@
 \name{acf2}
 \alias{acf2}
 \title{Plot and print ACF and PACF of a time series
-}
+} 
 \description{
 Produces a simultaneous plot (and a printout) of the sample ACF and PACF on the same scale. The zero lag value of the ACF is removed.
 }
 \usage{
-acf2(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL,
-     na.action = na.pass, ...)
+acf2(series, max.lag = NULL, plot = TRUE, main = NULL, ylim = NULL, 
+      na.action = na.pass, ...)
 }
 \arguments{
   \item{series}{The data.  Does not have to be a time series object.
@@ -38,7 +38,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \author{
 D.S. Stoffer

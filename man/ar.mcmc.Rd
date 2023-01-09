@@ -1,7 +1,7 @@
 \name{ar.mcmc}
 \alias{ar.mcmc}
 \title{Fit Bayesian AR Model 
-}
+} 
 \description{
 Uses Gibbs sampling to fit an AR model to time series data.
 }
@@ -64,7 +64,7 @@ various quantiles are displayed.
 \author{
 D.S. Stoffer
 }
-\source{Based on the scirpt \code{arp.mcmc} used in Douc,  Moulines, & Stoffer, D. (2014).
+\source{Based on the script \code{arp.mcmc} used in Douc,  Moulines, & Stoffer, D. (2014).
 \emph{ Nonlinear Time Series: Theory, Methods and Applications with R Examples}. CRC press. 
 ISBN 9781466502253.
 }
@@ -75,7 +75,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \examples{
 \dontrun{

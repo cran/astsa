@@ -3,7 +3,7 @@
 \title{Univariate and Multivariate Spectral Estimation
 }
 \description{This is \code{spec.pgram} with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}.  The bandwidth calculation has been changed to the more practical definition given in the text and this can be used to replace \code{spec.pgram}.
-}
+} 
 \usage{
 mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
          fast = TRUE, demean = FALSE, detrend = TRUE, 
@@ -68,7 +68,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}.   
 }
 \examples{
 # real raw periodogram

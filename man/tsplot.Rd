@@ -1,7 +1,7 @@
 \name{tsplot}
 \alias{tsplot}
 \title{Time Series Plot
-}
+} 
 \description{
 Produces a nice plot of univariate or multiple time series in one easy line.
 }
@@ -48,8 +48,7 @@ line color(s), can be a vector for multiple time series.
 }
  \item{gg}{
 if TRUE, will produce a gris-gris plot (gray graphic interior with white grid lines); the default is FALSE.
-The grammar of astsa is voodoo; \cr
- see \kbd{https://musicaficionado.blog/2017/11/08/gris-gris-by-dr-john/}
+The grammar of astsa is voodoo;  see \kbd{https://www.youtube.com/watch?v=b4J8VrprrGE}
 }
   \item{spaghetti}{
 if TRUE, will produce a spaghetti plot (all series on same plot).
@@ -81,7 +80,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \author{
 D.S. Stoffer

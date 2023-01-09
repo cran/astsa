@@ -3,6 +3,7 @@
 \docType{data}
 \title{U.S. Unemployment
 }
+
 \description{Monthly U.S. Unemployment series (1948-1978, n = 372)
 }
 \usage{data(unemp)}
@@ -17,7 +18,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}.   
 }
 \seealso{\code{\link{UnempRate}}}
 \keyword{datasets}

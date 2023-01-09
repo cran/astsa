@@ -2,7 +2,7 @@
 \alias{detrend}
 \title{
 Detrend a Time Series
-}
+} 
 \description{
 Returns a time series with the trend removed.  The trend can be estimated using polynomial regression or using a lowess fit.
 }
@@ -33,13 +33,14 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \author{
 D.S. Stoffer
 }
 \examples{
-tsplot( cbind(salmon, detrend(salmon)), main='Norwegian Salmon Export Price USD/KG' )
+tsplot( cbind(salmon, detrend(salmon)), gg=TRUE, main='Norwegian Salmon USD/KG' ) 
 }
 \seealso{\code{\link{trend}}}
 \keyword{ts}

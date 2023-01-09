@@ -3,7 +3,7 @@
 \docType{data}
 \title{
 Daily Returns of Three Banks
-}
+} 
 \description{
 Daily returns of three banks, 1.  Bank of America [boa], 2. Citibank [citi], and
 3.  JP Morgan Chase [jpm], from 2005 to 2017.
@@ -26,7 +26,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \examples{
 tsplot(BCJ, col=2:4)

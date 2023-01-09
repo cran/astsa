@@ -1,7 +1,7 @@
 \name{Grid}
 \alias{Grid}
 \title{A Better Add Grid to a Plot
-}
+} 
 \description{Adds a grid to an existing plot with major and minor ticks.  Works like R graphics grid() but the grid lines are solid and gray and minor ticks are produced by default.
 }
 \usage{
@@ -49,7 +49,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
 \author{
 D.S. Stoffer
