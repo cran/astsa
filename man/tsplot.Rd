@@ -7,9 +7,10 @@ Produces a nice plot of univariate or multiple time series in one easy line.
 }
 \usage{
 tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
-        margins=.25, ncolm=1, byrow=TRUE, minor=TRUE, nxm=2, nym=1,
-        xm.grid=TRUE, ym.grid =TRUE, col=1, gg=FALSE, spaghetti=FALSE,
-        pch=NULL, lty=1, lwd=1, mgpp=0, ...)
+          margins=.25, ncolm=1, byrow=TRUE, nx=NULL, ny=nx, 
+          minor=TRUE, nxm=2, nym=1, xm.grid=TRUE, ym.grid=TRUE, col=1, 
+          gg=FALSE, spaghetti=FALSE, pch=NULL, lty=1, lwd=1, mgpp=0, 
+          topper=NULL, ...)
 }
 \arguments{
   \item{x, y}{
@@ -35,6 +36,9 @@ for multiple time series, the number of columns to plot.
 }
  \item{byrow}{
 for multiple time series - if TRUE (default), plot series row wise; if FALSE, plot series column wise.
+}
+ \item{nx, ny}{ 
+number of major cells of the grid in x and y direction. When NULL, as per default, the grid aligns with the tick marks on the corresponding default axis (i.e., tickmarks as computed by axTicks). When NA, no grid lines are drawn in the corresponding direction.
 }
   \item{minor, nxm, nym}{
 if minor=TRUE, the number of minor tick marks on x-axis, y-axis.  minor=FALSE removes both or set either to 0 or 1 to remove.
@@ -64,6 +68,9 @@ line width (default is 1); can be a vector for multiple plots.
 }
  \item{mgpp}{
 this is used to adjust (add to) the \code{mgp} graphics parameters settings (\code{?par}), which are \code{c(1.6,.6,0)} here; the R default is \code{c(3,1,0)}.  This will be helpful in moving an axis label farther from the axis if necessary.  
+}
+ \item{topper}{
+non-negative value to add to the top outer margin; if NULL (default) a suitable value is chosen
 }
   \item{\dots}{
 other graphical parameteres; see \link[graphics]{par}.

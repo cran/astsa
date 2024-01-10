@@ -8,8 +8,8 @@ Fits an AR model to data and computes (and by default plots) the spectral
      density of the fitted model based on AIC (default) or BIC.
 }
 \usage{
-spec.ic(xdata, BIC = FALSE, order.max = 30, main = NULL, plot = TRUE, 
-         detrend = FALSE, method=NULL, ...)
+spec.ic(xdata, BIC=FALSE, order.max=NULL, main=NULL, plot=TRUE, detrend=TRUE, 
+         lowess=FALSE, method=NULL, cex.main=NULL, xlab=NULL, ...)
 }
 \arguments{
   \item{xdata}{
@@ -19,7 +19,8 @@ a univariate time series.
 if TRUE, fit is based on BIC. If FALSE (default), fit is based on AIC.
 }
   \item{order.max}{
-maximum order of models to fit. Defaults to 30.
+maximum order of model to fit. Defaults (if NULL) to the minimum of 100 
+and 10\% of the number of observations. 
 }
   \item{main}{
 plot title. Defaults to name of series, method and chosen order.
@@ -28,11 +29,20 @@ plot title. Defaults to name of series, method and chosen order.
 if TRUE (default) produces a graphic of the estimated AR spectrum.
 }
   \item{detrend}{
-if TRUE, detrends the data first. Default is FALSE.
+if TRUE (default), detrends the data first. If FALSE, the series is demeaned.
 }
+  \item{lowess}{
+if TRUE, detrends using lowess. Default is FALSE.
+}
+
   \item{method}{method of estimation - a character string specifying the 
         method to fit the model chosen from the following:
        "yule-walker", "burg", "ols", "mle", "yw". Defaults to "yule-walker".
+}
+  \item{cex.main}{
+magnification for main title; default is 1.
+}
+  \item{xlab}{label for frequency axis; if NULL (default), a totally awesome label is generated for your viewing pleasure.
 }
   \item{\dots}{
 additional graphical arguments.

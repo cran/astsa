@@ -1,13 +1,14 @@
 spec.ic =
-function(xdata, BIC=FALSE, order.max=30, main=NULL, plot=TRUE, 
-           detrend=FALSE, method=NULL, ...){
+function(xdata, BIC=FALSE, order.max=NULL, main=NULL, plot=TRUE, detrend=TRUE, 
+         lowess=FALSE, method=NULL, cex.main=NULL, xlab=NULL, ...){
   if (is.null(method)) {method='yw'}   
   
   nme1  = paste('Series:', deparse(substitute(xdata)))
-  nme2  = ifelse(BIC,'BIC','AIC')  
+  nme2  = ifelse(BIC,'BIC','AIC')
   
-  if (detrend) { xdata = detrend(xdata); dmean = FALSE
+  if (detrend) { xdata = detrend(xdata, lowess=lowess); dmean = FALSE
         } else { dmean = TRUE } 
+  if (is.null(order.max)) order.max = min(100, ceiling(.1*length(xdata)))
   
   u    = stats::ar(xdata, order=order.max, aic=TRUE, method=method, demean=dmean) 
   aic  = as.vector(u$aic) 
@@ -20,17 +21,21 @@ function(xdata, BIC=FALSE, order.max=30, main=NULL, plot=TRUE,
     spec = var(xdata)*rep(1,500)
     out2 = cbind(freq, spec)
      if (plot){
+      if (is.null(cex.main)) cex.main=1
       if (is.null(main)) {main=paste(nme1,"  |  ",nme2," order = ",0)} 
-         tsplot(freq, spec, ylab='AR Spectrum', xlab='Frequency', margins=.5, 
-           main=main, cex.axis=.85, las=0, cex.main=1, cex.lab=.9, ...)
+         tsplot(freq, spec, ylab='AR Spectrum', xlab='Frequency',   
+           main=main, cex.axis=.85, las=0, cex.lab=.9, cex.main=cex.main,...)
      } 
    } else {
     u2   = stats::spec.ar(xdata, order=kmin, plot=FALSE)
     out2 = cbind(freq=u2$freq, spec=c(u2$spec)) 
      if(plot){
+      xfreq <- frequency(xdata)
+      if (is.null(cex.main)) cex.main=1
       if (is.null(main)) {main = paste(nme1,"  |  ",nme2," order = ", kmin, sep="")}
-         tsplot(u2$freq, u2$spec, ylab='AR Spectrum', xlab='Frequency', margins=.5, 
-           main=main, cex.axis=.85, las=0, cex.main=1, cex.lab=.9, ...) 
+      if (is.null(xlab)) xlab = ifelse(xfreq>1, paste('Frequency', expression('\u00D7'), xfreq), 'Frequency')
+         tsplot(u2$freq, u2$spec, ylab='AR Spectrum', xlab=xlab, 
+           main=main, cex.axis=.85, las=0, cex.lab=.9, cex.main=cex.main,...) 
     }
    } 
  out1 = cbind(ORDER=(0L:order.max), AIC=aic, BIC=bic)

@@ -143,16 +143,19 @@ old.par = par(no.readonly = TRUE)
 parms   = cbind(phi, sigma, beta)
 names   = c(expression(phi), expression(sigma), expression(beta))
 colnames(parms) = names
-lwr     = min(min(acf(phi)$acf), min(acf(sigma)$acf), min(acf(beta)$acf))
+lwr     = min(min(acf1(phi, plot=FALSE)), min(acf1(sigma, plot=FALSE)), 
+              min(acf1(beta, plot=FALSE)))
 culer   = c(6,4,3)
 
 
 par(mfcol=c(3,3))
 for (i in 1:3){
   tsplot(parms[,i], main=names[i], col=culer[i], ylab='', xlab='Index')
+   abline(h=mean(parms[,i]), col=8)
    ess = ESS(parms[,i])
-  legend("topright", legend=paste('ESS = ', round(ess, digits=1)), adj=.1, bg=gray(1,.8), box.col=8)
   acf1(parms[,i],   main='', col=culer[i], ylim=c(lwr,1))
+   legend("topright", legend=paste('ESS = ', round(ess, digits=1)), adj=.1, 
+           bg=gray(1,.65), inset=c(.01,.02), box.col=gray(.8))
   hist(parms[,i],   main='', xlab='', col=astsa.col(culer[i], .4))
   abline(v=c(stats::quantile(parms[,i], probs=c(.025,.5,.975))), col=8)
 }  

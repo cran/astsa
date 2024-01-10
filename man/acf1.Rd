@@ -7,7 +7,7 @@ Produces a plot (and a printout) of the sample ACF or PACF. The zero lag value o
 }
 \usage{
 acf1(series, max.lag = NULL, plot = TRUE, main = NULL, ylim = NULL, pacf = FALSE,
-      ylab = NULL, na.action = na.pass, ...)
+      ylab = NULL, xlab = NULL, na.action = na.pass, ...)
 }
 \arguments{
   \item{series}{The data.  Does not have to be a time series object.
@@ -24,6 +24,8 @@ Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60
   \item{pacf}{If TRUE, the sample PACF is returned instead of ACF.
 }
   \item{ylab}{Change y-axis label from default.
+}
+  \item{xlab}{Change x-axis label from default.
 }
   \item{na.action}{How to handle missing data; default is \code{na.pass}
 }
@@ -55,4 +57,5 @@ acf1(sarima.sim(ar=.9), pacf=TRUE)
 # show it to your mom:
 acf1(soi, col=2:7, lwd=4, gg=TRUE)
 }
+\seealso{\code{\link{acf2}}, \code{\link{acfm}}, \code{\link{ccf2}} }
 \keyword{ts}

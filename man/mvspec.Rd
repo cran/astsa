@@ -5,47 +5,71 @@
 \description{This is \code{spec.pgram} with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}.  The bandwidth calculation has been changed to the more practical definition given in the text and this can be used to replace \code{spec.pgram}.
 } 
 \usage{
-mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
-         fast = TRUE, demean = FALSE, detrend = TRUE, 
-         plot = TRUE, log='n', type = NULL, na.action = na.fail,
-         nxm=2, nym=1, main=NULL, ...)
+mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE, 
+        demean = FALSE, detrend = TRUE, lowess = FALSE, log = 'n', plot = TRUE, 
+        gg = FALSE, type = NULL, na.action = na.fail, nxm = 2, nym = 1, 
+        main = NULL, xlab=NULL, cex.main=NULL, ci.col=4, ...) 
 }
 \arguments{
   \item{x }{univariate or multivariate time series (i.e., the p columns of x are time series)
 }
-  \item{spans }{specify smoothing; same as \code{spec.pgram}
+  \item{spans }{vector of odd integers giving the widths of modified Daniell smoothers to be used to smooth the periodogram
 }
-  \item{kernel }{specify kernel; same as \code{spec.pgram} 
+  \item{kernel }{alternatively, a kernel smoother of class \code{tskernel} 
 }
-  \item{taper }{specify taper; same as \code{spec.pgram} with different default
+  \item{taper }{specifies the proportion of data to taper using a split cosine bell taper (.5 specifies a full taper)
 }
-  \item{pad }{specify padding; same as \code{spec.pgram}
+  \item{pad }{proportion of data to pad (zeros are added to the end of the series to increase its length by the proportion pad)
 }
-  \item{fast }{specify use of FFT; same as \code{spec.pgram}
+  \item{fast }{logical; if TRUE, pad the series to a highly composite length
 }
-  \item{demean }{if TRUE, series is demeaned first; same as \code{spec.pgram} 
+  \item{demean }{if TRUE, series is demeaned first 
 }
-  \item{detrend }{if TRUE, series is detrended first; same as \code{spec.pgram} 
+  \item{detrend }{if TRUE, series is detrended first 
 }
-  \item{plot }{plot the estimate; same as \code{spec.pgram} 
+  \item{lowess }{if TRUE and detrend TRUE, series is detrended using lowess first 
 }
-  \item{log }{same as \code{spec.pgram} but default is \code{'no'}
+  \item{log }{if \code{log='y'}, spectra plotted on a log scale; otherwise a log scale is not used
 }
-  \item{type }{type of plot to be drawn, defaults to lines
+  \item{plot }{plot the estimated spectra 
 }
-  \item{na.action }{same as \code{spec.pgram}
+  \item{gg }{if TRUE, will produce a gris-gris plot (gray graphic interior with white grid lines); the default is FALSE. The grammar of astsa is voodoo
+}
+  \item{type }{type of plot to be drawn, defaults to lines (see \code{par})
+}
+  \item{na.action }{how to handle missing values
 }
   \item{nxm, nym }{
 the number of minor tick mark divisions on x-axis, y-axis; the default is one minor tick on the x-axis and none on the y-axis
 }
- \item{main }{title of the graphics; if NULL, a suitable title is generated
+ \item{main }{title of the graphics; if NULL (default), a totally awesome title is generated dude, but if NA there will be no gnarly title and the top margin will be used for the plot
+}
+ \item{xlab }{label for frequency axis; if NULL (default), a totally awesome label is generated for your viewing pleasure
+}
+ \item{cex.main}{
+magnification for main title; default is 1.
+}
+ \item{ci.col}{
+color of the confidence interval if one is drawn.
 }
  \item{\dots }{graphical arguments passed to \code{plot.spec}
 }
 }
-\details{This is built off of \code{spec.pgram} from the stats package with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}. The default for the plot is NOT to plot on a log scale and the graphic will have a grid. The bandwidth calculation has been changed to the more practical definition given in the text, \eqn{(L_h/n.used)*frequency(x)}.  Also, the bandwidth is no longer displayed in the graphic.  Although meant to be used to easily obtain multivariate spectral estimates, this script can be used for univariate time series.  Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
+\details{This is built off of \code{spec.pgram} from the stats package with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}. 
+
+The default for the plot is NOT to plot on a log scale and the graphic will have a grid. 
+
+The bandwidth calculation has been changed to the more practical definition given in the text, \eqn{(L_h/n.used)*frequency(x)}.  Also, the bandwidth is not displayed in the graphic, but is returned. 
+
+Although initially meant to be used to easily obtain multivariate (mv) spectral (spec) estimates, this script can be used for univariate time series as a replacement for \code{spec.pgram}.
+
+Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
 }
-\value{An object of class "spec", which is a list containing at least the following components:
+\value{All results are returned invisibly.  
+
+If \code{plot} is TRUE, the bandwidth and degrees of freedom are printed. 
+
+An object of class "spec", which is a list containing at least the following components:
 
 \item{fxx }{spectral matrix estimates; an array of dimensions \code{dim = c(p,p,nfreq)}}
 \item{freq }{vector of frequencies at which the spectral density is estimated.}
@@ -59,7 +83,7 @@ the number of minor tick mark divisions on x-axis, y-axis; the default is one mi
 \item{bandwidth }{Bandwidth (may be approximate) associated with the spectral estimate.}
 \item{method }{The method used to calculate the spectrum.}
 
-The results are returned invisibly if plot is true.
+
 }
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
@@ -83,7 +107,7 @@ mvspec(soi, spans=c(7,7), taper=.5)$details[1:45,]
 deth = cbind(mdeaths, fdeaths)    # two R data sets, male/female monthly deaths ...
 tsplot(deth, type='b', col=c(4,6), spaghetti=TRUE, pch=c('M','F'))
 dog = mvspec(deth, spans=c(3,3), taper=.1)
-dog$fxx        # look a spectral matrix estimates
+dog$fxx        # look at spectral matrix estimates
 dog$bandwidth  # bandwidth with time unit = year
 dog$df         # degrees of freedom
 plot(dog, plot.type="coherency")  # plot of squared coherency

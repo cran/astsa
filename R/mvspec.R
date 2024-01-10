@@ -1,6 +1,7 @@
-mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
-    fast = TRUE, demean = FALSE, detrend = TRUE, plot = TRUE, log='n',
-	type = NULL, na.action = na.fail, nxm=2, nym=1, main=NULL, ...) 
+mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE, 
+         demean = FALSE, detrend = TRUE, lowess=FALSE, log='n', plot = TRUE, gg=FALSE,
+         type = NULL, na.action = na.fail, nxm=2, nym=1, main=NULL, xlab=NULL, 
+         cex.main=NULL, ci.col=4, ...)  
 {
      #
      na.fail = stats::na.fail
@@ -28,10 +29,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
     if (!is.null(kernel) && !is.tskernel(kernel)) 
         stop("must specify 'spans' or a valid kernel")
     if (detrend) {
-        t <- 1:N - (N + 1)/2
-        sumt2 <- N * (N^2 - 1)/12
-        for (i in 1:ncol(x)) x[, i] <- x[, i] - mean(x[, i]) - 
-            sum(x[, i] * t) * t/sumt2
+        for (i in 1:nser) x[,i] = detrend(x[,i], lowess=lowess) 
     }
     else if (demean) {
         x <- sweep(x, 2, colMeans(x))
@@ -46,7 +44,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
     NewN <- if (fast) 
         nextn(N)
     else N
-    x <- rbind(x, matrix(0, nrow = (NewN - N), ncol = ncol(x)))
+    x <- rbind(x, matrix(0, nrow = (NewN - N), ncol = ncol(x)))  
     N <- nrow(x)
     Nspec <- floor(N/2)
     freq <- seq(from = xfreq/N, by = xfreq/N, length = Nspec)
@@ -71,7 +69,8 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
         #########   bandwidth <- sqrt(1/12)    ############ fix this
         Lh <- 1
     }
-    df <- 2*Lh    # df/(u4/u2^2)
+    df <- 2*Lh    
+    df <- df/(u4/u2^2)
     df <- df * (N0/N)
     bandwidth <- Lh*xfreq/N
     pgram <- pgram[2:(Nspec + 1), , , drop = FALSE]
@@ -107,17 +106,30 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
         pad = pad, detrend = detrend, demean = demean)
     class(spg.out) <- "spec"
     if (plot) {
+        if (Lh > 1) {cat("Bandwidth:", round(bandwidth,3), "\nDegrees of Freedom:", round(df,2), '\n')}
+        if (is.null(cex.main)) cex.main=1
         if (is.null(main))  main <- paste("Series:", series,  " | ", spg.out$method, " | ", 'taper =', taper)
-        par(mar = c(2.75, 2.75, 2, 0.75), mgp = c(1.6, 0.6, 0), cex.main = 1.1)
+        topper = ifelse (is.na(main), 1, 0)
+        if (!gg){
+        par(mar = c(2.75, 2.75, 2-topper, 0.75), mgp = c(1.6, 0.6, 0), cex.main = cex.main)
+         col.grid=gray(.9)
+         } else {
+         par(mar=c(2.75,2.75,2-topper,.5), mgp=c(1.6,.3,0), cex.main=1.1, tcl=-.2, cex.axis=.8, las=1)
+         }
         type0 <- 'n' 
         type1 <- ifelse(is.null(type), 'l', type) 
-        Xlab = ifelse(xfreq>1, paste('frequency', expression('\u00D7'), xfreq), 'frequency')
+        if (is.null(xlab)) xlab = ifelse(xfreq>1, paste('frequency', expression('\u00D7'), xfreq), 'frequency')
         plot(spg.out, type = type0, sub=NA, axes=FALSE, ann=FALSE, log = log, main='', ...) 
-        Grid(nxm=nxm, nym=nym)
+        if (gg) { 
+        brdr = par("usr")
+        rect(brdr[1], brdr[3], brdr[2], brdr[4], col=gray(.92), border='white')
+        col.grid = 'white' 
+        }          
+        Grid(nxm=nxm, nym=nym, col=col.grid)
         par(new=TRUE)
-        plot(spg.out, xlab=Xlab, log = log, type = type1, sub=NA, main=main, ...) 
-        return(invisible(spg.out))
+        plot(spg.out, xlab=xlab, log = log, type = type1, sub=NA, main=main, ci.col=ci.col, ...) 
+        if (gg) box(col=col.grid, lwd=2)
     }
-    else return(spg.out)
+    return(invisible(spg.out))
 }
 

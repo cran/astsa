@@ -48,7 +48,7 @@ NULL (default) if not needed or a
 matrix (n \code{x} r) of inputs having the same row dimension (n) as y
 }
   \item{S}{
-covariance matrix (p \code{x} q) between state and observation errors; not necessary to specify if not needed and only used if version=2.
+covariance matrix between state and observation errors; not necessary to specify if not needed and only used if version=2; see details
 }
   \item{version}{
 either 1 (default) or 2; version 2 allows for correlated errors
@@ -77,7 +77,7 @@ conformable.  Notice the specification of the state and observation covariances 
 Version 2 (correlated errors): The general model  is
 \deqn{x_{t+1} = \Phi  x_{t} + \Upsilon u_{t+1} +   sQ\,  w_t \quad w_t \sim iid\ N(0,I)}
 \deqn{y_t = A_t  x_{t-1} + \Gamma u_{t} +   sR\, v_t \quad v_t \sim iid\ N(0,I)}
-where \eqn{{\rm Cov}(w_t, v_t) = S}.
+where \eqn{S = {\rm Cov}(w_t, v_t)}, and NOT  \eqn{{\rm Cov}(sQ\, w_t, sR\, v_t)}.
 
 \emph{NOTE:} If it is easier to model in terms of \eqn{Q} and \eqn{R}, simply input the square root matrices
 \code{sQ = Q \%^\% .5} and \code{sR = R \%^\% .5}.
@@ -134,10 +134,10 @@ for (t in 2:n){
   x[t] = x[t-1] + sQ*w[t]
   y[t] = x[t] + sR*v[t]   
   }
-# run and plot the filter  
+# run and plot the smoother  
 run = Ksmooth(y, A=1, mu0, Sigma0, Phi=1, sQ, sR)
 tsplot(cbind(y,run$Xs), spaghetti=TRUE, type='o', col=c(4,6), pch=c(1,NA), margins=1)
-# CRAN tests need extra white space :( so margins=1 is not necessary otherwise
+# CRAN tests need extra white space :( so margins=1 above is not necessary otherwise
 legend('topleft', legend=c("y(t)","Xs(t)"), lty=1, col=c(4,6), bty="n", pch=c(1,NA))
 }
 \keyword{ ts }
