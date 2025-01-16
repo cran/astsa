@@ -5,16 +5,16 @@
 \title{Applied Statistical Time Series Analysis (more than just data)
 } 
 \description{
-Contains data sets and scripts for analyzing time series in both the frequency and time domains including state space modeling as well as supporting the texts \href{https://link.springer.com/book/10.1007/978-3-319-52452-8}{Time Series Analysis and Its Applications: With R Examples (5th ed, 2024)}  and \href{https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096}{Time Series: A Data Analysis Approach Using R, (1st ed, 2019)}.
+Contains data sets and scripts for analyzing time series in both the frequency and time domains including state space modeling as well as supporting the texts \href{https://link.springer.com/book/9783031705830}{Time Series Analysis and Its Applications: With R Examples (5th ed, 2025)}  and \href{https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096}{Time Series: A Data Analysis Approach Using R, (1st ed, 2019)}.
 
 }
 \details{
 \tabular{ll}{
 Package: \tab astsa\cr
 Type: \tab Package\cr
-Version: \tab 2.1\cr
-Date: \tab 2024-01-03\cr
-License: \tab GPL-3\cr
+Version: \tab 2.2\cr
+Date: \tab 2025-01-15\cr
+License: \tab GPL (>= 2) \cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr
 }
@@ -22,11 +22,31 @@ LazyData: \tab yes\cr
 \author{
 David Stoffer <stoffer@pitt.edu>
 }
-\note{Some older scripts and data sets have been updated, and old versions have an x in front of them, for example \code{xgtemp} is an old data file that used to be called \code{gtemp}. These scripts and data sets have not changed (they will still work with the x name change), but they will be phased out eventually. 
+\section{Warning}{If loaded, the \code{dplyr} package corrupts the base scripts \code{filter} and \code{lag} among other things. In this case, whenever you analyze time series data, we suggest you either:
 
-Also, due to the fact that, if loaded, the \code{dplyr} package corrupts \code{stats::filter} and \code{stats::lag}, 
-those are put in the global (or user) environment as \code{filter} and \code{lag} when \code{astsa} is loaded so they have precedent. You can use \code{rm()} to remove those from the global environment if necessary.
+(1) Detach it:\cr 
+\verb{   detach(package:dplyr)} 
+
+(2) If you want to use \code{dplyr}, fix it: 
+\verb{
+   library(dplyr, exclude = c("filter", "lag"))   # load it but remove the culprits 
+   Lag <- dplyr::lag            # and do what the dplyr ... 
+   Filter <- dplyr::filter      # ... maintainer refuses to do}\cr
+then use \code{Lag} and \code{Filter} for \code{dplyr} scripts \cr
+and \code{lag} and \code{filter} can be use as originally intended
+
+
+(3) Or just take back the commands:\cr
+\verb{   filter = stats::filter} \cr 
+\verb{   lag = stats::lag }\cr
+
+In this case you can still use \cr 
+\verb{  Lag <- dplyr::lag} \cr 
+and \cr 
+\verb{  Filter <- dplyr::filter} \cr
+for \code{dpylr}.
 }
+
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 

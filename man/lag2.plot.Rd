@@ -5,8 +5,9 @@
 \description{Produces a grid of scatterplots of one series versus another lagged. The first named series is the one that gets lagged.
 }
 \usage{
-lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(.1),
-           lwl = 1, lwc = 2, bgl = gray(1,.65), ltcol = 1, box.col = 8, cex = .9, ...)
+lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(.1), 
+          bg = NA, lwl = 1, lwc = 2, bgl = NULL, ltcol = 1, box.col = NULL, cex = .9, 
+          gg = FALSE, ...)
 }
 \arguments{
   \item{series1}{first series (the one that gets lagged)
@@ -21,17 +22,21 @@ lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(
 }
   \item{col}{color of points; default is \code{gray(.1)}
 }
+  \item{bg}{background color for filled plot characters
+}
   \item{lwl}{width of lowess line; default is 1
 }
   \item{lwc}{color of lowess line; default is 2 (red)
 }
-  \item{bgl}{background of the ACF legend; default is semitransparent white
+  \item{bgl}{background of the ACF legend; default is semitransparent 
 }
   \item{ltcol}{legend text color; default is black
 }
-  \item{box.col}{color of the border of the ACF legend; default is \code{'gray(62)'}
+  \item{box.col}{color of the border of the ACF legend; default matches type of plot
 }
   \item{cex}{size of points; default is .9
+}
+  \item{gg}{if TRUE, will produce a gris-gris plot (gray graphic interior with white grid lines); the default is FALSE. The grammar of astsa is voodoo
 }
   \item{\dots}{additional graphical parameters
 }
@@ -49,7 +54,7 @@ The webpages for the texts and some help on using R for time series analysis can
 \author{D.S. Stoffer
 }
 \examples{
-lag2.plot(soi, rec, max.lag=3)
+lag2.plot(Hare, Lynx, max.lag=5, lwl=2, lwc=3, cex=1.5, pch=24, bg='orange')
 lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, lwl=2)
 }
 \seealso{\code{\link{lag1.plot}}}

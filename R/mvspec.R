@@ -28,11 +28,12 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
         }	
     if (!is.null(kernel) && !is.tskernel(kernel)) 
         stop("must specify 'spans' or a valid kernel")
+    if (demean) {
+         detrend = FALSE
+         x <- sweep(x, 2, colMeans(x))
+    }
     if (detrend) {
         for (i in 1:nser) x[,i] = detrend(x[,i], lowess=lowess) 
-    }
-    else if (demean) {
-        x <- sweep(x, 2, colMeans(x))
     }
     x <- spec.taper(x, taper)
     u2 <- (1 - (5/8) * taper * 2)
@@ -94,7 +95,11 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
     for (i in 1:nser) spec[, i] <- spec[, i]/u2
     spec <- drop(spec)
 ##== rearrange pgram for more useful display
-    fxx = base::aperm(pgram, c(2,3,1))	
+#    if (nser == 1) {  # this was to prevent double output for 
+#     fxx=NULL         # univariate case, but was not compatible 
+#     } else {         # with dependent package
+     fxx = base::aperm(pgram, c(2,3,1))
+#    }
 ##== show details to help find peaks 
     details <- round( cbind(frequency=freq, period=1/freq, spectrum=spec), 4)
 ##== output
@@ -106,9 +111,9 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
         pad = pad, detrend = detrend, demean = demean)
     class(spg.out) <- "spec"
     if (plot) {
-        if (Lh > 1) {cat("Bandwidth:", round(bandwidth,3), "\nDegrees of Freedom:", round(df,2), '\n')}
+        if (Lh > 1) {cat("Bandwidth:", round(bandwidth,3), "|", "Degrees of Freedom:", round(df,2),"|", "split taper:", paste(100*taper,"%",sep=''), '\n')}
         if (is.null(cex.main)) cex.main=1
-        if (is.null(main))  main <- paste("Series:", series,  " | ", spg.out$method, " | ", 'taper =', taper)
+        if (is.null(main))  main <- paste("Series:", series,  " | ", spg.out$method) 
         topper = ifelse (is.na(main), 1, 0)
         if (!gg){
         par(mar = c(2.75, 2.75, 2-topper, 0.75), mgp = c(1.6, 0.6, 0), cex.main = cex.main)

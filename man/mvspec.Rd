@@ -25,9 +25,9 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE,
 }
   \item{demean }{if TRUE, series is demeaned first 
 }
-  \item{detrend }{if TRUE, series is detrended first 
+  \item{detrend }{if TRUE, series is detrended first (unless demean is TRUE)
 }
-  \item{lowess }{if TRUE and detrend TRUE, series is detrended using lowess first 
+  \item{lowess }{if TRUE and detrend TRUE (and demean FALSE), series is detrended using lowess first 
 }
   \item{log }{if \code{log='y'}, spectra plotted on a log scale; otherwise a log scale is not used
 }
@@ -67,11 +67,11 @@ Note that the script does not taper by default (\code{taper=0}); this forces the
 }
 \value{All results are returned invisibly.  
 
-If \code{plot} is TRUE, the bandwidth and degrees of freedom are printed. 
+If \code{plot} is TRUE and smoothing is used, the bandwidth, degrees of freedom, and taper amount are printed. 
 
 An object of class "spec", which is a list containing at least the following components:
 
-\item{fxx }{spectral matrix estimates; an array of dimensions \code{dim = c(p,p,nfreq)}}
+\item{fxx }{spectral matrix estimates; an array of dimensions \code{dim = c(p,p,nfreq)}.}
 \item{freq }{vector of frequencies at which the spectral density is estimated.}
 \item{spec }{vector (for univariate series) or matrix (for multivariate series) of estimates of the spectral density at frequencies corresponding to freq.}
 \item{details }{matrix with columns: frequency, period, spectral ordinate(s)}
@@ -107,9 +107,9 @@ mvspec(soi, spans=c(7,7), taper=.5)$details[1:45,]
 deth = cbind(mdeaths, fdeaths)    # two R data sets, male/female monthly deaths ...
 tsplot(deth, type='b', col=c(4,6), spaghetti=TRUE, pch=c('M','F'))
 dog = mvspec(deth, spans=c(3,3), taper=.1)
-dog$fxx        # look at spectral matrix estimates
-dog$bandwidth  # bandwidth with time unit = year
-dog$df         # degrees of freedom
-plot(dog, plot.type="coherency")  # plot of squared coherency
+dog$fxx[,,1:5]  # look at a few spectral matrix estimates
+dog$bandwidth   # bandwidth with time unit = year
+dog$df          # degrees of freedom
+mvspec(deth, spans=c(3,3), taper=.1, plot.type='coh')  # coherence
 }
 \keyword{ ts }

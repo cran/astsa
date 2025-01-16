@@ -7,7 +7,7 @@ Estimates the trend (polynomial or lowess) of a time series and returns a graphi
 }
 \usage{
 trend(series, order = 1, lowess = FALSE, lowspan = .75, robust = TRUE,
-         col = c(4, 6), ylab = NULL, ci=TRUE, ...)
+         col = c(4, 6), ylab = NULL, ci = TRUE, results = FALSE, ...)
 }
 \arguments{
   \item{series}{
@@ -32,7 +32,10 @@ Vector of two colors for the graphic, first the color of the data (default is bl
 Label for the vertical axis (default is the name of the series).
 }
   \item{ci}{
-If TRUE (default), pointwise 95% confidence intervals are drawn.
+If TRUE (default), pointwise 95\% confidence intervals are drawn.
+}
+  \item{results}{
+For polynomial regression, if TRUE, will print a summary of the regression results.
 }
   \item{\dots}{
 Other graphical parameters.

@@ -6,11 +6,11 @@
 Produces a nice plot of univariate or multiple time series in one easy line.
 }
 \usage{
-tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
-          margins=.25, ncolm=1, byrow=TRUE, nx=NULL, ny=nx, 
-          minor=TRUE, nxm=2, nym=1, xm.grid=TRUE, ym.grid=TRUE, col=1, 
-          gg=FALSE, spaghetti=FALSE, pch=NULL, lty=1, lwd=1, mgpp=0, 
-          topper=NULL, ...)
+tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,  margins=.25, 
+        ncolm=1, byrow=TRUE, nx=NULL, ny=nx, minor=TRUE, nxm=2, nym=1, 
+        xm.grid=TRUE, ym.grid=TRUE, col=1, gg=FALSE, spaghetti=FALSE, pch=NULL, 
+        lty=1, lwd=1, mgpp=0, topper=NULL, addLegend=FALSE, location='topright', 
+        boxit=TRUE, horiz=FALSE, legend=NULL, llwd=NULL, scale=1, ...)
 }
 \arguments{
   \item{x, y}{
@@ -41,8 +41,7 @@ for multiple time series - if TRUE (default), plot series row wise; if FALSE, pl
 number of major cells of the grid in x and y direction. When NULL, as per default, the grid aligns with the tick marks on the corresponding default axis (i.e., tickmarks as computed by axTicks). When NA, no grid lines are drawn in the corresponding direction.
 }
   \item{minor, nxm, nym}{
-if minor=TRUE, the number of minor tick marks on x-axis, y-axis.  minor=FALSE removes both or set either to 0 or 1 to remove.
-The default is one minor tick on the x-axis and none on the y-axis.
+if minor=TRUE, the number of minor tick marks on x-axis, y-axis.  minor=FALSE removes both or set either to 0 or 1 to remove. The default is one minor tick on the x-axis and none on the y-axis.
 }
   \item{xm.grid, ym.grid}{
 if TRUE (default), adds grid lines at minor x-axis, y-axis ticks.
@@ -52,7 +51,8 @@ line color(s), can be a vector for multiple time series.
 }
  \item{gg}{
 if TRUE, will produce a gris-gris plot (gray graphic interior with white grid lines); the default is FALSE.
-The grammar of astsa is voodoo;  see \kbd{https://www.youtube.com/watch?v=b4J8VrprrGE}
+The grammar of astsa is voodoo;  see \cr 
+\kbd{https://www.youtube.com/watch?v=b4J8VrprrGE}
 }
   \item{spaghetti}{
 if TRUE, will produce a spaghetti plot (all series on same plot).
@@ -72,13 +72,36 @@ this is used to adjust (add to) the \code{mgp} graphics parameters settings (\co
  \item{topper}{
 non-negative value to add to the top outer margin; if NULL (default) a suitable value is chosen
 }
-  \item{\dots}{
-other graphical parameteres; see \link[graphics]{par}.
+ \item{addLegend}{
+ if TRUE and \code{spaghetti=TRUE}, will add a simple legend. If more details are needed, leave this set to FALSE (the default) and use \code{\link{legend}} directly. 
+}
+ \item{location}{ 
+ if \code{addLegend=TRUE}, the location of the legend with options \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"}, \code{"topleft"}, \code{"top"}, \code{"topright"} (the default), \code{"right"} and \code{"center"}.  
+}
+ \item{boxit}{
+ if TRUE (default), the legend is in a box; if FALSE, no box is drawn.
+}
+ \item{horiz}{
+ if \code{addLegend=TRUE}, should the legend be horizontal (default is FALSE - vertical).
+}
+ \item{legend}{
+ if NULL (default), the legend uses names of each time series; otherwise, use to customize legend.
+}
+ \item{llwd}{
+ line width for the legend if different from the plotted lines.
+}
+ \item{scale}{
+ for multiple series, the scale for character expansion (cex = .9*scale).
+}
+ \item{\dots}{
+other graphical parameters; see \link[graphics]{par}.
 }
 }
 \value{
 Produces a graphic and returns it invisibly so it can be saved in an R variable with the ability to replay it;
 see \code{\link{recordPlot}}.
+}
+\note{A legend can be added using \code{addLegend=TRUE} for spaghetti plots only. Spaghetti plots work if \code{spaghetti=TRUE} and there is more than one series being plotted.
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
@@ -101,12 +124,6 @@ tsplot(soi)
 # prettified
 tsplot(soi, col=4, main="Southern Oscillation Index")
 
-# compare these
-par(mfrow=2:1)
-tsplot(1:453, soi, ylab='SOI', xlab='Month')
-# now recklessly add to the margins and add to mgp to get to the default
-tsplot(1:453, soi, ylab='SOI', xlab='Month', margins=c(2,3,4,5), las=1, mgpp=c(1.4,.4,0))
-
 # gris-gris multiple plot 
 tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2)  
 
@@ -114,6 +131,31 @@ tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2)
 x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
 u <- tsplot(x, col=1:8, main='No LLN For You', spaghetti=TRUE)
 u   #  plot on demand
+
+# quick legend with spaghetti
+tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE, addLegend=TRUE)
+# ... and a little more control
+tsplot(cbind(gtemp_land, gtemp_ocean), spaghetti=TRUE, lwd=2, col=astsa.col(c(4,2),.7), 
+  ylab="\u00B0C", main="Global Temperature Anomalies", addLegend=TRUE, location='topleft', 
+  horiz=TRUE, legend=c("Land Surface","Sea Surface"))
+
+
+# compare these
+par(mfrow=2:1)
+tsplot(1:453, soi, ylab='SOI', xlab='Month')
+# now recklessly add to the margins and add to mgp to get to the default
+tsplot(1:453, soi, ylab='SOI', xlab='Month', margins=c(2,3,4,5), las=1, mgpp=c(1.4,.4,0))
+
+
+# cex (and scale)
+par(mfrow=c(3,1))  # cex gets small with mf plots 
+  tsplot(cmort); tsplot(tempr); tsplot(part)
+par(mfrow=c(3,1), cex=.9)  # so fix it 
+  tsplot(cmort); tsplot(tempr); tsplot(part)
+
+# it's rescaled here for your pleasure
+tsplot(cbind(big=rnorm(100), bad=rnorm(100), john=rnorm(100)))  # default scale=1
+tsplot(cbind(big=rnorm(100), bad=rnorm(100), john=rnorm(100)), scale=1.5)  # big
 }
 }
 \keyword{ ts }
