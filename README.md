@@ -4,11 +4,11 @@
 
 <img src="https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/figs/astsa.gif" alt="&nbsp; &nbsp; ASTSA ..."  height="100">
 
-... more than just data ... it's a palindrome
+... more than just data ... it's also a palindrome
 
 ---
 
-... `astsa` includes data sets and scripts for analyzing time series in both the frequency and time domains including state space modeling as well as supporting the [Springer](https://link.springer.com/book/9783031705830) text, [Time Series Analysis and Its Applications: With R Examples](https://github.com/nickpoison/tsa5/blob/main/textRcode.md)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096) text  [Time Series: A Data Analysis Approach using R](https://github.com/nickpoison/tsda/blob/main/Rcode.md). 
+... `astsa` includes data sets and scripts for analyzing time series in both the frequency and time domains including state space modeling as well as supporting the [Springer](https://link.springer.com/book/10.1007/978-3-031-70584-7) text, [Time Series Analysis and Its Applications: With R Examples](https://github.com/nickpoison/tsa5/blob/main/textRcode.md)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642) text  [Time Series: A Data Analysis Approach using R](https://github.com/nickpoison/tsda/blob/main/Rcode.md).  Most scripts are designed to require minimal input to produce aesthetically pleasing output for ease of use in live demonstrations and course work.
 
 
 
@@ -20,27 +20,26 @@ We do not always push the latest version of the package to CRAN, but [the latest
 
 ---
 
-* __WARNING:__  If loaded, the package `dplyr` may (and probably will) corrupt the base scripts `filter` and `lag` that a time series analyst uses often. An easy fix if you’re analyzing time series (or teaching a class) is to (tell students to) do the following if `dplyr` is going being used:
+&#9940; __WARNING:__  If loaded, the package `dplyr` may (and probably will) corrupt the base scripts `filter` and `lag` that a time series analyst uses often. An easy fix if you’re analyzing time series (or teaching a class) is to (tell students to) do the following if `dplyr` is going being used:
 
 ```r
-# [1] either detach it if it's loaded and no
+# [1] either detach it if it's loaded but no longer needed
 detach(package:dplyr)  
 
 # [2] or fix it yourself when loading dplyr 
-# this is a great idea from  https://stackoverflow.com/a/65186251
-library(dplyr, exclude = c("filter", "lag"))  # remove the culprits
-Lag <- dplyr::lag            # and do what the dplyr ... 
-Filter <- dplyr::filter      # ... maintainer refuses to do
-# then use `Lag` and `Filter` in dplyr scripts and
+# this is a great idea from https://stackoverflow.com/a/65186251
+library(dplyr, exclude = c("filter", "lag"))   # remove the culprits
+dlag    = dplyr::lag                           # then correct ... 
+dfilter = dplyr::filter                        # ... the blunders
+#  Now use `dlag` and `dfilter` in dplyr scripts and
 # `lag` and `filter` can be use as originally intended
 
 # [3] or just take back the commands
 filter = stats::filter
-lag = stats::lag
-
+lag    = stats::lag
 # in this case, you can still use these for dplyr
-Lag <- dplyr::lag     
-Filter <- dplyr::filter 
+dlag    = dplyr::lag     
+dfilter = dplyr::filter 
 ```
 
 ---
@@ -51,7 +50,7 @@ Filter <- dplyr::filter
 
 * The [code for the graduate level text](https://github.com/nickpoison/tsa5/blob/master/textRcode.md) is here: [TSA5](https://github.com/nickpoison/tsa5/blob/master/textRcode.md).
 
-* The updated [code for the data science text](https://github.com/nickpoison/tsda/blob/master/Rcode.md) is here: [TSDA](https://github.com/nickpoison/tsda/blob/master/Rcode.md).
+* The updated [code for the data science text](https://github.com/nickpoison/tsda2/blob/master/Rcode.md) is here: [TSDA2](https://github.com/nickpoison/tsda2/blob/master/Rcode.md).
 
 * Python
 

@@ -1,13 +1,11 @@
-ar.boot = function(series, order.ar, nboot=500, seed=NULL, plot=TRUE, col=5){
+ar.boot = function(series, order.ar, nboot=500, seed=NULL, plot=TRUE, ...){
 
-ar.yw   = stats::ar.yw
-na.omit = stats::na.omit
-num     = length(series)
+num = length(series)
 
 # estimate parameters
-tspar  = stats::tsp(series)
+tspar  = tsp(series)
 arp    = order.ar
-fit    = ar.yw(series, order=arp, aic=FALSE) 
+fit    = ar.yw(series, aic=FALSE, order.max=arp) 
 m      = fit$x.mean               # estimate of mean
 phi    = fit$ar                   # estimate of phis
 resids = na.omit(fit$resid)       # the residuals
@@ -30,21 +28,25 @@ for (i in 1:nboot) {
     x.star[t+1] = m + t(phi)%*%x0 + resid.star[t+1]
   }
  x.sim[,i]    = matrix(x.star) 
- phi.star[,i] = ar.yw(x.star, order=arp, aic=FALSE)$ar
+ u = ar.yw(x.star, order=arp, aic=FALSE)
+ phi.star[,i] = u$ar
 }
 close(pb)
+
 x.sim = ts(x.sim, start=tspar[1], frequency=tspar[3])
 phi.star = t(phi.star)
-colnames(phi.star) =  paste('ar', 1:arp, sep="")
+ colnames(phi.star) =  paste('ar', 1:arp, sep="")
+mean.star = unname(apply(x.sim, 2, mean))
+var.star  = unname(apply(x.sim, 2, var))
 
 
 cat('Quantiles:', "\n")
-print(apply(phi.star, 2, stats::quantile, c(.01,.025,.05,.1,.25,.50,.75,.9,.95,.975,.99)), digits=4 )
+print(apply(phi.star, 2, quantile, c(.01,.025,.05,.1,.25,.50,.75,.9,.95,.975,.99)), digits=4 )
 cat('\n')
 cat('Mean:', "\n") 
 print(colMeans(phi.star), digits=4)
 cat('\n')
-bias =  t( colMeans(phi.star)-phi)
+bias =  t(colMeans(phi.star)-phi)
 colnames(bias) = paste('ar', 1:arp, sep="")
 cat('Bias:', "\n") 
 print(bias, digits=4)
@@ -59,27 +61,15 @@ cat('\n')
 
 if (plot){
   if(arp>1){
-   old.par = par(no.readonly = TRUE)
-   pairs(phi.star, col=astsa.col(col,.4), pch=19, diag.panel=.panhist, oma=rep(2,4), horOdd = TRUE, verOdd = FALSE)
-   par(old.par)
+   tspairs(phi.star, smooth=FALSE,  ...)
   } else {
    hist(phi.star, main='', xlab=expression(phi^'*'), col=astsa.col(col, .4), breaks='FD', freq=FALSE)
    abline(v=c(stats::quantile(phi.star, probs=c(.025,.5,.975))), col=6) 
   }
 }
 
-out = list(phi.star, x.sim)
+out = list(phi.star, x.sim, mean.star=mean.star, var.star=var.star, yw.fit=fit)
 return(invisible(out))
 
 }
 
-.panhist <- function(x, ...){
-    usr <- par("usr") 
-    par(usr = c(usr[1:2], 0, 1.5) )
-    h <- hist(x, plot = FALSE, breaks='FD')
-    breaks <- h$breaks; nB <- length(breaks)
-    y <- h$counts; y <- y/max(y)
-    rect(breaks[-nB], 0, breaks[-1], y, ...)
-    u = stats::quantile(x, c(.025,.50,.975))
-    abline(v=u, col=6, lty=2)
-}

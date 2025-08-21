@@ -9,7 +9,7 @@
   The format is:
  Time-Series [1:29] from 1980 to 2008:  213000.00 295000.00 260000.00 175000.00 160000.00  ...
 }
-\details{The median annual cost of hard drives used in computers. The data are retail prices per GB taken from a sample of manufacturers.   
+\source{The data are retail prices per GB taken from a sample of manufacturers listed at \kbd{https://mkomo.com/cost-per-gigabyte}. From there, the median cost per GB was computed by year.
 }
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.

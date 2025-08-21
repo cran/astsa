@@ -1,15 +1,17 @@
 sarima <-  
-function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
-          fixed=NULL,tol=sqrt(.Machine$double.eps),no.constant=FALSE, col, ...)
+function(xdata, p,d,q, P=0,D=0,Q=0,S=-1, details=TRUE, xreg=NULL, Model=TRUE,
+          fixed=NULL, tol=sqrt(.Machine$double.eps), no.constant=FALSE, col, ...)
 { 
    if (missing(col)) col=1
+   if (missing(p)) p=0      
+   if (missing(d)) d=0
+   if (missing(q)) q=0
    trans = ifelse (is.null(fixed), TRUE, FALSE)
    trc   = ifelse(details, 1, 0)
    n     = length(xdata) 
   if (is.null(xreg)) {
    constant = 1:n 
-   xmean    = rep(1,n)  
-   if (no.constant)  xmean=NULL 
+   if (no.constant)  xmean = NULL else xmean = rep(1,n)  
    if (d==0 & D==0) {  
            fitit = arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
                   xreg=xmean, include.mean=FALSE, fixed=fixed, transform.pars=trans, 
@@ -37,11 +39,11 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
    n       = fitit$nobs  # effective sample size
    dfree   = n-k 
    t.value = coefs/sqrt(diag(fitit$var.coef)) 
-   p.two   = stats::pf(t.value^2, df1=1, df2=dfree, lower.tail = FALSE)   
-   ttable  = cbind(Estimate=coefs, SE=sqrt(diag(fitit$var.coef)), t.value, p.value=p.two)
-   ttable  = round(ttable,4)
-   BIC     = stats::BIC(fitit)/n
-   AIC     = stats::AIC(fitit)/n
+   p.two   = pf(t.value^2, df1=1, df2=dfree, lower.tail = FALSE)   
+   ttabl   = cbind(Estimate=coefs, SE=sqrt(diag(fitit$var.coef)), t.value, p.value=p.two)
+   ttabl   = round(ttabl,4)
+   BIC     = BIC(fitit)/n
+   AIC     = AIC(fitit)/n
    AICc    = (n*AIC + ( (2*k^2+2*k)/(n-k-1) ))/n
 
 
@@ -50,12 +52,12 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
   cat('\n','\n')
   if (k > 0) {
    cat('Coefficients:', '\n')
-   print(ttable)
+   print(ttabl)
    cat('\n') 
   } 
   cat('sigma^2 estimated as', fitit$sigma2, 'on', dfree, 'degrees of freedom', '\n','\n')
   cat('AIC =', AIC, ' AICc =', AICc, ' BIC =', BIC, '\n', '\n')
-  out = list(fit=fitit, degrees_of_freedom=dfree, ttable=ttable, 
+  out = list(fit=fitit, sigma2=fitit$sigma2, degrees_of_freedom=dfree, t.table=ttabl, 
              ICs=c(AIC=AIC, AICc=AICc, BIC=BIC))
 ############################
 
@@ -66,10 +68,10 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
    par(cex=.85)
    rs     = fitit$residuals 
    stdres = rs/sqrt(fitit$sigma2)
-   num    = sum(!is.na(rs))
 
 # [1] 
-  tsplot(stdres, main = "Standardized Residuals", ylab = "", col=col, ...)
+    lt = ifelse(any(is.na(xdata)), 'o', 'l') 
+  tsplot(stdres, main = "Standardized Residuals", ylab = "", col=col, type=lt, ...)
     if(Model){
      if (S<0) {
       title(bquote('Model: ('~.(p)*','*.(d)*','*.(q)~')'), adj=0, cex.main=.95) 
@@ -85,16 +87,16 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
   QQnorm(stdres, col=col, main="Normal Q-Q Plot of Std Residuals", ...)
 
 # [4] 
-    nlag = ifelse(S<7, 20, 3*S)
+    nlag = ifelse(S<7, 20, 3*S); nlag = min(nlag, 52)
     ppq  = p+q+P+Q - sum(!is.na(fixed))   # decrease by number of fixed parameters
     if (nlag < ppq + 8) { nlag = ppq + 8 }
-    pval = numeric(nlag)
+    pval = c()
     for (i in (ppq+1):nlag) {
-     u   = stats::Box.test(rs, i, type = "Ljung-Box")$statistic
-     pval[i] = stats::pchisq(u, i-ppq, lower.tail=FALSE)
+     u   = Box.test(rs, i, type = "Ljung-Box")$statistic
+     pval[i] =  pchisq(u, i-ppq, lower.tail=FALSE)
     } 
   tsplot( (ppq+1):nlag, pval[(ppq+1):nlag], type='p', xlab = "LAG (H)", ylab = "p value", 
-          ylim = c(-.14, 1), main = "p values for Ljung-Box statistic", col=col, ...)
+          ylim = c(-.14, 1), main = "p values for Ljung-Box Statistic", col=col, minor=FALSE, ...)
    abline(h = 0.05, lty = 2, col = 4)  
    on.exit(par(old.par)) 
  }  #  end new tsdiag

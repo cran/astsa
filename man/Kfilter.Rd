@@ -6,7 +6,6 @@ Quick Kalman Filter
 \description{
 Returns both the predicted and filtered values for various linear  state space models;
 it also evaluates the likelihood at the given parameter values.
-This script replaces \code{Kfilter0}, \code{Kfilter1}, and \code{Kfilter2} 
 }
 \usage{
 Kfilter(y, A, mu0, Sigma0, Phi, sQ, sR, Ups = NULL, Gam = NULL, 
@@ -107,12 +106,7 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}.   
 }
-\note{Note that \code{Kfilter} is similar to \code{Kfilter-0-1-2} except that only the essential values need to be entered (and come first in the statement); the optional values such as 
-   \code{input} are set to \code{NULL} by default if they are not needed. This version is faster
-   than the older versions. The biggest change was to how the covarainces are specified. For example, if you have code that used \code{Kfilter1}, just use \code{sQ = t(cQ)} and \code{sR = t(cR)} here.
-   
-NOTE: If it is easier to model in terms of \eqn{Q} and \eqn{R}, simply input the square root matrices
-\code{sQ = Q\%^\%.5} and \code{sR = R\%^\%.5}.   
+\note{If it is easier to model in terms of \eqn{Q} and \eqn{R}, simply input the square root matrices \code{sQ = Q\%^\%.5} and \code{sR = R\%^\%.5}.   
 }
 \author{D.S. Stoffer
 }
@@ -132,8 +126,11 @@ for (t in 2:n){
   }
 # run and plot the filter  
 run = Kfilter(y, A=1, mu0, Sigma0, Phi=1, sQ, sR)
-tsplot(cbind(y,run$Xf), spaghetti=TRUE, type='o', col=c(4,6), pch=c(1,NA), margins=1)
-# CRAN tests need extra white space :( so margins=1 above is not necessary otherwise
-legend('topleft', legend=c("y(t)","Xf(t)"), lty=1, col=c(4,6), bty="n", pch=c(1,NA))
+
+tsplot(cbind(x, y, Xf=run$Xf), spaghetti=TRUE, type='o', col=c(3,4,6), pch=c(NA,1,NA),
+       addLegend=TRUE, location='topleft', lwd=c(2,1,2),  margins=1)
+
+# NOTE: CRAN tests need extra white space :( so margins=1 not necessary nor desired
+
 }
 \keyword{ ts }

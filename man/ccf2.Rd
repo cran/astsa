@@ -13,7 +13,7 @@ ccf2(x, y, max.lag = NULL, main = NULL, ylab = "CCF", plot = TRUE,
   \item{x, y}{univariate time series
 }
   \item{max.lag}{
-maximum lag for which to calculate the CCF
+maximum lag for which to calculate the CCF. Can be omitted. Unless \eqn{n < 50}, defaults to \eqn{\sqrt{n} + 10} or at least 3 seasons if the series is seasonal.  
 }
   \item{main}{
 plot title - if NULL, uses x and y names
@@ -47,11 +47,11 @@ The webpages for the texts and some help on using R for time series analysis can
 \author{D.S. Stoffer
 }
 \examples{
-ccf2(soi, rec, plot=FALSE)  # now you see it
-ccf2(soi, rec)              # now you don't
+ccf2(soi, rec, plot=FALSE, max.lag=6)  # now you see it
+ccf2(soi, rec)                          # now you don't
 
 # happy birthday mom
-ccf2(soi, rec, col=rainbow(36, v=.8), lwd=4, gg=TRUE)
+ccf2(soi, rec, col=astsa.col(4, wheel=TRUE, num=6), lwd=4, gg=TRUE)
 }
-\seealso{\code{\link{acf1}}, \code{\link{acf2}}, \code{\link{acfm}} }
+\seealso{\code{\link{pre.white}}, \code{\link{acf1}}, \code{\link{acf2}}, \code{\link{acfm}} }
 \keyword{ ts } 

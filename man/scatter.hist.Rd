@@ -11,7 +11,6 @@ scatter.hist(x, y, xlab = NULL, ylab = NULL, title = NULL, pt.size = 1,
               hist.col = gray(0.82), pt.col = gray(0.1, 0.25), pch = 19, 
               reset.par = TRUE, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 vector of x-values
@@ -44,7 +43,7 @@ scatterplot point character
 reset graphics - default is TRUE; set to FALSE to add on to scatterplot
 }
   \item{\dots}{
-other graphical parameters
+addtional graphical parameters sent to \code{Grid}
 }
 }
 \references{You can find demonstrations of  astsa capabilities at  
@@ -62,5 +61,10 @@ The webpages for the texts and some help on using R for time series analysis can
 \examples{
 scatter.hist(tempr, cmort, hist.col=astsa.col(5,.4), pt.col=5, pt.size=1.5, reset=FALSE)
 lines(lowess(tempr, cmort), col=6)
+
+
+scatter.hist(diff(log(econ5[,'gnp'])), diff(log(econ5[,'unemp'])), nxm=5, pt.size=2, 
+    col=astsa.col(6,.1), pt.col=astsa.col(4, alpha=.6, wheel=TRUE, num=25), hist='green3')
+
 }
  

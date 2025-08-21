@@ -5,15 +5,14 @@
 \title{Applied Statistical Time Series Analysis (more than just data)
 } 
 \description{
-Contains data sets and scripts for analyzing time series in both the frequency and time domains including state space modeling as well as supporting the texts \href{https://link.springer.com/book/9783031705830}{Time Series Analysis and Its Applications: With R Examples (5th ed, 2025)}  and \href{https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096}{Time Series: A Data Analysis Approach Using R, (1st ed, 2019)}.
-
+Contains data sets and scripts for analyzing time series in both the frequency and time domains including state space modeling as well as supporting the texts \href{https://link.springer.com/book/10.1007/978-3-031-70584-7}{Time Series Analysis and Its Applications: With R Examples (5th ed, 2025)}  and \href{https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642}{Time Series: A Data Analysis Approach Using R, (2nd ed, 2026)}. Most scripts are designed to need minimal input to produce aesthetically pleasing output for ease of use in live demonstrations and in course work.
 }
 \details{
 \tabular{ll}{
 Package: \tab astsa\cr
 Type: \tab Package\cr
-Version: \tab 2.2\cr
-Date: \tab 2025-01-15\cr
+Version: \tab 2.3\cr
+Date: \tab 2026-01-01\cr
 License: \tab GPL (>= 2) \cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr
@@ -24,26 +23,30 @@ David Stoffer <stoffer@pitt.edu>
 }
 \section{Warning}{If loaded, the \code{dplyr} package corrupts the base scripts \code{filter} and \code{lag} among other things. In this case, whenever you analyze time series data, we suggest you either:
 
-(1) Detach it:\cr 
-\verb{   detach(package:dplyr)} 
+(1) Detach it if it's loaded but not being used: 
+\preformatted{   detach(package:dplyr)
+} 
 
-(2) If you want to use \code{dplyr}, fix it: 
-\verb{
-   library(dplyr, exclude = c("filter", "lag"))   # load it but remove the culprits 
-   Lag <- dplyr::lag            # and do what the dplyr ... 
-   Filter <- dplyr::filter      # ... maintainer refuses to do}\cr
-then use \code{Lag} and \code{Filter} for \code{dplyr} scripts \cr
-and \code{lag} and \code{filter} can be use as originally intended
+(2) If you want to use it, fix it: 
+\preformatted{
+   library(dplyr, exclude = c("filter", "lag"))   # load it without the culprits 
+   dlag    = dplyr::lag         # and fix ... 
+   dfilter = dplyr::filter      # ... the blunders
+}
+then use \code{dlag} and \code{dfilter} for \code{dplyr} scripts \cr
+and \code{lag} and \code{filter} can be use as originally intended.
 
 
-(3) Or just take back the commands:\cr
-\verb{   filter = stats::filter} \cr 
-\verb{   lag = stats::lag }\cr
-
-In this case you can still use \cr 
-\verb{  Lag <- dplyr::lag} \cr 
-and \cr 
-\verb{  Filter <- dplyr::filter} \cr
+(3) Or just take back the commands:
+\preformatted{
+   filter = stats::filter
+   lag    = stats::lag 
+}
+In this case you can still use  
+\preformatted{
+   dlag   = dplyr::lag
+  dfilter = dplyr::filter
+} 
 for \code{dpylr}.
 }
 
