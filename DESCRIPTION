@@ -1,8 +1,8 @@
 Package: astsa
 Type: Package
 Title: Applied Statistical Time Series Analysis
-Version: 2.3
-Date: 2026-09-01
+Version: 2.4
+Date: 2026-01-01
 Depends: R (>= 3.5)
 Author: David Stoffer [aut, cre],
   Nicky Poison [ctb, mus, spy]
@@ -21,6 +21,6 @@ License: GPL (>= 2)
 LazyLoad: yes
 LazyData: yes
 NeedsCompilation: no
-Packaged: 2025-08-20 20:57:10 UTC; dss
+Packaged: 2025-12-15 04:19:11 UTC; dss
 Repository: CRAN
-Date/Publication: 2025-08-21 08:30:18 UTC
+Date/Publication: 2025-12-15 06:50:36 UTC

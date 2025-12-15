@@ -62,7 +62,7 @@ additional graphic parameters.
 }
 }
 \note{
-Use \code{ts.intersect} if lagged variables are included, otherwise \code{cbind} will work.
+Use \code{\link{lag1.plot}} and \code{\link{lag2.plot}} for lag plots. But if some lagged variables are included, use \code{ts.intersect}. If there are no lagged variables, \code{cbind} will work to combine individual series. 
 }
 \value{
 Returns a matrix of scatterplots with time plots or histograms on the diagonal.
@@ -85,12 +85,10 @@ D.S. Stoffer
  \code{\link{lag1.plot}}, \code{\link{lag2.plot}} 
 }
 \examples{
-\dontrun{
 
-tspairs(diff(log(econ5)), col.diag=6, pt.size=1.5, lwl=2, gg=TRUE, las=0)
+tspairs(diff(log(econ5))[,1:3], col.diag=6, hist=FALSE, pt.size=1.5, lwl=2, gg=TRUE)
 
-tspairs(ts.intersect(cmort,tempr,partL4=lag(part,-4)), hist=FALSE, pch=9, scale=1.1)
-}
+tspairs(ts.intersect(MEI, MEI2), location='top')
 }
 \keyword{ ts }
 

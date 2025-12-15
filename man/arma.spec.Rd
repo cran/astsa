@@ -2,12 +2,11 @@
 \alias{arma.spec}
 \title{Spectral Density of an ARMA Model
 } 
-\description{Gives the ARMA spectrum, tests for causality, invertibility, and
- common zeros.
+\description{Gives the ARMA model spectrum, but first tests for causality and invertibility, and then for parameter redundancy.
 }
 \usage{
-arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, main = NULL, 
-           frequency = 1, ylim = NULL, plot = TRUE, ...)
+arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, main = NULL, redundancy.tol=.1,
+            frequency = 1, ylim = NULL, plot = TRUE, ...)
 }
 \arguments{
   \item{ar}{vector of AR parameters
@@ -20,23 +19,28 @@ arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, main = NULL,
 }
   \item{main}{title of graphic; default is "ARMA" with orders "(p, q)"
 }
-  \item{frequency}{for seasonal models, adjusts the frequency scale
+  \item{redundancy.tol}{tolerance for reporting parameter redundancy
+}
+  \item{frequency}{for plotting, adjusts the frequency axis units
 }
   \item{ylim}{optional; specify limits for the y-axis
 }
   \item{plot}{if TRUE (default), produces a graphic
 }
-  \item{\dots}{additional arguments
+  \item{\dots}{additional arguments for the graphic
 }
 }
 \details{The basic call is \code{arma.spec(ar, ma)} where \code{ar} and \code{ma} are vectors
-containing the model parameters. Use \code{log='y'} if you want the plot on
-a log scale. If the model is not causal or invertible an error message is given. If
-there are approximate common zeros, a spectrum will be displayed and a warning will be given;
+containing the model parameters. Use \code{log='y'} if you want the plot on a log scale. 
+
+If the model is not causal or invertible, a stop error with a message is given; e.g., \code{arma.spec(ar=1, ma=1)} will just produce warnings.
+
+If there are (approximate) common zeros, a spectrum will be displayed and a warning will be given;
 e.g., \code{arma.spec(ar= .9, ma= -.9)} will yield a warning and the plot will be the
-spectrum of white noise.  Note for example that \code{arma.spec(ar=1, ma=1)} will bring up an error with warnings that the model is not causal and not invertible.
+spectrum of white noise. See \code{\link{arma.check}} for details on the evaluation of parameter redundancy.
 }
-\value{ \item{freq }{frequencies - returned invisibly}
+\value{ 
+ \item{freq }{frequencies - returned invisibly}
  \item{spec }{ spectral ordinates - returned invisibly }
 }
 \references{You can find demonstrations of  astsa capabilities at
@@ -49,7 +53,11 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}. 
 }
-\author{D.S. Stoffer
+\author{
+D.S. Stoffer
+}
+\seealso{
+\code{\link{arma.check}}
 }
 \examples{
 arma.spec(ar = c(1, -.9), ma = .8)
@@ -58,6 +66,7 @@ arma.spec(ar = c(1, -.9), log='y')
 
 arma.spec(ar = -.9, ma=.89, gg=TRUE)  # almost white noise
 
+# if you want a seasonal model, you have to be a little clever
 arma.spec(ar=c(rep(0,11),.4), ma=.5, col=5, lwd=3, frequency=12)
 }
 \keyword{ts}

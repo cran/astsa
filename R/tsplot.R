@@ -1,18 +1,21 @@
-tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
-                    margins=.25, ncolm=1, byrow=TRUE, nx = NULL, ny = nx, 
-                    minor=TRUE, nxm=2, nym=1, xm.grid=TRUE, ym.grid=TRUE, col=1, 
+tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab=NULL, title=NULL, 
+                    type=NULL, margins=.25, omargins=0, ncolm=1, byrow=TRUE, nx = NULL, 
+                    ny = nx, minor=TRUE, nxm=2, nym=1, xm.grid=TRUE, ym.grid=TRUE, col=1, 
                     gg=FALSE, spaghetti=FALSE, pch=NULL, lty=1, lwd=1, mgpp=0, 
                     topper=NULL, addLegend=FALSE, location='topright', boxit=TRUE,
-                    horiz=FALSE, legend=NULL, llwd=NULL, scale=1, ...)
+                    horiz=FALSE, legend=NULL, llwd=NULL, scale=1, reset.par = TRUE, ...)
 {
+  old.par <- par(no.readonly = TRUE)    # orig parameters
   nser   = max(NCOL(x), NCOL(y))
   if (is.null(topper)){
   topper = ifelse(is.null(main), 0, .5) } 
   type0  = 'n' 
   type1  = ifelse(is.null(type), 'l', type)
+  ifelse(is.null(type), 'l', type)
   pch    = rep(pch, ceiling(nser/length(pch)))
   lty    = rep(lty, ceiling(nser/length(lty)))
   lwd    = rep(lwd, ceiling(nser/length(lwd)))
+  if (is.null(xlab)) xlab = 'Time'
   if (is.na(any(nx))) nxm=0
   if (is.na(any(ny))) nym=0
   
@@ -31,25 +34,27 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    box(col='gray62')
   } else {                   # multiple series
    if(!is.null(ylab)){ ylab = rep(ylab, ceiling(nser/length(ylab))) } 
-   prow = ceiling(nser/ncolm)
+   xlab  = rep(xlab, ceiling(nser/length(xlab)))  # xlab never null by this line 
+   prow  = ceiling(nser/ncolm)
    culer = rep(col, nser)
    if(byrow){
-   par(mfrow = c(prow, ncolm),  cex.lab=1.1, oma = c(0,0,3*topper,0))
+   par(mfrow = c(prow, ncolm),  cex.lab=1.1, oma = c(0,0,3*topper,0)+omargins)
    } else {
-   par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0) )
+   par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0)+omargins )
    }
-par(cex=.9*scale)
-   if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x))}
-   if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y))} 
+  par(cex=.85*scale)
+   if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x), do.NULL=FALSE, prefix="Series ")}
+   if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y), do.NULL=FALSE, prefix="Series ")} 
    for (h in 1:nser) {
-    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, 
+    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab[h], main=title[h],
                   nx=nx, ny=ny, minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
     } else {
-    tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, minor=minor, 
+    tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab[h], minor=minor, main=title[h],
                      nx=nx, ny=ny, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
     }
     }  
    mtext(text=main, line=-.5, outer=TRUE, font=2) 
+   if(reset.par) {par(old.par)}
    }    
 } else {                   # gris-gris ya ya 
   if (nser == 1) {         # single series
@@ -63,31 +68,33 @@ par(cex=.9*scale)
    Grid(nx=nx, ny=ny, minor=minor, nxm=nxm, nym=nym, xm.grid=xm.grid, ym.grid=ym.grid, col='white')
    par(new=TRUE)
    plot(x, y, type=type1, main=main, ylab=ylab, xlab=xlab, col=col, pch=pch, 
-         lty=lty, lwd=lwd, las=1, ... ) 
+         lty=lty, lwd=lwd, ... ) 
    box(col='white', lwd=2)
   } else {                 # multiple series
    if(!is.null(ylab)){ ylab = rep(ylab, ceiling(nser/length(ylab))) } 
-   prow = ceiling(nser/ncolm)
+   xlab  = rep(xlab, ceiling(nser/length(xlab)))  # xlab never null by this line
+   prow  = ceiling(nser/ncolm)
    culer = rep(col, nser)
    if(byrow){
-   par(mfrow = c(prow, ncolm), cex.lab=1.1, oma = c(0,.25,3*topper,0)+margins, tcl=-.2, 
+   par(mfrow = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0)+omargins, tcl=-.2, 
          cex.axis=.9, cex=.9*scale)
    } else {
-   par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,.25,3*topper,0)+margins, tcl=-.2, 
+   par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0)+omargins, tcl=-.2, 
          cex.axis=.9, cex=.9*scale)
    }
-par(cex=.9*scale)
-   if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x))}
-   if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y))} 
+par(cex=.85*scale)
+   if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x), do.NULL=FALSE, prefix="Series ")}
+   if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y), do.NULL=FALSE, prefix="Series ")} 
    for (h in 1:nser) {
-    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, 
+    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab[h], main=title[h],
          gg=TRUE, nx=nx, ny=ny, minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
    } else {
-   tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, gg=TRUE, nx=nx, ny=ny,
+   tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab[h], gg=TRUE, nx=nx, ny=ny, main=title[h],
              minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
     }
     }
-   mtext(text=main, line=-.5, outer=TRUE, font=2)   
+   mtext(text=main, line=-.5, outer=TRUE, font=2)  
+   if(reset.par) {par(old.par)} 
   }
 }   
 } else {  # when spaghetti is TRUE and nser > 1

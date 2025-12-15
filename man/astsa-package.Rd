@@ -11,7 +11,7 @@ Contains data sets and scripts for analyzing time series in both the frequency a
 \tabular{ll}{
 Package: \tab astsa\cr
 Type: \tab Package\cr
-Version: \tab 2.3\cr
+Version: \tab 2.4\cr
 Date: \tab 2026-01-01\cr
 License: \tab GPL (>= 2) \cr
 LazyLoad: \tab yes\cr
@@ -21,10 +21,11 @@ LazyData: \tab yes\cr
 \author{
 David Stoffer <stoffer@pitt.edu>
 }
-\section{Warning}{If loaded, the \code{dplyr} package corrupts the base scripts \code{filter} and \code{lag} among other things. In this case, whenever you analyze time series data, we suggest you either:
+\section{Warning}{If the package \code{dplyr} is loaded, it will mask the base scripts \code{filter} and \code{lag} (among other things) that a time series analyst uses often. In this case, whenever you analyze time series data, we suggest you either:
 
 (1) Detach it if it's loaded but not being used: 
-\preformatted{   detach(package:dplyr)
+\preformatted{
+   detach(package:dplyr)
 } 
 
 (2) If you want to use it, fix it: 
@@ -42,12 +43,16 @@ and \code{lag} and \code{filter} can be use as originally intended.
    filter = stats::filter
    lag    = stats::lag 
 }
-In this case you can still use  
+and you can still use these for \code{dpylr}: 
 \preformatted{
-   dlag   = dplyr::lag
-  dfilter = dplyr::filter
-} 
-for \code{dpylr}.
+   dlag    = dplyr::lag
+   dfilter = dplyr::filter
+}
+(4) Or avoid all of these problems and use 
+\href{https://CRAN.R-project.org/package=data.table}{data.table} instead of
+\code{dplyr}. If you are doing data manipulation, you should know that
+\code{dplyr} is inspired by \code{data.table}, but it
+is  much slower and weaker than \code{data.table}.  
 }
 
 \references{You can find demonstrations of  astsa capabilities at
