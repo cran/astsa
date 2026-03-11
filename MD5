@@ -1,7 +1,8 @@
-a88e9b3d023fe213fc6d7822dd98262a *DESCRIPTION
+3b0393e063aedde7b4c120e2ed1f4341 *DESCRIPTION
 a86bcdd101c69f37f2b7b32909a48ed6 *NAMESPACE
+5b9b4106f5d171ba0862fb169e1db74a *NEWS.md
 46282659b6813b9ada8f7e30578a7fde *R/ARMAtoAR.R
-3d0bd7e8fa5bb47984b3ecab0893d5d2 *R/EM.R
+f27793225b5e1271cdc3d39319c62c4e *R/EM.R
 6574bb7d6e351e97832c88d37e384b1c *R/ESS.R
 e385432e2504653ef873d41738fb31d6 *R/FDR.R
 7cc1413008bd92a90e5792c6ec5d5fae *R/Grid.r
@@ -33,7 +34,7 @@ d83964343fee0b99ee12970e65e868c9 *R/matrixpwr.R
 047e1642a4d6c16523f8cd66a1d6db0e *R/mvspec.R
 cfb0cfed7c1cb0b55d9575ee1e3e7bb3 *R/polyMul.R
 15703c1658da7700f5be48357d18d4f3 *R/pre.white.R
-e6c8b422d5cc51923653637aea0f3bfb *R/sarima.R
+1e911efa715f66c65e6f08d202501172 *R/sarima.R
 7c1d8edc37a8651d024e565cc8b63266 *R/sarima.for.R
 a968c597788a06bd17ba6ce246b87071 *R/sarima.sim.R
 034eed8c5acf5b903d3031154dbde52e *R/scatter.hist.r
@@ -49,7 +50,7 @@ ab4f33e0f9f3acbef9a5e9c4e2e8ba31 *R/specenv.R
 a2d34562d7fea29c35865bd0a063df67 *R/ttable.r
 4924987ef5c8df0651167cbc58cf0a4b *R/zzz.R
 44ecb4603489f0d5a060f6fa1ebd0082 *README.md
-1bf18d9c216b8d95033f0bd2fe2906b2 *build/partial.rdb
+76e123f5dcc8dee07678412adc0a2a84 *build/partial.rdb
 7adf475c2ac431017ff0bb21ed02ebef *data/BCJ.rda
 be3d6a2cb145a7c70f52fdb74cb716d6 *data/EBV.rda
 37893e592e5828a5cf27b44951a72dd3 *data/ENSO.rda
@@ -164,7 +165,7 @@ df8d85013fcbd3ac26ec8031c2973bef *man/ar.mcmc.Rd
 fe66c4dbfc36525866c11f3ade1143c3 *man/arf.Rd
 c9ffca90cb96066a0f8172a23febf800 *man/arma.check.Rd
 133b6dc10ea80efba0722b1b95f5a8b5 *man/arma.spec.Rd
-057cd416142064ed5d74815013b9a783 *man/astsa-package.Rd
+c15976f47adca0139ca4ab8e1863e282 *man/astsa-package.Rd
 80bc797c0375b06d95ef40b4cdc17d9d *man/astsa.col.Rd
 a2663ac3ca7da1e0f40d20588236e7fe *man/autoParm.Rd
 779f357abe0ea4dc0aceff492b700fbf *man/autoSpec.Rd
